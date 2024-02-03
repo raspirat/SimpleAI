@@ -1,0 +1,3 @@
+[submodule "simpleClai"]
+	path = simpleClai
+	url = https://github.com/sertschgi/simpleClai
