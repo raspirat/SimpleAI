@@ -1,5 +1,30 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>MainMenu.qml</file>
+        <file>assets/SVG/logo.svg</file>
+        <file>assets/SVG/new-dataset.svg</file>
+        <file>assets/SVG/new-model.svg</file>
+        <file>assets/SVG/new-profile.svg</file>
+        <file>assets/SVG/new-project.svg</file>
+        <file>assets/SVG/plain.svg</file>
+        <file>assets/logo.png</file>
+        <file>assets/new-dataset.png</file>
+        <file>assets/new-model.png</file>
+        <file>assets/new-profile.png</file>
+        <file>assets/new-project.png</file>
+        <file>assets/plain.png</file>
+        <file>assets/new-dataset-light.png</file>
+        <file>assets/new-model-light.png</file>
+        <file>assets/new-profile-light.png</file>
+        <file>assets/new-project-light.png</file>
+        <file>NewProject.qml</file>
+        <file>NewDataset.qml</file>
+        <file>NewProfile.qml</file>
+        <file>NewModel.qml</file>
+        <file>assets/browse.png</file>
+        <file>assets/type.png</file>
+        <file>assets/browse-light.png</file>
+        <file>assets/home.png</file>
     </qresource>
 </RCC>
