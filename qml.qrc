@@ -26,5 +26,9 @@
         <file>assets/type.png</file>
         <file>assets/browse-light.png</file>
         <file>assets/home.png</file>
+        <file>components/CustomTextField.qml</file>
+        <file>components/Style.qml</file>
+        <file>Font.qml</file>
+        <file>components/Dropdown.qml</file>
     </qresource>
 </RCC>

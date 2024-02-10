@@ -77,7 +77,36 @@ SimpleAI_autogen/timestamp: CMakeFiles/SimpleAI.dir/compiler_depend.ts
 
 SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: qml.qrc
 SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: CMakeFiles/SimpleAI_autogen.dir/AutoRcc_qml_EWIEGA46WW_Info.json
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: NewDataset.qml
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: Font.qml
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: MainMenu.qml
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: NewProject.qml
 SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: main.qml
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: NewProfile.qml
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: NewModel.qml
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: components/Dropdown.qml
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: components/CustomTextField.qml
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: components/Style.qml
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/new-project-light.png
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/new-profile-light.png
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/new-dataset.png
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/type.png
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/new-model-light.png
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/browse.png
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/browse-light.png
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/logo.png
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/new-project.png
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/new-model.png
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/plain.png
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/new-profile.png
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/new-dataset-light.png
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/home.png
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/SVG/logo.svg
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/SVG/new-dataset.svg
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/SVG/new-model.svg
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/SVG/new-profile.svg
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/SVG/new-project.svg
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/SVG/plain.svg
 SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: /usr/lib/qt6/libexec/rcc
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/malte/code/SimpleAI/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Automatic RCC for qml.qrc"
 	/opt/cmake-3.28.2-linux-x86_64/bin/cmake -E cmake_autorcc /home/malte/code/SimpleAI/CMakeFiles/SimpleAI_autogen.dir/AutoRcc_qml_EWIEGA46WW_Info.json 

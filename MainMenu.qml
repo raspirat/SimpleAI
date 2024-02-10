@@ -1,29 +1,18 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
+import Style 1.0
+import "./components"
 
 Item {
-    anchors.fill: parent
+    id: mainMenu
+    Layout.fillWidth: true
+    Layout.fillHeight: true
 
     ColumnLayout{
         id: columnLayout
         width: parent.width
-        height: parent.height / 1.8
-        spacing: 20
-
-        Rectangle {
-            width: 40
-            height: 40
-            color: "transparent"
-        }
-
-        Image {
-            id: logo
-            sourceSize.width: parent.width / 6
-            source: "qrc:/assets/logo.png"
-            fillMode: Image.PreserveAspectFit
-            anchors.horizontalCenter: parent.horizontalCenter
-        }
+        height: parent.height / 2.5
 
         Rectangle {
             width: 50

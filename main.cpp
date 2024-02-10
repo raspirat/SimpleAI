@@ -1,6 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-
+// #include <engine.h>
 
 int main(int argc, char *argv[])
 {
@@ -9,14 +9,18 @@ int main(int argc, char *argv[])
 #endif
     QGuiApplication app(argc, argv);
 
-    QQmlApplicationEngine engine;
+    QQmlApplicationEngine appEngine;
+
+    qmlRegisterSingletonType(QStringLiteral("qrc:/components/Style.qml"),"Style",1,0,"Style");
+    qmlRegisterSingletonType(QStringLiteral("qrc:/Font.qml"),"Font",1,0,"Font");
+
     const QUrl url(QStringLiteral("qrc:/main.qml"));
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
+    QObject::connect(&appEngine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
-    engine.load(url);
+    appEngine.load(url);
 
     return app.exec();
 }

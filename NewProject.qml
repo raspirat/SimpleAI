@@ -1,6 +1,8 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 2.15
+import "./components"
+import Style 1.0
 
 Item {
     anchors.fill: parent
@@ -10,8 +12,8 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
 
         Rectangle {
-            width: 40
-            height: 40
+            Layout.fillWidth: true
+            height: 60
             color: "transparent"
         }
 
@@ -30,10 +32,10 @@ Item {
             onLinkActivated: Qt.openUrlExternally("https://github.com/sertschgi/simpleClai")
             color: "#A1A1A1"
             font.pixelSize: 20
-            wrapMode: Wrap
+            wrapMode: Text.Wrap
             anchors.horizontalCenter: newprojectcaption.horizontalCenter
             width: newprojectcaption.contentWidth * 1.5
-            height: 100
+
             Rectangle {
                 border.color: "red"
                 color: "transparent"
@@ -42,35 +44,59 @@ Item {
             }
         }
 
-        Rectangle {
+        // TODO: Space before TextInput
+        CustomTextField {
             id: nameRect
-            width: 300
-            height: 40
-
+            implicitWidth: 300
+            implicitHeight: 40
+            isBold: false
+            placeholderText: qsTr("Name")
+            selectedTextColor: "#FFFFFF"
+            selectionColor: "lightblue"
+            radius: 8
             anchors.horizontalCenter: parent.horizontalCenter
+        }
 
-            Image {
-                source: "qrc:/assets/type.png"
+        Dropdown {
+            model: ["Please select a profile...", "Profile 1", "Profile 2"]
+            anchors.horizontalCenter: parent.horizontalCenter
+            implicitWidth: 300
+            implicitHeight: 40
+        }
+
+        Dropdown {
+            model: ["Please select a dataset...", "Dataset 1", "Dataset 2"]
+            anchors.horizontalCenter: parent.horizontalCenter
+            implicitWidth: 300
+            implicitHeight: 40
+        }
+
+        Rectangle {
+            color: "transparent"
+            Layout.fillWidth: true
+            height: 35
+        }
+
+        Image {
+            id: createNewProject
+            sourceSize.width: 650
+            source: "qrc:/assets/new-project.png"
+            fillMode: Image.PreserveAspectFit
+
+            MouseArea {
                 anchors.fill: parent
-
-                TextInput {
-                    id: textInput
-                    anchors.fill: parent
-                    anchors.margins: 10
-                    font.pixelSize: 16
-                    color: "black"
+                hoverEnabled: true
+                onClicked: {
+                   contentFrame.replace("qrc:/NewProject.qml")
                 }
-
-                Text {
-                    anchors.left: parent.left
-                    anchors.leftMargin: 10
-                    anchors.verticalCenter: parent.verticalCenter
-                    text: "Name"
-                    color: "#888888"
-                    font.pixelSize: 16
-                    visible: textInput.text.length === 0
+                onEntered: {
+                    parent.source = "qrc:/assets/new-project-light.png"
+                }
+                onExited: {
+                    parent.source = "qrc:/assets/new-project.png"
                 }
             }
+            Layout.alignment: Qt.AlignHCenter
         }
     }
 }

@@ -1,46 +1,71 @@
-import QtQuick 2.9
+import QtQuick 2.15
 import QtQuick.Controls 2.5
 import QtQuick.Window 2.9
 import QtQuick.Layouts 2.9
+import "./components"
+import Style 1.0
+import QtQuick.Controls.Fusion 2.3
 
 ApplicationWindow {
     id: mainWindow
-    width: 1920
-    height: 1080
+    minimumWidth: 1920
+    minimumHeight: 1080
     visibility: "Maximized"
     visible: true
     title: qsTr("SimpleAI")
+    color: Style.background
 
-    Rectangle {
+    MouseArea {
         anchors.fill: parent
-        color: "#2D2D2D"
+        onClicked: forceActiveFocus()
     }
 
-    ColumnLayout {
-        id: navCol
-        anchors.fill: parent
+    RowLayout {
         width: parent.width
-        height: parent.height / 10
+        height: parent.height / 15
         anchors.horizontalCenter: parent.horizontalCenter
 
-        RowLayout{
+        Image {
+            id: logo
+            sourceSize.width: parent.width / 30
+            source: "qrc:/assets/logo.png"
+            fillMode: Image.PreserveAspectFit
+        }
+
+        ColumnLayout {
+            anchors.fill: parent
+            height: parent.height
             width: parent.width
-            anchors.horizontalCenter: parent.horizontalCenter
+
+            Rectangle {
+                color: "transparent"
+                height: 5
+                Layout.fillWidth: true
+            }
 
             Image {
                 id: home
-                sourceSize.width: mainWindow.width / 40
+                sourceSize.width: mainWindow.width / 35
                 source: "qrc:/assets/home.png"
                 fillMode: Image.PreserveAspectFit
                 anchors.horizontalCenter: parent.horizontalCenter
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onClicked: {
+                        if (!String(contentFrame.currentItem).includes("MainMenu")) {
+                            contentFrame.replace("qrc:/MainMenu.qml", StackView.PopTransition)
+                        }
+                    }
+                }
             }
-        }
 
-        Rectangle {
-            border.color: "white"
-            color: "white"
-            width: parent.contentWidth
-            height: 200
+            Rectangle {
+                Layout.fillWidth: true
+                anchors.horizontalCenter: parent.horizontalCenter
+                height: 2
+                color: "white"
+            }
         }
     }
 
