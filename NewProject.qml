@@ -8,12 +8,12 @@ Item {
     anchors.fill: parent
 
     ColumnLayout {
-        spacing: 20
         anchors.horizontalCenter: parent.horizontalCenter
+        spacing: 30
 
         Rectangle {
             Layout.fillWidth: true
-            height: 60
+            height: 100
             color: "transparent"
         }
 
@@ -28,27 +28,21 @@ Item {
 
         Text {
             id: description
-            text: qsTr('<html><style type="text/css">a{color: "#4287f5"}</style>Here you can create a model. Therefore you need a dataset as well as a profile. If you currently don\'t have them or don\'t know what to do, take a look at the GitHub page of <a href="https://github.com/sertschgi/simpleClai">SimpleClai</a>.</html>')
+            text: qsTr('Here you can create a model. Therefore you need a dataset as well as a profile. If you currently don\'t have them or don\'t know what to do, take a look at the GitHub page of <a href="https://github.com/sertschgi/simpleClai">SimpleClai</a>.')
             onLinkActivated: Qt.openUrlExternally("https://github.com/sertschgi/simpleClai")
-            color: "#A1A1A1"
+            linkColor: "#4287f5"
+            color: Style.textColor
             font.pixelSize: 20
             wrapMode: Text.Wrap
             anchors.horizontalCenter: newprojectcaption.horizontalCenter
             width: newprojectcaption.contentWidth * 1.5
-
-            Rectangle {
-                border.color: "red"
-                color: "transparent"
-                width: parent.contentWidth
-                height: parent.contentHeight
-            }
         }
 
         // TODO: Space before TextInput
         CustomTextField {
             id: nameRect
-            implicitWidth: 300
-            implicitHeight: 40
+            implicitWidth: 350
+            implicitHeight: 50
             isBold: false
             placeholderText: qsTr("Name")
             selectedTextColor: "#FFFFFF"
@@ -60,26 +54,38 @@ Item {
         Dropdown {
             model: ["Please select a profile...", "Profile 1", "Profile 2"]
             anchors.horizontalCenter: parent.horizontalCenter
-            implicitWidth: 300
-            implicitHeight: 40
+            implicitWidth: 350
+            implicitHeight: 50
         }
 
         Dropdown {
             model: ["Please select a dataset...", "Dataset 1", "Dataset 2"]
             anchors.horizontalCenter: parent.horizontalCenter
-            implicitWidth: 300
-            implicitHeight: 40
+            implicitWidth: 350
+            implicitHeight: 50
         }
 
         Rectangle {
             color: "transparent"
             Layout.fillWidth: true
-            height: 35
+            height: 25
+        }
+
+        Popup {
+                id: newProjectFeedback
+                width: 200
+                height: 300
+                modal: true
+                focus: true
+                closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+                onClosed: {
+                    contentFrame.replace("qrc:/MainMenu.qml", StackView.PopTransition)
+                }
         }
 
         Image {
             id: createNewProject
-            sourceSize.width: 650
+            sourceSize.width: 700
             source: "qrc:/assets/create.png"
             fillMode: Image.PreserveAspectFit
 
@@ -89,7 +95,7 @@ Item {
                 onClicked: {
                     // CHECK STUFF ETC!!!
                     // CALLBACK!!!!!!!!!!
-                    contentFrame.replace("qrc:/MainMenu.qml", StackView.PopTransition)
+                    newProjectFeedback.open()
                 }
                 onEntered: {
                     parent.source = "qrc:/assets/create-light.png"

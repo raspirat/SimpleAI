@@ -22,7 +22,7 @@ ApplicationWindow {
 
     RowLayout {
         width: parent.width
-        height: parent.height / 15
+        height: parent.height / 10
         anchors.horizontalCenter: parent.horizontalCenter
 
         ColumnLayout {
@@ -38,8 +38,8 @@ ApplicationWindow {
 
             Image {
                 id: home
-                sourceSize.width: mainWindow.width / 35
-                source: "qrc:/assets/home.png"
+                sourceSize.width: mainWindow.width / 20
+                source: "qrc:/assets/logo.png"
                 fillMode: Image.PreserveAspectFit
                 anchors.horizontalCenter: parent.horizontalCenter
                 MouseArea {
