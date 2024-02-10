@@ -30,5 +30,7 @@
         <file>components/Style.qml</file>
         <file>Font.qml</file>
         <file>components/Dropdown.qml</file>
+        <file>assets/create.png</file>
+        <file>assets/create-light.png</file>
     </qresource>
 </RCC>

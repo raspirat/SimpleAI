@@ -25,13 +25,6 @@ ApplicationWindow {
         height: parent.height / 15
         anchors.horizontalCenter: parent.horizontalCenter
 
-        Image {
-            id: logo
-            sourceSize.width: parent.width / 30
-            source: "qrc:/assets/logo.png"
-            fillMode: Image.PreserveAspectFit
-        }
-
         ColumnLayout {
             anchors.fill: parent
             height: parent.height

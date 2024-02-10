@@ -80,20 +80,22 @@ Item {
         Image {
             id: createNewProject
             sourceSize.width: 650
-            source: "qrc:/assets/new-project.png"
+            source: "qrc:/assets/create.png"
             fillMode: Image.PreserveAspectFit
 
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled: true
                 onClicked: {
-                   contentFrame.replace("qrc:/NewProject.qml")
+                    // CHECK STUFF ETC!!!
+                    // CALLBACK!!!!!!!!!!
+                    contentFrame.replace("qrc:/MainMenu.qml", StackView.PopTransition)
                 }
                 onEntered: {
-                    parent.source = "qrc:/assets/new-project-light.png"
+                    parent.source = "qrc:/assets/create-light.png"
                 }
                 onExited: {
-                    parent.source = "qrc:/assets/new-project.png"
+                    parent.source = "qrc:/assets/create.png"
                 }
             }
             Layout.alignment: Qt.AlignHCenter
