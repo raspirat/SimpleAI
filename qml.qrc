@@ -32,5 +32,7 @@
         <file>components/Dropdown.qml</file>
         <file>assets/create.png</file>
         <file>assets/create-light.png</file>
+        <file>assets/close.png</file>
+        <file>assets/close-red.png</file>
     </qresource>
 </RCC>

@@ -87,6 +87,7 @@ SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: NewModel.qml
 SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: components/Dropdown.qml
 SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: components/CustomTextField.qml
 SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: components/Style.qml
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/close-red.png
 SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/type.png
 SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/new-dataset.png
 SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/new-model-light.png
@@ -101,6 +102,7 @@ SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/new-project.png
 SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/new-model.png
 SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/plain.png
 SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/new-profile.png
+SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/close.png
 SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/create.png
 SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/home.png
 SimpleAI_autogen/EWIEGA46WW/qrc_qml.cpp: assets/SVG/logo.svg

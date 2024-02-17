@@ -82,32 +82,31 @@ Item {
             onClosed: {
                 contentFrame.replace("qrc:/MainMenu.qml", StackView.PopTransition)
             }
-            color: "transparent"
 
             Image {
                 id: popupImg
                 anchors.fill: parent
                 fillMode: Image.PreserveAspectFit
-            }
 
-            Image {
-                id: popupClose
-                width: 40
-                height: 40
-                source: "qrc:/assets/close.png"
-                anchors.TopAnchor: parent.Top
-                anchors.RightAnchor: parent.Right
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onClicked: {
-                        newProjectFeedback.close()
-                    }
-                    onEntered: {
-                        parent.source = "qrc:/assets/close-red.png"
-                    }
-                    onExited: {
-                        parent.source = "qrc:/assets/close.png"
+                Image {
+                    id: popupClose
+                    width: 20
+                    height: 20
+                    source: "qrc:/assets/close.png"
+                    anchors.top: parent.top
+                    anchors.right: parent.right
+                    MouseArea {
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        onClicked: {
+                            newProjectFeedback.close()
+                        }
+                        onEntered: {
+                            parent.source = "qrc:/assets/close-red.png"
+                        }
+                        onExited: {
+                            parent.source = "qrc:/assets/close.png"
+                        }
                     }
                 }
             }
