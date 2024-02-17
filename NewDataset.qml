@@ -18,8 +18,8 @@ Item {
         }
 
         Text {
-            id: newDatasetCaption
-            text: qsTr("Create a new Dataset")
+            id: newprojectcaption
+            text: qsTr("Create a new project")
             font.pixelSize: 50
             color: "aqua"
             anchors.horizontalCenter: parent.horizontalCenter
@@ -28,14 +28,14 @@ Item {
 
         Text {
             id: description
-            text: qsTr('Here you can create a model. Therefore you need a dataset as well as a profile. If you currently don\'t have them or don\'t know what to do, take a look at the GitHub page of <a href="https://github.com/sertschgi/simpleClai">SimpleClai</a>.')
+            text: qsTr('Here you can create a Dataset. Therefore you need a dataset as well as a profile. If you currently don\'t have them or don\'t know what to do, take a look at the GitHub page of <a href="https://github.com/sertschgi/simpleClai">SimpleClai</a>.')
             onLinkActivated: Qt.openUrlExternally("https://github.com/sertschgi/simpleClai")
             linkColor: "#4287f5"
             color: Style.textColor
             font.pixelSize: 20
             wrapMode: Text.Wrap
-            anchors.horizontalCenter: newDatasetCaption.horizontalCenter
-            width: newDatasetCaption.contentWidth * 1.5
+            anchors.horizontalCenter: newprojectcaption.horizontalCenter
+            width: newprojectcaption.contentWidth * 1.5
         }
 
         // TODO: Space before TextInput
@@ -72,19 +72,49 @@ Item {
         }
 
         Popup {
-                id: newDatasetFeedback
-                width: 200
-                height: 300
-                modal: true
-                focus: true
-                closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
-                onClosed: {
-                    contentFrame.replace("qrc:/MainMenu.qml", StackView.PopTransition)
+            id: newProjectFeedback
+            anchors.centerIn: Overlay.overlay
+            width: 300
+            height: 200
+            modal: true
+            focus: true
+            closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+            onClosed: {
+                contentFrame.replace("qrc:/MainMenu.qml", StackView.PopTransition)
+            }
+
+            Image {
+                id: popupImg
+                anchors.fill: parent
+                fillMode: Image.PreserveAspectFit
+
+                Image {
+                    id: popupClose
+                    width: 20
+                    height: 20
+                    source: "qrc:/assets/close.png"
+                    anchors.top: parent.top
+                    anchors.right: parent.right
+
+                    MouseArea {
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        onClicked: {
+                            newProjectFeedback.close()
+                        }
+                        onEntered: {
+                            parent.source = "qrc:/assets/close-red.png"
+                        }
+                        onExited: {
+                            parent.source = "qrc:/assets/close.png"
+                        }
+                    }
                 }
+            }
         }
 
         Image {
-            id: createNewDataset
+            id: createNewProject
             sourceSize.width: 700
             source: "qrc:/assets/create.png"
             fillMode: Image.PreserveAspectFit
@@ -95,7 +125,7 @@ Item {
                 onClicked: {
                     // CHECK STUFF ETC!!!
                     // CALLBACK!!!!!!!!!!
-                    newDatasetFeedback.open()
+                    newProjectFeedback.open()
                 }
                 onEntered: {
                     parent.source = "qrc:/assets/create-light.png"

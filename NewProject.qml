@@ -95,6 +95,7 @@ Item {
                     source: "qrc:/assets/close.png"
                     anchors.top: parent.top
                     anchors.right: parent.right
+
                     MouseArea {
                         anchors.fill: parent
                         hoverEnabled: true
