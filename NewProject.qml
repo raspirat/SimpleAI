@@ -28,7 +28,7 @@ Item {
 
         Text {
             id: description
-            text: qsTr('Here you can create a model. Therefore you need a dataset as well as a profile. If you currently don\'t have them or don\'t know what to do, take a look at the GitHub page of <a href="https://github.com/sertschgi/simpleClai">SimpleClai</a>.')
+            text: qsTr('Here you can create a project. Therefore you need a dataset as well as a profile. If you currently don\'t have them or don\'t know what to do, take a look at the GitHub page of <a href="https://github.com/sertschgi/simpleClai">SimpleClai</a>.')
             onLinkActivated: Qt.openUrlExternally("https://github.com/sertschgi/simpleClai")
             linkColor: "#4287f5"
             color: Style.textColor
@@ -72,15 +72,45 @@ Item {
         }
 
         Popup {
-                id: newProjectFeedback
-                width: 200
-                height: 300
-                modal: true
-                focus: true
-                closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
-                onClosed: {
-                    contentFrame.replace("qrc:/MainMenu.qml", StackView.PopTransition)
+            id: newProjectFeedback
+            anchors.centerIn: Overlay.overlay
+            width: 300
+            height: 200
+            modal: true
+            focus: true
+            closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+            onClosed: {
+                contentFrame.replace("qrc:/MainMenu.qml", StackView.PopTransition)
+            }
+            color: "transparent"
+
+            Image {
+                id: popupImg
+                anchors.fill: parent
+                fillMode: Image.PreserveAspectFit
+            }
+
+            Image {
+                id: popupClose
+                width: 40
+                height: 40
+                source: "qrc:/assets/close.png"
+                anchors.TopAnchor: parent.Top
+                anchors.RightAnchor: parent.Right
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onClicked: {
+                        newProjectFeedback.close()
+                    }
+                    onEntered: {
+                        parent.source = "qrc:/assets/close-red.png"
+                    }
+                    onExited: {
+                        parent.source = "qrc:/assets/close.png"
+                    }
                 }
+            }
         }
 
         Image {
