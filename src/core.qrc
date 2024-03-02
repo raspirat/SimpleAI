@@ -1,0 +1,34 @@
+<RCC>
+    <qresource prefix="/">
+        <file>design/windows/MainWindow.qml</file>
+        <file>design/windows/SecondWindow.qml</file>
+    </qresource>
+    <qresource prefix="/buttons">
+        <file alias="BigButton.qml">design/widgets/BigButton.qml</file>
+        <file alias="DefaultButton.qml">design/widgets/DefaultButton.qml</file>
+    </qresource>
+    <qresource prefix="/effects"/>
+    <qresource prefix="/shaders"/>
+    <qresource prefix="/shapes">
+        <file alias="NmRect.qml">design/widgets/NmRect.qml</file>
+        <file alias="NmRectInverted.qml">design/widgets/NmRectInverted.qml</file>
+    </qresource>
+    <qresource prefix="/config">
+        <file alias="Colors.qml">design/config/Colors.qml</file>
+        <file alias="Fonts.qml">design/config/Fonts.qml</file>
+    </qresource>
+    <qresource prefix="/pages/MainWindow">
+        <file alias="DatasetsPage.qml">design/pages/DatasetsPage.qml</file>
+        <file alias="MainWindowPage.qml">design/pages/MainWindowPage.qml</file>
+        <file alias="ProfilesPage.qml">design/pages/ProfilesPage.qml</file>
+        <file alias="ProjectsPage.qml">design/pages/ProjectsPage.qml</file>
+        <file alias="ModelsPage.qml">design/pages/ModelsPage.qml</file>
+        <file alias="TrainPage.qml">design/pages/TrainPage.qml</file>
+    </qresource>
+    <qresource prefix="/items">
+        <file alias="SaiSiteHeader.qml">design/widgets/SaiSiteHeader.qml</file>
+        <file alias="SaiCdSelector.qml">design/widgets/SaiCdSelector.qml</file>
+        <file alias="SaiScrollView.qml">design/widgets/SaiScrollView.qml</file>
+        <file alias="SaiMainPage.qml">design/widgets/SaiMainPage.qml</file>
+    </qresource>
+</RCC>

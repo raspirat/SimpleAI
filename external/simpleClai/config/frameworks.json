@@ -1,0 +1,19 @@
+{
+    "tensorflow" : {
+        "object_detection" : {
+            "python_path" : "%{PROFILE_PATH}/sa_%{NAME}/python",
+            "training_script" : "%{APP_SCRIPTS_PATH}/train_tf_object_detection.sh %{NAME}",
+            "profile" : {
+                "install_script" : "%{APP_SCRIPTS_PATH}/install_tf_object_detection.sh %{NAME}"
+            },
+            "project" : {
+                "install_script" : "%{APP_SCRIPTS_PATH}/setup_tf_object_detection_project.sh %{NAME} %{PROFILE_PATH}"
+            },
+            "models" : {
+                "CenterNet MobileNetV2 FPN" : {
+                    "install_script" : "%{APP_SCRIPTS_PATH}/setup_tf_object_detection_model.sh %{NAME} %{MODEL_PATH} http://download.tensorflow.org/models/object_detection/tf2/20210210/centernet_mobilenetv2fpn_512x512_coco17_od.tar.gz"
+                }
+            }
+        }
+    }
+}

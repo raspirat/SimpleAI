@@ -1,0 +1,23 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#include <QStandardPaths>
+
+#define APP_NAME "sclai"
+#define APP_VERSION "0.0.1"
+
+#define APP_DATA_PATH "/etc/" APP_NAME
+#define APP_CONFIG_PATH APP_DATA_PATH "/config"
+#define APP_SCRIPTS_PATH APP_DATA_PATH "/scripts"
+
+#define USER_WORKING_PATH "~/." APP_NAME
+#define USER_CONFIG_PATH USER_WORKING_PATH "/config"
+#define USER_SCRIPTS_PATH USER_WORKING_PATH "/scripts"
+
+#define DEFAULT_WORKING_PATH USER_WORKING_PATH
+#define DEFAULT_DATASETS_PATH DEFAULT_WORKING_PATH "/datasets"
+#define DEFAULT_PROFILES_PATH DEFAULT_WORKING_PATH "/profiles"
+#define DEFAULT_PROJECTS_PATH DEFAULT_PROFILES_PATH "/projects"
+#define DEFAULT_MODELS_PATH DEFAULT_PROJECTS_PATH "/models"
+
+#endif
