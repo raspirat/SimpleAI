@@ -10,7 +10,7 @@ add_subdirectory(src/modules/models)
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
 
-set(QML_IMPORT_PATH "${CMAKE_BINARY_DIR}/src/modules")
+#set(QML_IMPORT_PATH "${CMAKE_CURRENT_BINARY_DIR}/src/modules/models")
 
 qt_standard_project_setup(REQUIRES 6.5)
 
@@ -45,7 +45,6 @@ qt_add_qml_module(appSimpleAI
 
 target_include_directories(appSimpleAI PUBLIC
     include/code
-
 )
 
 target_link_libraries(appSimpleAI

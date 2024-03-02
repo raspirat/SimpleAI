@@ -43,7 +43,6 @@ Rectangle
         Items.SaiScrollView {
             id: scrollView
             description: "recent " + name + ":"
-            file: ""
         }
     }
 }

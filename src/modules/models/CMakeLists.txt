@@ -23,7 +23,7 @@ qt_add_qml_module(SaiModels
         src/JsonModel.cpp
 )
 
-set(QML_IMPORT_PATH "../${CMAKE_CURRENT_BINARY_DIR}" CACHE STRING "Qt QML import path")
+set(QML_IMPORT_PATH "../${CMAKE_CURRENT_BINARY_DIR}")
 
 target_include_directories(SaiModels PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include

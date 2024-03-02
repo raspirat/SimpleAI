@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
-import JsonModel
+// import JsonModel
 
 import "qrc:/buttons" as Buttons
 import "qrc:/shapes" as Shapes
@@ -39,7 +39,7 @@ Item {
 
             implicitHeight: parent.height - 60
             implicitWidth: parent.width
-
+            /*
             ScrollView {
                 ListView {
                     model: JsonModel {id: jsonModel}
@@ -60,7 +60,7 @@ Item {
                         }
                     }
                 }
-            }
+            }*/
         }
     }
 }
