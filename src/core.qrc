@@ -30,5 +30,6 @@
         <file alias="SaiCdSelector.qml">design/widgets/SaiCdSelector.qml</file>
         <file alias="SaiScrollView.qml">design/widgets/SaiScrollView.qml</file>
         <file alias="SaiMainPage.qml">design/widgets/SaiMainPage.qml</file>
+        <file alias="SaiCreatePage.qml">design/widgets/SaiCreatePage.qml</file>
     </qresource>
 </RCC>

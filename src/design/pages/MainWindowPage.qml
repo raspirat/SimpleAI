@@ -34,7 +34,7 @@ ColumnLayout
     }
 
     Text {
-        text: "choose..."
+        text: "Choose..."
         color: colors.secondaryFont
         font: fonts.mainFont
         topPadding: 60
@@ -55,7 +55,7 @@ ColumnLayout
 
         Buttons.BigButton {
             text: "D"
-            description: "datasets"
+            description: "Datasets"
             font: fonts.altFont
             Layout.row: 0
             Layout.column: 0
@@ -67,7 +67,7 @@ ColumnLayout
 
         Buttons.BigButton {
             text: "Pf"
-            description: "profiles"
+            description: "Profiles"
             font: fonts.altFont
             Layout.row: 0
             Layout.column: 1
@@ -79,7 +79,7 @@ ColumnLayout
 
         Buttons.BigButton {
             text: "Pj"
-            description: "projects"
+            description: "Projects"
             font: fonts.altFont
             Layout.row: 0
             Layout.column: 2
@@ -90,8 +90,8 @@ ColumnLayout
         }
 
         Buttons.BigButton {
-            text: "M"
-            description: "models"
+            text: "Mo"
+            description: "Models"
             font: fonts.altFont
             Layout.row: 1
             Layout.column: 0
@@ -103,7 +103,7 @@ ColumnLayout
 
         Buttons.BigButton {
             text: "T"
-            description: "train"
+            description: "Train"
             font: fonts.altFont
             Layout.row: 1
             Layout.column: 1
@@ -115,7 +115,7 @@ ColumnLayout
 
         Buttons.BigButton {
             text: "B"
-            description: "builder"
+            description: "Builder"
             font: fonts.altFont
             Layout.row: 1
             Layout.column: 2
@@ -127,7 +127,7 @@ ColumnLayout
 
         Buttons.BigButton {
             text: "L"
-            description: "labeler"
+            description: "Labeler"
             font: fonts.altFont
             Layout.row: 2
             Layout.column: 0
@@ -138,8 +138,8 @@ ColumnLayout
         }
 
         Buttons.BigButton {
-            text: "M"
-            description: "marketplace"
+            text: "Ma"
+            description: "Marketplace"
             font: fonts.altFont
             Layout.row: 2
             Layout.column: 1
@@ -151,7 +151,7 @@ ColumnLayout
 
         Buttons.BigButton {
             text: "S"
-            description: "settings"
+            description: "Settings"
             font: fonts.altFont
             Layout.row: 2
             Layout.column: 2

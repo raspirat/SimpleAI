@@ -6,6 +6,7 @@ import "qrc:/config" as Config
 import "qrc:/buttons" as Buttons
 import "qrc:/shapes" as Shapes
 import "qrc:/pages/MainWindow" as Pages
+import "qrc:/items" as Items
 
 
 Window {
@@ -76,6 +77,13 @@ Window {
             id: trainPageComponent
             Pages.TrainPage {
                 view: stackView
+            }
+        }
+
+        Component {
+            id: createPageComponent
+            Items.SaiCreatePage {
+                createStackView: stackView
             }
         }
     }

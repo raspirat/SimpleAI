@@ -12,8 +12,8 @@ Rectangle
     Config.Colors {id: colors}
     Config.Fonts {id: fonts}
 
-    property StackView stackView
-    property string name
+    property StackView createStackView
+    property string createName
 
     color: colors.back
 
@@ -31,19 +31,9 @@ Rectangle
 
 
         Items.SaiSiteHeader {
-            id: siteHeader
-            heading: name
-            headerView: stackView
-        }
-
-        Items.SaiCdSelector {
-            id: cdSelector
-            headerView: stackView
-        }
-
-        Items.SaiScrollView {
-            id: scrollView
-            description: "Your " + name + ":"
+            id: createSiteHeader
+            heading: createName
+            headerView: createStackView
         }
     }
 }

@@ -13,7 +13,7 @@ Q_OBJECT
 
 private:
     QQmlApplicationEngine * engine_;
-    QQuickWindow * currentWindow_;
+    QQuickWindow * currentWindow_ {};
 
 public:
     explicit WindowManager(QQmlApplicationEngine * engine, const QString & startWindowPath, QObject * parent = nullptr);

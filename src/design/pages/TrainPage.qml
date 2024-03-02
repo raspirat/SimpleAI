@@ -29,7 +29,7 @@ Rectangle
 
         Items.SaiSiteHeader {
             id: siteHeader
-            heading: "training"
+            heading: "Training"
             headerView: view
         }
 
@@ -76,7 +76,7 @@ Rectangle
                         Items.SaiScrollView {
                             implicitHeight: pathView.height
                             implicitWidth: pathView.width
-                            description: "select a project:"
+                            description: "Select A Project:"
                         }
                     }
 
@@ -86,7 +86,7 @@ Rectangle
                         Items.SaiScrollView {
                             implicitHeight: pathView.height
                             implicitWidth: pathView.width
-                            description: "select a model:"
+                            description: "Select A Model:"
                             json: ClAi.getProjectsJson()
                         }
                     }

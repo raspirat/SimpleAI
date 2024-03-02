@@ -9,8 +9,8 @@ import "qrc:/config" as Config
 
 T.Button {
     id: bigButton
-    height: 150
-    width: 150
+    implicitHeight: 150
+    implicitWidth: 150
     text: "BigButton"
 
     Config.Fonts {

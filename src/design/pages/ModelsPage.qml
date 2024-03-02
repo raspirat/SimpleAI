@@ -18,7 +18,7 @@ Item
     width: parent.width
 
     Items.SaiMainPage {
-        name: "models"
+        name: "Models"
         stackView: view
     }
 }

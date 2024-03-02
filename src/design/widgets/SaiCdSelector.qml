@@ -60,6 +60,7 @@ Item {
                     font.family: fonts.altFont.family
                     fontColor: colors.creation
                     onClicked: {
+                        headerView.push(createPageComponent, {createName: heading});
                     }
                 }
 
@@ -73,6 +74,16 @@ Item {
                     font.family: fonts.altFont.family
                     fontColor: colors.destruction
                     onClicked: {
+                        switch (heading) {
+                            case "Project":
+                                break;
+                            case "Model":
+                                break;
+                            case "Profile":
+                                break;
+                            case "Dataset":
+                                break;
+                        }
                     }
                 }
             }

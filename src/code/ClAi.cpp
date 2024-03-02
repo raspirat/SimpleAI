@@ -1,8 +1,6 @@
-#include "include/code/ClAi.hpp"
+﻿#include "include/code/ClAi.hpp"
 
-ClAi::ClAi() {
-
-}
+ClAi::ClAi() {}
 
 const QString ClAi::getDatasetsConfigPath()
 {
@@ -49,4 +47,12 @@ bool ClAi::saveJson(const QJsonObject & object, const QString & filePath)
     {
         return false;
     }
+}
+
+void ClAi::createProject(QString &name, QString &profile, QString &dataset) {
+    project::createProject(name, profile, dataset);
+}
+
+void ClAi::deleteProject(QString &name) {
+    project::deleteProject(name, false);
 }
