@@ -14,9 +14,6 @@ Item
 
     property StackView view
 
-    height: parent.height
-    width: parent.width
-
     Items.SaiMainPage {
         name: "Models"
         stackView: view

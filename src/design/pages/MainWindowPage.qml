@@ -61,7 +61,7 @@ ColumnLayout
             Layout.column: 0
             fontColor: colors.special1
             onClicked: {
-                stackView.push(datasetsPageComponent)
+                stackView.push(Qt.resolvedUrl("qrc:/pages/MainWindow/DatasetsPage.qml"), {view: view})
             }
         }
 
@@ -73,7 +73,7 @@ ColumnLayout
             Layout.column: 1
             fontColor: colors.special1
             onClicked: {
-                stackView.push(profilesPageComponent)
+                stackView.push(Qt.resolvedUrl("qrc:/pages/MainWindow/ProfilesPage.qml"), {view: view})
             }
         }
 
@@ -85,7 +85,7 @@ ColumnLayout
             Layout.column: 2
             fontColor: colors.special1
             onClicked: {
-                stackView.push(projectsPageComponent)
+                stackView.push(Qt.resolvedUrl("qrc:/pages/MainWindow/ProjectsPage.qml"), {view: view})
             }
         }
 
@@ -97,7 +97,7 @@ ColumnLayout
             Layout.column: 0
             fontColor: colors.special1
             onClicked: {
-                stackView.push(modelsPageComponent)
+                stackView.push(Qt.resolvedUrl("qrc:/pages/MainWindow/ModelsPage.qml"), {view: view})
             }
         }
 
@@ -109,7 +109,7 @@ ColumnLayout
             Layout.column: 1
             fontColor: colors.special1
             onClicked: {
-                stackView.push(trainPageComponent)
+                stackView.push(Qt.resolvedUrl("qrc:/pages/MainWindow/TrainPage.qml"), {view: view})
             }
         }
 

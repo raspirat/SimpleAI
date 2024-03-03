@@ -44,47 +44,5 @@ Window {
                 view: stackView
             }
         }
-
-        Component {
-            id: datasetsPageComponent
-            Pages.DatasetsPage {
-                view: stackView
-            }
-        }
-
-        Component {
-            id: profilesPageComponent
-            Pages.ProfilesPage {
-                view: stackView
-            }
-        }
-
-        Component {
-            id: projectsPageComponent
-            Pages.ProjectsPage {
-                view: stackView
-            }
-        }
-
-        Component {
-            id: modelsPageComponent
-            Pages.ModelsPage {
-                view: stackView
-            }
-        }
-
-        Component {
-            id: trainPageComponent
-            Pages.TrainPage {
-                view: stackView
-            }
-        }
-
-        Component {
-            id: createPageComponent
-            Items.SaiCreatePage {
-                createStackView: stackView
-            }
-        }
     }
 }

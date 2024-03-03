@@ -38,6 +38,7 @@ Rectangle
 
         Items.SaiCdSelector {
             id: cdSelector
+            heading: name
             headerView: stackView
         }
 

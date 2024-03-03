@@ -15,10 +15,6 @@ Rectangle
 
     color: colors.back
 
-    implicitHeight: parent.height
-    implicitWidth: parent.width
-
-
     ColumnLayout
     {
         anchors.fill: parent

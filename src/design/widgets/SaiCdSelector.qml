@@ -60,7 +60,7 @@ Item {
                     font.family: fonts.altFont.family
                     fontColor: colors.creation
                     onClicked: {
-                        headerView.push(createPageComponent, {createName: heading});
+                        headerView.push(Qt.resolvedUrl("qrc:/items/SaiCreatePage.qml"), {"createName": heading, "createStackView": headerView});
                     }
                 }
 
@@ -74,19 +74,21 @@ Item {
                     font.family: fonts.altFont.family
                     fontColor: colors.destruction
                     onClicked: {
-                        switch (heading) {
-                            case "Project":
-                                break;
-                            case "Model":
-                                break;
-                            case "Profile":
-                                break;
-                            case "Dataset":
-                                break;
-                        }
+                        deleteFeedback.open()
                     }
                 }
             }
+        }
+
+        Popup {
+            id: deleteFeedback
+            anchors.centerIn: Overlay.overlay
+            width: 300
+            height: 200
+            modal: true
+            focus: true
+            closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+            // Seppi, mach du das Popup, danke!
         }
     }
 }

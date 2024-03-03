@@ -9,17 +9,13 @@ import "qrc:/items" as Items
 
 Rectangle
 {
-    Config.Colors {id: colors}
-    Config.Fonts {id: fonts}
-
     property StackView createStackView
     property string createName
 
+    Config.Colors {id: colors}
+    Config.Fonts {id: fonts}
+
     color: colors.back
-
-    height: parent.height
-    width: parent.width
-
 
     ColumnLayout
     {
@@ -32,8 +28,9 @@ Rectangle
 
         Items.SaiSiteHeader {
             id: createSiteHeader
-            heading: createName
+            heading: "Create..."
             headerView: createStackView
         }
     }
 }
+
