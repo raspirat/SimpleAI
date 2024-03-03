@@ -10,20 +10,20 @@
 
 namespace model
 {
-void createModel
+int createModel
     (
     const QString& name,
     const QString& project,
     const QString& model
     );
 
-void trainModel
+int trainModel
     (
     const QString& name,
     const QString& project
     );
 
-void deleteModel
+int deleteModel
     (
     const QString& name,
     const QString& project,

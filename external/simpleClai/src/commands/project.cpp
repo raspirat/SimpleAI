@@ -15,7 +15,7 @@
 #include <QMap>
 
 
-void project::createProject
+int project::createProject
     (
     const QString& name,
     const QString& profile,
@@ -29,6 +29,7 @@ void project::createProject
     if (!jsonProfiles.contains(profile))
     {
         throw error::existence::NoSuchProfileError();
+        return -1;
     }
 
     QJsonObject jsonProfile = jsonProfiles[profile].toObject();
@@ -39,6 +40,7 @@ void project::createProject
     if (jsonProjects.contains(name))
     {
         throw error::name::ProjectNameError();
+        return -2;
     }
 
     const QJsonObject& jsonDatasets = tools::getJsonObject(USER_CONFIG_PATH "/datasets.json");
@@ -46,6 +48,7 @@ void project::createProject
     if (!jsonDatasets.contains(dataset))
     {
         throw error::existence::NoSuchDatasetError();
+        return -3;
     }
 
     const QString& projectPath = DEFAULT_PROJECTS_PATH "/" + name;
@@ -73,9 +76,10 @@ void project::createProject
     jsonProjects[name] = newProject;
 
     tools::writeJson(USER_CONFIG_PATH "/projects.json", jsonProjects);
+    return 0;
 }
 
-void project::deleteProject
+int project::deleteProject
     (
     const QString& name,
     bool confirmationDialog
@@ -86,9 +90,11 @@ void project::deleteProject
     if (!jsonProjects.contains(name))
     {
         throw error::existence::NoSuchProjectError();
+        return -1;
     }
 
     tools::deleteFromObject(name, jsonProjects, confirmationDialog);
+    return 0;
 }
 
 void project::list()

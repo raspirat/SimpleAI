@@ -5,14 +5,14 @@
 
 namespace dataset
 {
-void createDataset
+int createDataset
     (
     const QString& name,
     const QString& labelmapPath,
     const QString& dataPath,
     const QString& labelsPath
     );
-void deleteDataset
+int deleteDataset
     (
     const QString& name,
     bool confirmationDialog = true

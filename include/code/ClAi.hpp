@@ -24,8 +24,19 @@ public slots:
     static QJsonObject getProjectsJson();
     static QJsonObject getModelsJson();
     static bool saveJson(const QJsonObject & object, const QString & filePath);
-    void createProject(QString&, QString&, QString&);
-    void deleteProject(QString&);
+
+    int createProject(QString&, QString&, QString&);
+    int deleteProject(QString&);
+
+    int createProfile(QString&, QString&, QString&);
+    int deleteProfile(QString&);
+
+    int createModel(QString&, QString&, QString&);
+    int deleteModel(QString&, QString&);
+    int trainModel(QString&, QString&);
+
+    int createDataset(QString&, QString&, QString&, QString&);
+    int deleteDataset(QString&);
 };
 
 #endif // CLAI_H

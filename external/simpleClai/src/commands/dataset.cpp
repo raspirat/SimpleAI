@@ -14,7 +14,7 @@
 #include <QJsonObject>
 #include <QProcessEnvironment>
 
-void dataset::createDataset
+int dataset::createDataset
     (
     const QString& name,
     const QString& labelmapPath,
@@ -30,6 +30,7 @@ void dataset::createDataset
     if (jsonDatasets.contains(name))
     {
         throw error::name::DatasetNameError();
+        return -1;
     }
 
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
@@ -66,6 +67,7 @@ void dataset::createDataset
     if (tools::copyFilesWithExtention(labelsPath,newLabelsPath,label_formats) == 0)
     {
         throw error::compatibility::LabelExtentionError();
+        return -2;
     }
 
     QStringList img_formats = settings.value("dataset/supported_img_formats").toStringList();
@@ -73,6 +75,7 @@ void dataset::createDataset
     if (tools::copyFilesWithExtention(dataPath,newDataPath,img_formats) == 0)
     {
         throw error::compatibility::ImageExtentionError();
+        return -3;
     }
 
     const QString& newLabelmapPath = datasetPath + "/annotations/labelmap.pbtxt";
@@ -89,9 +92,10 @@ void dataset::createDataset
     tools::writeJson(USER_CONFIG_PATH "/datasets.json", jsonDatasets);
 
     qInfo() << "\033[32m[INFO]: Successfully created dataset!\033[0m";
+    return 0;
 }
 
-void dataset::deleteDataset
+int dataset::deleteDataset
     (
     const QString& name,
     bool confirmationDialog
@@ -102,11 +106,13 @@ void dataset::deleteDataset
     if (!jsonDatasets.contains(name))
     {
         throw error::existence::NoSuchDatasetError();
+        return -1;
     }
 
     qInfo() << "\033[32m[INFO]: Deleting dataset...\033[0m";
 
     tools::deleteFromObject(name, jsonDatasets, confirmationDialog);
+    return 0;
 }
 
 void dataset::list()

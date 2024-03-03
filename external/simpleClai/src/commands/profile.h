@@ -10,14 +10,14 @@
 
 namespace profile
 {
-void createProfile
+int createProfile
     (
     const QString& name,
     const QString& framework,
     const QString& scope
     );
 
-void deleteProfile
+int deleteProfile
     (
     const QString& name,
     bool confirmationDialog = true

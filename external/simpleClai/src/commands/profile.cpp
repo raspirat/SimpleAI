@@ -18,7 +18,7 @@
 #include <QProcessEnvironment>
 
 
-void profile::createProfile
+int profile::createProfile
     (
     const QString& name,
     const QString& framework,
@@ -32,6 +32,7 @@ void profile::createProfile
     if (jsonProfiles.contains(name))
     {
         throw error::name::ProfileNameError();
+        return -1;
     }
 
     qDebug() << "\033[90m[DEBUG]: Framework is:" << framework << "\033[0m";
@@ -41,6 +42,7 @@ void profile::createProfile
     if (!jsonFrameworks.contains(framework))
     {
         throw error::existence::NoSuchFrameworkError();
+        return -2;
     }
 
     qDebug() << "\033[90m[DEBUG]: Scope is:" << scope << "\033[0m";
@@ -52,6 +54,7 @@ void profile::createProfile
     if (!jsonScopes.contains(scope))
     {
         throw error::existence::NoSuchScopeError();
+        return -3;
     }
 
     const QJsonObject& jsonScope = jsonScopes[scope].toObject();
@@ -102,9 +105,11 @@ void profile::createProfile
     jsonProfiles[name] = newProfile;
 
     tools::writeJson(USER_CONFIG_PATH "/profiles.json", jsonProfiles);
+
+    return 0;
 }
 
-void profile::deleteProfile
+int profile::deleteProfile
     (
     const QString& name,
     bool confirmationDialog
@@ -115,9 +120,11 @@ void profile::deleteProfile
     if (!jsonProfiles.contains(name))
     {
         throw error::existence::NoSuchProfileError();
+        return -1;
     }
 
     tools::deleteFromObject(name, jsonProfiles, confirmationDialog);
+    return 0;
 }
 
 void profile::list()

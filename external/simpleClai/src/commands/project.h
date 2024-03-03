@@ -10,14 +10,14 @@
 
 namespace project
 {
-void createProject
+int createProject
     (
     const QString& name,
     const QString& profile,
     const QString& dataset
     );
 
-void deleteProject
+int deleteProject
     (
     const QString& name,
     bool confirmationDialog = true

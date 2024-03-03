@@ -14,7 +14,7 @@
 #include <QJsonObject>
 #include <QDir>
 
-void model::createModel
+int model::createModel
     (
     const QString& name,
     const QString& project,
@@ -28,13 +28,17 @@ void model::createModel
     if (!jsonProjects.contains(project))
     {
         throw error::existence::NoSuchProjectError();
+        return -1;
     }
 
     QJsonObject jsonProject = jsonProjects[project].toObject();
     QJsonObject jsonUserModels = jsonProject["models"].toObject();
 
     if (jsonUserModels.contains(name) && ! jsonUserModels.isEmpty())
+    {
         throw error::name::ModelNameError();
+        return -2;
+    }
 
 
     const QString& profile = jsonProject["profile"].toString();
@@ -51,6 +55,7 @@ void model::createModel
     if (!jsonModels.contains(model))
     {
         throw error::existence::NoSuchModelError();
+        return -3;
     }
     
     const QJsonObject& jsonModel = jsonModels[model].toObject();
@@ -75,11 +80,12 @@ void model::createModel
     jsonProjects[project] = jsonProject;
 
     tools::writeJson(USER_CONFIG_PATH "/projects.json", jsonProjects);
+    return 0;
 }
 
 
 
-void model::trainModel
+int model::trainModel
     (
     const QString& name,
     const QString& project
@@ -93,6 +99,7 @@ void model::trainModel
     if (!jsonProjects.contains(project))
     {
         throw error::existence::NoSuchProjectError();
+        return -1;
     }
 
     QJsonObject jsonProject = jsonProjects[project].toObject();
@@ -101,6 +108,7 @@ void model::trainModel
     if (!jsonModels.contains(name))
     {
         throw error::existence::NoSuchModelError();
+        return -2;
     }
 
     const QJsonObject& jsonModel = jsonModels[name].toObject();
@@ -145,9 +153,10 @@ void model::trainModel
     const QString& script = tools::interpretPath(jsonScope["training_script"].toString());
 
     qDebug() << "\033[32m[INFO]: Training finished with output: " << tools::installProcess(script) << "\033[0m";
+    return 0;
 }
 
-void model::deleteModel
+int model::deleteModel
     (
     const QString& name,
     const QString& project,
@@ -159,6 +168,7 @@ void model::deleteModel
     if (!jsonProjects.contains(project))
     {
         throw error::existence::NoSuchProjectError();
+        return -1;
     }
 
     QJsonObject jsonProject = jsonProjects[project].toObject();
@@ -166,11 +176,13 @@ void model::deleteModel
     if (!jsonProjects["models"].toObject().contains(name))
     {
         throw error::existence::NoSuchModelError();
+        return -2;
     }
 
     const QJsonObject& jsonModels = jsonProjects["models"].toObject();
 
     tools::deleteFromObject(name, jsonModels, confirmationDialog);
+    return 0;
 }
 
 void model::list
