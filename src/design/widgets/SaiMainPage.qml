@@ -29,7 +29,6 @@ Rectangle
         height: parent.height
         width: parent.width
 
-
         Items.SaiSiteHeader {
             id: siteHeader
             heading: name

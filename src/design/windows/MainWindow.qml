@@ -20,16 +20,19 @@ Window {
 
     width: 640
     height: 900
-    //maximumHeight: 900
-    //minimumHeight: 900
-    //maximumWidth: 640
-    //minimumWidth: 640
+    // maximumHeight: 900
+    // minimumHeight: 900
+    // maximumWidth: 640
+    // minimumWidth: 640
 
     visible: true
-    title: qsTr("Hello World")
-    color: "#E0E5EC";
+    title: qsTr("SimpleAI")
+    color: "#E0E5EC"
 
-
+    MouseArea {
+        anchors.fill: parent
+        onClicked: forceActiveFocus()
+    }
 
     StackView {
         id: stackView

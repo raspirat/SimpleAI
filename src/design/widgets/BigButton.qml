@@ -21,7 +21,7 @@ T.Button {
     property color mainColor: "#E0E5EC"
     property int cornerRadius: 20
     property int pixelSize: height - 50
-    property string description: "a big Button"
+    property string description: "A big Button"
     property font descFont: fonts.mainFont
 
 

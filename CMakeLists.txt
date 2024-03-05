@@ -4,9 +4,6 @@ project(SimpleAI VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTORCC ON)
-set(Qt6_DIR /home/malte/Qt6/6.7.0/gcc_64/lib/cmake/Qt6/)
-set(Qt6Quick_DIR /home/malte/Qt6/6.7.0/gcc_64/lib/cmake/Qt6Quick/)
-# set(Qt6_DIR /home/malte/Qt6/6.7.0/gcc_64/lib/cmake/Qt6/)
 
 add_subdirectory(external/simpleClai)
 add_subdirectory(src/modules/models)
