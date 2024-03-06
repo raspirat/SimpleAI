@@ -1,3 +1,0 @@
-[submodule "external/ClParser"]
-	path = external/ClParser
-	url = https://github.com/sertschgi/ClParser.git
