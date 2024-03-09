@@ -40,24 +40,70 @@ Rectangle  {
         }
 
         Items.Textbox {
-            id: profileName
+            id: datasetName
             placeholder: "Name"
             implicitWidth: parent.width - 50
             Layout.alignment: Qt.AlignHCenter
         }
 
-        Items.Textbox {
-            id: framework
+        RowLayout {
             Layout.alignment: Qt.AlignHCenter
-            placeholder: "Framework"
-            implicitWidth: parent.width - 50
+            width: parent.width - 50
+            spacing: 20
+
+            Items.Textbox {
+                id: dataPath
+                placeholder: "Data path"
+                implicitWidth: parent.width - 120
+            }
+
+            Buttons.BigButton {
+                text: "📁"
+                description: ""
+                implicitWidth: 100
+                implicitHeight: 100
+                font: fonts.altFont
+                fontColor: colors.special1
+                onClicked: {
+                    fileDialogData.open()
+                }
+            }
+
+            FolderDialog {
+                id: fileDialogData
+                currentFolder: "~"
+                onAccepted: dataPath.text = selectedFolder.toString().replace("file://", "")
+            }
         }
 
-        Items.Textbox {
-            id: scope
+        RowLayout {
             Layout.alignment: Qt.AlignHCenter
-            placeholder: "Scope"
-            implicitWidth: parent.width - 50
+            width: parent.width - 50
+            spacing: 20
+
+            Items.Textbox {
+                id: labelsPath
+                placeholder: "Labels path"
+                implicitWidth: parent.width - 120
+            }
+
+            Buttons.BigButton {
+                text: "📁"
+                description: ""
+                font: fonts.altFont
+                implicitWidth: 100
+                implicitHeight: 100
+                fontColor: colors.special1
+                onClicked: {
+                    fileDialogLabels.open()
+                }
+            }
+
+            FolderDialog {
+                id: fileDialogLabels
+                currentFolder: "~"
+                onAccepted: labelsPath.text = selectedFolder.toString().replace("file://", "")
+            }
         }
 
         Rectangle {
@@ -75,14 +121,14 @@ Rectangle  {
             implicitHeight: 100
             fontColor: colors.special2
             onClicked: {
-                if (profileName.text !== "" && scope.text !== "" && framework.text !== "") {
-                    let retCode = ClAi.createProfile(profileName.text, framework.text, scope.text);
+                if (datasetName.text !== "" && labelsPath.text !== "" && dataPath.text !== "") {
+                    let retCode = ClAi.createDataset(datasetName.text, labelsPath.text, dataPath.text);
                 } else {
-                    if (profileName.text === "") {profileName.placeholderTextColor = colors.danger;}
+                    if (datasetName.text === "") {datasetName.placeholderTextColor = colors.danger;}
                     else {datasetName.placeholderTextColor = colors.settings;}
-                    if (scope.text === "") {scope.placeholderTextColor = colors.danger;}
+                    if (labelsPath.text === "") {labelsPath.placeholderTextColor = colors.danger;}
                     else {labelsPath.placeholderTextColor = colors.settings;}
-                    if (framework.text === "") {framework.placeholderTextColor = colors.danger;}
+                    if (dataPath.text === "") {dataPath.placeholderTextColor = colors.danger;}
                     else {dataPath.placeholderTextColor = colors.settings;}
                 }
             }
