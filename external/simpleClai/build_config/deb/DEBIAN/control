@@ -1,6 +1,0 @@
-Package: sclai
-Version: 0.0.1
-Architecture: amd64
-Maintainer: sertschgi
-Description: An application for easy tensorflow-ai training.
-Homepage: https://github.com/sertschgi/simpleClai

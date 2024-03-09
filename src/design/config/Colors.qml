@@ -7,8 +7,9 @@ QtObject {
     readonly property color mainFont: "black"
     readonly property color secondaryFont: "black"
     readonly property color special1: "#52d1a7"
-    readonly property color special2: "#52d1a7"
+    readonly property color special2: "#d1a752"
     readonly property color creation: "#52d1a7"
     readonly property color destruction: "#c95353"
+    readonly property color danger: "#f95353"
     readonly property color settings: "grey"
 }

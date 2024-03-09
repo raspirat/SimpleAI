@@ -49,8 +49,11 @@ Item {
 
 
                 ListView {
+                    id: list
                     implicitHeight: parent.height
                     implicitWidth: parent.width
+
+                    snapMode: ListView.SnapToItem
 
                     model: JsonModel {
                         id: jsonModel
@@ -58,11 +61,12 @@ Item {
 
                     Component.onCompleted: {
                         var json = ClAi.getDatasetsJson();
-                        console.log(json);
                         jsonModel.init(json);
                     }
 
                     delegate: Control {
+                        property bool isSelected: false // Track whether this item is selected
+
                         implicitHeight: container.height / 5
                         implicitWidth: container.width - 30
 
@@ -70,21 +74,47 @@ Item {
                         bottomPadding: 10
                         leftPadding: 20
 
-                        // anchors.centerIn: parent
-
                         contentItem: Rectangle {
+                            id: delegateRect
                             implicitHeight: parent.height
                             implicitWidth: parent.width
 
-                            color: colors.special1
+                            color: isSelected ? colors.special1 : (delegateRect.containsMouse ? colors.special2 : colors.special1)
 
-                            radius: 20
+                            radius: 15
 
                             Text {
                                 text: key
                                 font.family: fonts.mainFont.family
                                 anchors.centerIn: parent
                             }
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+
+                            onClicked: {
+                                // Deselect all other items
+                                for (var i = 0; i < list.model.count; ++i) {
+                                    if (i !== index) {
+                                        list.itemAtIndex(i).isSelected = false;
+                                    }
+                                }
+                                isSelected = true; // Select this item
+                            }
+
+                            /*onEntered: {
+                                if (!isSelected) {
+                                    delegateRect.color = colors.special2; // Change color on hover
+                                }
+                            }
+
+                            onExited: {
+                                if (!isSelected) {
+                                    delegateRect.color = list.currentIndex === index ? colors.special2 : colors.special1; // Revert color on exit
+                                }
+                            }*/
                         }
                     }
                 }

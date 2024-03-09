@@ -102,26 +102,26 @@ ColumnLayout
         }
 
         Buttons.BigButton {
-            text: "T"
-            description: "Train"
-            font: fonts.altFont
-            Layout.row: 1
-            Layout.column: 1
-            fontColor: colors.special1
-            onClicked: {
-                stackView.push(Qt.resolvedUrl("qrc:/pages/MainWindow/TrainPage.qml"), {view: view})
-            }
-        }
-
-        Buttons.BigButton {
             text: "B"
             description: "Builder"
             font: fonts.altFont
             Layout.row: 1
-            Layout.column: 2
+            Layout.column: 1
             fontColor: colors.special2
             onClicked: {
                 WindowManager.switchWindows("qrc:/design/windows/SecondWindow.qml");
+            }
+        }
+
+        Buttons.BigButton {
+            text: "T"
+            description: "Train"
+            font: fonts.altFont
+            Layout.row: 1
+            Layout.column: 2
+            fontColor: colors.special1
+            onClicked: {
+                stackView.push(Qt.resolvedUrl("qrc:/pages/MainWindow/TrainPage.qml"), {view: view})
             }
         }
 

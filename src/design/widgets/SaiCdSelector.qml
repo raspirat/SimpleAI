@@ -60,7 +60,20 @@ Item {
                     font.family: fonts.altFont.family
                     fontColor: colors.creation
                     onClicked: {
-                        headerView.push(Qt.resolvedUrl("qrc:/items/SaiCreatePage.qml"), {"createName": heading, "createStackView": headerView});
+                        switch (heading) {
+                            case "Datasets":
+                                headerView.push(Qt.resolvedUrl("qrc:/pages/Create/CreateDatasetPage.qml"), {"stackView": headerView});
+                                break;
+                            case "Profiles":
+                                headerView.push(Qt.resolvedUrl("qrc:/pages/Create/CreateProfilePage.qml"), {"stackView": headerView});
+                                break;
+                            case "Projects":
+                                headerView.push(Qt.resolvedUrl("qrc:/pages/Create/CreateProjectPage.qml"), {"stackView": headerView});
+                                break;
+                            case "Models":
+                                headerView.push(Qt.resolvedUrl("qrc:/pages/Create/CreateModelPage.qml"), {"stackView": headerView});
+                                break;
+                        }
                     }
                 }
 

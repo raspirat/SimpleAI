@@ -30,8 +30,10 @@
         <file alias="SaiCdSelector.qml">design/widgets/SaiCdSelector.qml</file>
         <file alias="SaiScrollView.qml">design/widgets/SaiScrollView.qml</file>
         <file alias="SaiMainPage.qml">design/widgets/SaiMainPage.qml</file>
-        <file alias="SaiCreatePage.qml">design/widgets/SaiCreatePage.qml</file>
         <file alias="Textbox.qml">design/widgets/Textbox.qml</file>
+    </qresource>
+    <qresource prefix="/pages/Create">
+        <file alias="CreateDatasetPage.qml">design/pages/CreateDatasetPage.qml</file>
     </qresource>
     <qresource prefix="/assets">
         <file>design/assets/help.png</file>

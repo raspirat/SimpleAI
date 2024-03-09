@@ -49,38 +49,47 @@ bool ClAi::saveJson(const QJsonObject & object, const QString & filePath)
     }
 }
 
-int ClAi::createProject(QString &name, QString &profile, QString &dataset) {
-    return project::createProject(name, profile, dataset);
+int ClAi::createProject(const QString &name, const QString &profile, const QString &dataset) {
+    project::createProject(name, profile, dataset);
+    return 0;
 }
 
-int ClAi::deleteProject(QString &name) {
-    return project::deleteProject(name, false);
+int ClAi::deleteProject(const QString &name) {
+    project::deleteProject(name, false);
+    return 0;
 }
 
-int ClAi::createProfile(QString &name, QString &framework, QString &scope) {
-    return profile::createProfile(name, framework, scope);
+int ClAi::createProfile(const QString &name, const QString &framework, const QString &scope) {
+    profile::createProfile(name, framework, scope);
+    return 0;
 }
 
-int ClAi::deleteProfile(QString &name) {
-    return profile::deleteProfile(name, false);
+int ClAi::deleteProfile(const QString &name) {
+    profile::deleteProfile(name, false);
+    return 0;
 }
 
-int ClAi::createModel(QString &name, QString &project, QString &model) {
-    return model::createModel(name, project, model);
+int ClAi::createModel(const QString &name,const  QString &project, const QString &model) {
+    model::createModel(name, project, model);
+    return 0;
 }
 
-int ClAi::deleteModel(QString &name, QString &project) {
-    return model::deleteModel(name, project, false);
+int ClAi::deleteModel(const QString &name, const QString &project) {
+    model::deleteModel(name, project, false);
+    return 0;
 }
 
-int ClAi::trainModel(QString &name, QString &project) {
-    return model::trainModel(name, project);
+int ClAi::trainModel(const QString &name, const QString &project, const QString &args) {
+    model::trainModel(name, project, args);
+    return 0;
 }
 
-int ClAi::deleteDataset(QString &name) {
-    return dataset::deleteDataset(name, false);
+int ClAi::deleteDataset(const QString &name) {
+    dataset::deleteDataset(name, false);
+    return 0;
 }
 
-int ClAi::createDataset(QString &name, QString &labelmapPath, QString &dataPath, QString &labelsPath) {
-    return dataset::createDataset(name, labelmapPath, dataPath, labelsPath);
+int ClAi::createDataset(const QString &name, const QString &dataPath, const QString &labelsPath) {
+    dataset::createDataset(name, dataPath, labelsPath);
+    return 0;
 }

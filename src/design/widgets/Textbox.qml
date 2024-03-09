@@ -35,26 +35,15 @@ TextField {
         cornerRadius: cornerRadius
     }
 
-
     placeholderText: qsTr(placeholder)
     placeholderTextColor: colors.settings
     font.pixelSize: pixelSize
 
     color: colors.mainFont
 
-    /*TextInput {
-        id: textInput
-        text: parent.text
-        width: parent.width
-        height: parent.height
-        placeholderText: qsTr(placeholder)
-        placeholderTextColor: Config.Colors.settings
-        font.pixelSize: pixelSize
-
-        color: Config.Colors.mainFont
-
-        onAccepted: {
-            console.log("Entered text:", textInput.text)
+    Behavior on placeholderTextColor {
+        ColorAnimation {
+            duration: 100
         }
-    }*/
+    }
 }
