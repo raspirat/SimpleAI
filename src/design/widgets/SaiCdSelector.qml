@@ -88,6 +88,12 @@ Item {
             modal: true
             focus: true
             closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+            background: Shapes.NmRect {
+                implicitHeight: parent.height
+                implicitWidth: parent.width
+                anchors.fill: parent
+            }
+
             // Seppi, mach du das Popup, danke!
         }
     }

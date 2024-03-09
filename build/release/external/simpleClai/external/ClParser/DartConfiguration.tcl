@@ -4,17 +4,17 @@
 
 
 # Configuration directories and files
-SourceDirectory: /home/malte/code/SimpleAI/external/simpleClai/external/ClParser
-BuildDirectory: /home/malte/code/SimpleAI/build/release/external/simpleClai/external/ClParser
+SourceDirectory: /home/sert/OneDrive/Dokumente/GitHub Projects/sai/external/simpleClai/external/ClParser
+BuildDirectory: /home/sert/OneDrive/Dokumente/GitHub Projects/sai/build/release/external/simpleClai/external/ClParser
 
 # Where to place the cost data store
 CostDataFile: 
 
 # Site is something like machine.domain, i.e. pragmatic.crd
-Site: simpleMint
+Site: SRT-Laptop-kubuntu
 
 # Build name is osname-revision-compiler, i.e. Linux-2.4.2-2smp-c++
-BuildName: Linux-c++
+BuildName: Linux-x86_64-linux-gnu-g++
 
 # Subprojects
 LabelsForSubprojects: 
@@ -27,8 +27,8 @@ SubmitInactivityTimeout:
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "/opt/cmake-3.28.2-linux-x86_64/bin/cmake" "/home/malte/code/SimpleAI/external/simpleClai/external/ClParser"
-MakeCommand: /opt/cmake-3.28.2-linux-x86_64/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}"
+ConfigureCommand: "/home/sert/Applications/Qt/Tools/CMake/bin/cmake" "/home/sert/OneDrive/Dokumente/GitHub Projects/sai/external/simpleClai/external/ClParser"
+MakeCommand: /home/sert/Applications/Qt/Tools/CMake/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}"
 DefaultCTestConfigurationType: Release
 
 # version control
@@ -63,8 +63,8 @@ UpdateOptions:
 UpdateType: 
 
 # Compiler info
-Compiler: /usr/bin/c++
-CompilerVersion: 11.4.0
+Compiler: /usr/bin/x86_64-linux-gnu-g++
+CompilerVersion: 13.2.0
 
 # Dynamic analysis (MemCheck)
 PurifyCommand: 

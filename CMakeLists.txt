@@ -3,14 +3,15 @@ cmake_minimum_required(VERSION 3.16)
 project(SimpleAI VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
 
 add_subdirectory(external/simpleClai)
-add_subdirectory(src/modules/models)
+add_subdirectory(src/modules/SaiModels)
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
-
-#set(QML_IMPORT_PATH "${CMAKE_CURRENT_BINARY_DIR}/src/modules/models")
 
 qt_standard_project_setup(REQUIRES 6.5)
 
@@ -23,7 +24,6 @@ qt_add_executable(appSimpleAI
     src/core.qrc
     assets/assets.qrc
 )
-
 
 qt_add_qml_module(appSimpleAI
     URI SimpleAI
@@ -49,13 +49,5 @@ target_include_directories(appSimpleAI PUBLIC
 
 target_link_libraries(appSimpleAI
     PRIVATE Qt6::Quick
-    PUBLIC libsclai SaiModels
-)
-
-
-include(GNUInstallDirs)
-install(TARGETS appSimpleAI
-    BUNDLE DESTINATION .
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    PUBLIC libsclai SaiModelsplugin
 )

@@ -27,24 +27,14 @@ TextField {
     property string placeholder: "Textbox"
     property font descFont: fonts.mainFont
 
-    background: Item {
-        Shapes.NmRect {
-            id: backRect
-            width: textBox.width
-            height: textBox.height
-            mainColor: mainColor
-            cornerRadius: cornerRadius
-        }
-
-        Shapes.NmRectInverted {
-            id: backRectI
-            width: textBox.width
-            height: textBox.height
-            mainColor: mainColor
-            cornerRadius: cornerRadius
-            visible: false
-        }
+    background: Shapes.NmRect {
+        id: backRect
+        width: textBox.width
+        height: textBox.height
+        mainColor: mainColor
+        cornerRadius: cornerRadius
     }
+
 
     placeholderText: qsTr(placeholder)
     placeholderTextColor: colors.settings

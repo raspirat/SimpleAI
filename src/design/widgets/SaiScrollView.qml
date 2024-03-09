@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
-// import JsonModel
+import SaiModels
 
 import "qrc:/buttons" as Buttons
 import "qrc:/shapes" as Shapes
@@ -10,7 +10,10 @@ import "qrc:/config" as Config
 
 
 Item {
+    id: sv
+
     Config.Fonts {id: fonts}
+    Config.Colors {id: colors}
 
     property var json
     property string description: "a scroll view:"
@@ -22,13 +25,13 @@ Item {
 
     ColumnLayout
     {
-        height: parent.height
-        width: parent.width
+        implicitHeight: parent.height
+        implicitWidth: parent.width
 
         Text {
             Layout.alignment: Qt.AlignLeft
             width: parent.width
-            height: 60
+            height: parent.height
             text: description
             font.family: fonts.altFont.family
             font.pointSize: 30
@@ -37,30 +40,55 @@ Item {
         Shapes.NmRect {
             id: container
 
-            implicitHeight: parent.height - 60
-            implicitWidth: parent.width
-            /*
-            ScrollView {
-                ListView {
-                    model: JsonModel {id: jsonModel}
+            implicitHeight: sv.height - 60
+            implicitWidth: sv.width
 
-                    Component.onCompleted: {
-                        var jsonModels = json;
-                        jsonModel.init(jsonModels);
+            ScrollView {
+                implicitHeight: parent.height
+                implicitWidth: parent.width
+
+
+                ListView {
+                    implicitHeight: parent.height
+                    implicitWidth: parent.width
+
+                    model: JsonModel {
+                        id: jsonModel
                     }
 
-                    delegate: Rectangle {
-                        implicitHeight: container.height / 10
-                        implicitWidth: container.width
+                    Component.onCompleted: {
+                        var json = ClAi.getDatasetsJson();
+                        console.log(json);
+                        jsonModel.init(json);
+                    }
 
-                        Text {
-                            text: key
-                            font.family: descFont.family
-                            anchors.centerIn: parent
+                    delegate: Control {
+                        implicitHeight: container.height / 5
+                        implicitWidth: container.width - 30
+
+                        topPadding: 10
+                        bottomPadding: 10
+                        leftPadding: 20
+
+                        // anchors.centerIn: parent
+
+                        contentItem: Rectangle {
+                            implicitHeight: parent.height
+                            implicitWidth: parent.width
+
+                            color: colors.special1
+
+                            radius: 20
+
+                            Text {
+                                text: key
+                                font.family: fonts.mainFont.family
+                                anchors.centerIn: parent
+                            }
                         }
                     }
                 }
-            }*/
+            }
         }
     }
 }
