@@ -34,6 +34,8 @@
     </qresource>
     <qresource prefix="/pages/Create">
         <file alias="CreateDatasetPage.qml">design/pages/CreateDatasetPage.qml</file>
+        <file alias="CreateProfilePage.qml">design/pages/CreateProfilePage.qml</file>
+        <file alias="CreateProjectPage.qml">design/pages/CreateProjectPage.qml</file>
     </qresource>
     <qresource prefix="/assets">
         <file>design/assets/help.png</file>

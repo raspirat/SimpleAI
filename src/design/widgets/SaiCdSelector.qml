@@ -71,7 +71,7 @@ Item {
                                 headerView.push(Qt.resolvedUrl("qrc:/pages/Create/CreateProjectPage.qml"), {"stackView": headerView});
                                 break;
                             case "Models":
-                                headerView.push(Qt.resolvedUrl("qrc:/pages/Create/CreateModelPage.qml"), {"stackView": headerView});
+                                WindowManager.switchWindows("qrc:/design/windows/SecondWindow.qml");
                                 break;
                         }
                     }
