@@ -1,0 +1,18 @@
+[package]
+name = 'SimpleNodeEditor'
+build = 'build.rs'
+version = '0.0.1'
+edition = '2021'
+
+[dependencies]
+slint = '1.6.0'
+json = '0.12.4'
+
+[build-dependencies]
+slint-build = '1.6.0'
+
+[[bin]]
+path = "frontend/rust/main.rs"
+name = "une"
+test = false
+bench = false

@@ -1,0 +1,11 @@
+{
+  "background" :
+  {
+    "color" : "#12234",
+    "image" :
+    {
+      "url" : "assets/BGImage.jpeg",
+      "scale" : "100%"
+    }
+  }
+}
