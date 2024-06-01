@@ -1,14 +1,15 @@
 import torch.nn.functional as F
-import torch.nn as nn
 import torch
+import torch.nn as nn
 
 class MLP(nn.Module):
-    def __init__(self):
+    def __init__(self, num_layers):
         super().__init__()
         self.input = nn.Linear(784, 256, bias=True, dtype="f32")
         self.h1 = nn.Linear(256, 512, bias=True, dtype="f32")
         self.some_stuff = 1111
         self.relu1 = nn.ReLU(False)
+        self.num_layers = num_layers
         self.output = nn.Linear(512, 1, bias=True, dtype="f32")
 
     def forward(self, input_0) -> torch.Tensor:
@@ -23,10 +24,10 @@ class MLP(nn.Module):
         return output_0
 
 class MLPModel(nn.Module):
-    def __init__(self, int: int):
+    def __init__(self, num_layers):
         super().__init__()
         self.num_layers = num_layers
-        self.mlp = MLP({num_layers})
+        self.mlp = MLP(num_layers)
 
     def forward(self, input_0) -> torch.Tensor:
         output_0 = self.mlp(input_0)

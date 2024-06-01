@@ -38,6 +38,9 @@
 		}
 	],
 	"construct": "MLPModel({num_layers})",
+	"args": [
+		"num_layers"
+	],
 	"init": [
 		{
 			"object": "num_layers",

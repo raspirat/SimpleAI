@@ -77,112 +77,6 @@ fn make_imports(model_graph: Value, file: &mut File) -> std::io::Result<()> {
     Ok(())
 }
 
-// fn make_model(model_graph: Value, file: &mut File) -> std::io::Result<()> {
-//     let mut model = String::new();
-
-//     // Class definition
-//     model.push_str(&format!("\nclass {}(nn.Module):\n", model_graph["title"].as_str().unwrap()));
-//     model.push_str("    def __init__(self):\n");
-//     model.push_str("        super().__init__()\n");
-
-//     // Forward layers initialization
-//     if let Some(forward) = model_graph["forward"].as_array() {
-//         for forward_step in forward {
-//             if let Some(id) = forward_step["id"].as_str() {
-//                 if let Some(object) = forward_step["object"].as_str() {
-//                     let node_path = format!("nodes/{}.json", object);
-//                     let node_json = read_json_file(Path::new(&node_path))?;
-//                     if let Some(needs_init) = node_json["needs-init"].as_bool() {
-//                         if needs_init {
-//                             make_model(node_json.clone(), file)?;
-//                         }
-//                     }
-//                     if let Some(construct) = node_json["construct"].as_str() {
-//                         let mut construct_code = construct.to_string();
-//                         for (key, value) in forward_step.as_object().unwrap() {
-//                             construct_code = construct_code.replace(&format!("{{{}}}", key), &value.to_string().replace("false", "False").replace("true", "True"));
-//                         }
-//                         model.push_str(&format!("        self.{} = {}\n", id, construct_code));
-//                     }
-//                 }
-//             }
-//         }
-//     }
-
-//     // Forward pass definition
-//     model.push_str("\n    def forward(self");
-//     if let Some(inputs) = model_graph["inputs"].as_array() {
-//         for i in 0..inputs.len() {
-//             model.push_str(&format!(", input_{}", i));
-//         }
-//     }
-//     model.push_str(") -> ");
-// 	if let Some(outputs) = model_graph["outputs"].as_array() {
-// 		if outputs.len() == 1 {
-// 			model.push_str(outputs[0]["object"]["display"].as_str().unwrap());
-// 		} else {
-// 			model.push_str("tuple[");
-// 			for (i, _) in outputs.iter().enumerate() {
-// 				if i == 0 {
-// 					model.push_str(outputs[i]["object"]["display"].as_str().unwrap());
-// 				} else {
-// 					model.push_str(&format!(", {}", outputs[i]["object"]["display"].as_str().unwrap()));
-// 				}
-// 			}
-// 			model.push(']');
-// 		}
-// 	}
-// 	model.push_str(":\n");
-
-//     if let Some(forward) = model_graph["forward"].as_array() {
-//         for forward_step in forward {
-//             if let Some(input) = forward_step["input"].as_str() {
-//                 if let Some(object) = forward_step["object"].as_str() {
-//                     let node_path = format!("nodes/{}.json", object);
-//                     let node_json = read_json_file(Path::new(&node_path))?;
-
-//                     if let Some(forward_code) = node_json["usage"].as_array() {
-//                         for code in forward_code {
-//                             if let Some(code_str) = code["code"].as_str() {
-//                                 let mut formatted_code = code_str.to_string();
-//                                 if let Some(id) = forward_step["id"].as_str() {
-//                                     formatted_code = formatted_code.replace("{self}", &format!("self.{}", id));
-//                                 }
-//                                 formatted_code = formatted_code.replace("{input}", &input.replace('-', "_"));
-//                                 for (key, value) in forward_step.as_object().unwrap() {
-//                                     formatted_code = formatted_code.replace(&format!("{{{}}}", key), &value.to_string().replace("false", "False").replace("true", "True"));
-//                                 }
-//                                 if let Some(output) = forward_step["output"].as_str() {
-//                                     model.push_str(&format!("        {} = {}\n", output.replace('-', "_"), formatted_code));
-//                                 } else {
-//                                     model.push_str(&format!("        {}\n", formatted_code));
-//                                 }
-//                             }
-//                         }
-//                     }
-//                 }
-//             } else if let Some(code) = forward_step["code"].as_str() {
-// 				model.push_str(&format!("        {}\n", code));
-// 			}
-//         }
-//     }
-
-//     if let Some(outputs) = model_graph["outputs"].as_array() {
-//         for (i, _) in outputs.iter().enumerate() {
-// 			if i == 0 {
-// 				model.push_str(&format!("\n        return output_{}", i));
-// 			} else {
-// 				model.push_str(&format!(", output_{}", i));
-// 			}
-//         }
-// 		model.push('\n');
-//     }
-
-//     // Write the model definition to file
-//     file.write_all(model.as_bytes())?;
-//     Ok(())
-// }
-
 fn make_model(model_graph: Value, file: &mut File) -> std::io::Result<()> {
     let mut model = String::new();
 
@@ -191,14 +85,14 @@ fn make_model(model_graph: Value, file: &mut File) -> std::io::Result<()> {
     model.push_str("    def __init__(self");
     
     // Define constructor arguments
-	for layer in num_layers {
-		if let Some(object) = layer["object"].as_object() {
-			if let Some(layer_type) = object["type"].as_str() {
-				model.push_str(&format!(", {}: {}", layer_type, layer_type));
+	if let Some(args) = model_graph["args"].as_array() {
+		for arg in args {
+			if let Some(arg_str) = arg.as_str() {
+				model.push_str(&format!(", {}", arg_str));
 			}
 		}
 	}
-    model.push_str("):\n");
+	model.push_str("):\n");
     model.push_str("        super().__init__()\n");
 
     // Initialization for needs-init and attribute definitions
@@ -235,10 +129,7 @@ fn make_model(model_graph: Value, file: &mut File) -> std::io::Result<()> {
 				}
 			}
 		}
-	}
-
-    // Forward layers initialization
-    
+	}    
 
     // Forward pass definition
     model.push_str("\n    def forward(self");

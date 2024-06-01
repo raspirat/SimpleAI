@@ -37,7 +37,10 @@
 			"desc": "Output data"
 		}
 	],
-	"construct": "MLP({num_layers})",
+	"args": [
+		"num_layers"
+	],
+	"construct": "MLP(num_layers)",
 	"init": [
 		{
 			"object": "input"
@@ -51,6 +54,10 @@
 		},
 		{
 			"object": "relu1"
+		},
+		{
+			"object": "custom",
+			"code": "self.num_layers = num_layers"
 		},
 		{
 			"object": "output"
