@@ -6,7 +6,15 @@ mod errors;
 
 fn main() {
   println!("Application starting...");
-  tauri::Builder::default()
-    .run(tauri::generate_context!())
+  let app = tauri::Builder::default()
+    .build(tauri::generate_context!())
     .expect("error while running tauri application");
+
+  let start_page = tauri::WindowBuilder::new(
+    &app,
+    "start_page",
+    tauri::WindowUrl::App("pages/start_page/html/index.html".into())
+  ).build().expect("failed to build window");
+
+  app.run(|_, _| {});
 }
