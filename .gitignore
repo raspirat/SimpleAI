@@ -1,3 +1,6 @@
 target
 .idea
+venv
 Cargo.lock
+frontend/node_modules
+frontend/dist
