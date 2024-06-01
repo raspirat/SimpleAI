@@ -1,0 +1,58 @@
+{
+	"title": "ReLU",
+	"desc": "Rectified Linear Unit (ReLU) activation function",
+	"id": [
+		{
+			"object": {
+				"type": "str"
+			},
+			"desc": "ID"
+		}
+	],
+	"inputs": [
+		{
+			"object": {
+				"type": "tensor",
+				"display": "torch.Tensor",
+				"dtype": "any",
+				"dims": [
+					"any"
+				]
+			},
+			"desc": "Input data"
+		}
+	],
+	"outputs": [
+		{
+			"object": {
+				"type": "tensor",
+				"display": "torch.Tensor",
+				"dtype": "any",
+				"dims": [
+					"inputs.0.dims"
+				]
+			},
+			"desc": "Output data"
+		}
+	],
+	"inplace": [
+		{
+			"object": {
+				"type": "bool"
+			},
+			"desc": "Inplace operation"
+		}
+	],
+	"dependencies": [
+		"torch.nn as nn",
+		"torch"
+	],
+	"construct": "nn.ReLU({inplace})",
+	"usage": [
+		{
+			"code": "{self}({input})"
+		}
+	],
+	"needs-init": false,
+	"device-agnostic": true
+}

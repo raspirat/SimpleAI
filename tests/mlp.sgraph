@@ -1,0 +1,64 @@
+{
+	"title": "MLPModel",
+	"desc": "Test Model",
+	"num_layers": [
+		{
+			"object": {
+				"type": "int"
+			},
+			"desc": "Number of layers"
+		}
+	],
+	"inputs": [
+		{
+			"object": {
+				"type": "tensor",
+				"display": "torch.Tensor",
+				"dtype": "f32",
+				"dims": [
+					-1,
+					"mlp.input.in-features"
+				]
+			},
+			"desc": "Input data"
+		}
+	],
+	"outputs": [
+		{
+			"object": {
+				"type": "tensor",
+				"display": "torch.Tensor",
+				"dtype": "f32",
+				"dims": [
+					-1,
+					"mlp.output.out-features"
+				]
+			},
+			"desc": "Output data"
+		}
+	],
+	"construct": "MLPModel({num_layers})",
+	"init": [
+		{
+			"object": "num_layers",
+			"value": "num_layers"
+		},
+		{
+			"object": "mlp",
+			"num_layers": "self.num_layers"
+		}
+	],
+	"forward": [
+		{
+			"input": "input_0",
+			"id": "mlp",
+			"object": "mlp",
+			"output": "output_0"
+		}
+	],
+	"dependencies": [
+		"torch.nn as nn",
+		"torch"
+	],
+	"device-agnostic": true
+}

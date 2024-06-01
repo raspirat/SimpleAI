@@ -1,0 +1,84 @@
+{
+	"title": "Linear",
+	"desc": "Linear layer (Perceptron)",
+	"id": [
+		{
+			"object": {
+				"type": "str"
+			},
+			"desc": "ID"
+		}
+	],
+	"inputs": [
+		{
+			"object": {
+				"type": "tensor",
+				"display": "torch.Tensor",
+				"dtype": "dtype",
+				"dims": [
+					-1,
+					"in-features"
+				]
+			},
+			"desc": "Input data"
+		}
+	],
+	"outputs": [
+		{
+			"object": {
+				"type": "tensor",
+				"display": "torch.Tensor",
+				"dtype": "dtype",
+				"dims": [
+					-1,
+					"out-features"
+				]
+			},
+			"desc": "Output data"
+		}
+	],
+	"in-features": [
+		{
+			"object": {
+				"type": "int"
+			},
+			"desc": "Input Neurons"
+		}
+	],
+	"out-features": [
+		{
+			"object": {
+				"type": "int"
+			},
+			"desc": "Output Neurons"
+		}
+	],
+	"dtype": [
+		{
+			"object": {
+				"type": "dtype"
+			},
+			"desc": "DType"
+		}
+	],
+	"bias": [
+		{
+			"object": {
+				"type": "bool"
+			},
+			"desc": "Enable Bias"
+		}
+	],
+	"dependencies": [
+		"torch.nn as nn",
+		"torch"
+	],
+	"construct": "nn.Linear({in-features}, {out-features}, bias={bias}, dtype={dtype})",
+	"usage": [
+		{
+			"code": "{self}({input})"
+		}
+	],
+	"needs-init": false,
+	"device-agnostic": true
+}
