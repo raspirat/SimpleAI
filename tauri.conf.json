@@ -1,0 +1,65 @@
+{
+  "build": {
+    "beforeBuildCommand": "npm run build",
+    "beforeDevCommand": "npm run dev",
+    "devPath": "frontend/pages/start_page/html",
+    "distDir": ""
+  },
+  "package": {
+    "productName": "SimpleNodeEditor",
+    "version": "0.1.0"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": false
+    },
+    "bundle": {
+      "active": true,
+      "category": "DeveloperTool",
+      "copyright": "",
+      "deb": {
+        "depends": []
+      },
+      "externalBin": [],
+      "icon": [
+        "frontend/assets/tauri/icons/32x32.png",
+        "frontend/assets/tauri/icons/128x128.png",
+        "frontend/assets/tauri/icons/128x128@2x.png",
+        "frontend/assets/tauri/icons/icon.icns",
+        "frontend/assets/tauri/icons/icon.ico"
+      ],
+      "identifier": "SNE",
+      "longDescription": "",
+      "macOS": {
+        "entitlements": null,
+        "exceptionDomain": "",
+        "frameworks": [],
+        "providerShortName": null,
+        "signingIdentity": null
+      },
+      "resources": [],
+      "shortDescription": "",
+      "targets": "all",
+      "windows": {
+        "certificateThumbprint": null,
+        "digestAlgorithm": "sha256",
+        "timestampUrl": ""
+      }
+    },
+    "security": {
+      "csp": null
+    },
+    "updater": {
+      "active": false
+    },
+    "windows": [
+      {
+        "fullscreen": false,
+        "height": 600,
+        "resizable": true,
+        "title": "SNE",
+        "width": 800
+      }
+    ]
+  }
+}

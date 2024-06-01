@@ -1,18 +1,28 @@
 [package]
-name = 'SimpleNodeEditor'
-build = 'build.rs'
-version = '0.0.1'
-edition = '2021'
-
-[dependencies]
-slint = '1.6.0'
-json = '0.12.4'
-
-[build-dependencies]
-slint-build = '1.6.0'
+name = "SimpleNodeEditor"
+version = "0.1.0"
+description = "Node editor for ai applications."
+authors = ["raspirat", "sert"]
+license = ""
+repository = ""
+default-run = "SNE"
+edition = "2021"
+rust-version = "1.60"
 
 [[bin]]
+name = "SNE"
 path = "frontend/rust/main.rs"
-name = "une"
-test = false
-bench = false
+
+[build-dependencies]
+tauri-build = { version = "1.5.2", features = [] }
+
+[dependencies]
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+tauri = { version = "1.6.4", features = [] }
+
+[features]
+# this feature is used for production builds or when `devPath` points to the filesystem and the built-in dev server is disabled.
+# If you use cargo directly instead of tauri's cli you can use this feature flag to switch between tauri's `dev` and `build` modes.
+# DO NOT REMOVE!!
+custom-protocol = [ "tauri/custom-protocol" ]

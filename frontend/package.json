@@ -1,0 +1,11 @@
+{
+  "name": "sert",
+  "email": "seppi@neureiter.bayern",
+  "url": "http://localhost:3000",
+  "devDependencies": {
+    "@tauri-apps/cli": "^1.5.14"
+  },
+  "scripts": {
+    "tauri": "tauri"
+  }
+}
