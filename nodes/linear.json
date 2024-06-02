@@ -37,34 +37,36 @@
 			"desc": "Output data"
 		}
 	],
-	"in-features": [
+	"args": [
 		{
+			"id": "in-features",
 			"object": {
-				"type": "int"
+				"type": "int",
+				"display": "int"
 			},
 			"desc": "Input Neurons"
-		}
-	],
-	"out-features": [
+		},
 		{
+			"id": "out-features",
 			"object": {
-				"type": "int"
+				"type": "int",
+				"display": "int"
 			},
 			"desc": "Output Neurons"
-		}
-	],
-	"dtype": [
+		},
 		{
+			"id": "dtype",
 			"object": {
-				"type": "dtype"
+				"type": "dtype",
+				"display": "torch.dtype"
 			},
 			"desc": "DType"
-		}
-	],
-	"bias": [
+		},
 		{
+			"id": "bias",
 			"object": {
-				"type": "bool"
+				"type": "bool",
+				"display": "bool"
 			},
 			"desc": "Enable Bias"
 		}

@@ -38,7 +38,15 @@
 		}
 	],
 	"args": [
-		"num_layers"
+		{
+			"id": "num_layers",
+			"object": {
+				"type": "int",
+				"display": "int",
+				"default": 3
+			},
+			"desc": "Some stupid constant"
+		}
 	],
 	"construct": "MLP(num_layers)",
 	"init": [

@@ -3,13 +3,6 @@
 version = 3
 
 [[package]]
-name = "SimpleAI-Back"
-version = "0.1.0"
-dependencies = [
- "serde_json",
-]
-
-[[package]]
 name = "itoa"
 version = "1.0.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -68,6 +61,13 @@ dependencies = [
  "itoa",
  "ryu",
  "serde",
+]
+
+[[package]]
+name = "simpleai-back"
+version = "0.1.0"
+dependencies = [
+ "serde_json",
 ]
 
 [[package]]

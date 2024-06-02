@@ -35,10 +35,12 @@
 			"desc": "Output data"
 		}
 	],
-	"inplace": [
+	"args": [
 		{
+			"id": "inplace",
 			"object": {
-				"type": "bool"
+				"type": "bool",
+				"display": "bool"
 			},
 			"desc": "Inplace operation"
 		}

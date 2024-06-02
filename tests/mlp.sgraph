@@ -1,14 +1,6 @@
 {
 	"title": "MLPModel",
 	"desc": "Test Model",
-	"num_layers": [
-		{
-			"object": {
-				"type": "int"
-			},
-			"desc": "Number of layers"
-		}
-	],
 	"inputs": [
 		{
 			"object": {
@@ -39,7 +31,14 @@
 	],
 	"construct": "MLPModel({num_layers})",
 	"args": [
-		"num_layers"
+		{
+			"id": "num_layers",
+			"object": {
+				"type": "int",
+				"display": "int"
+			},
+			"desc": "Number of layers"
+		}
 	],
 	"init": [
 		{

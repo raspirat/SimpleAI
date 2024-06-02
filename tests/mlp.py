@@ -1,9 +1,9 @@
+import torch.nn as nn
 import torch.nn.functional as F
 import torch
-import torch.nn as nn
 
 class MLP(nn.Module):
-    def __init__(self, num_layers):
+    def __init__(self, num_layers: int):
         super().__init__()
         self.input = nn.Linear(784, 256, bias=True, dtype="f32")
         self.h1 = nn.Linear(256, 512, bias=True, dtype="f32")
@@ -12,7 +12,7 @@ class MLP(nn.Module):
         self.num_layers = num_layers
         self.output = nn.Linear(512, 1, bias=True, dtype="f32")
 
-    def forward(self, input_0) -> torch.Tensor:
+    def forward(self, input_0: torch.Tensor) -> torch.Tensor:
         input_out = self.input(input_0)
         input_out_relu_func = F.relu(input_out, inplace=False)
         h1_out = self.h1(input_out_relu_func)
@@ -24,12 +24,12 @@ class MLP(nn.Module):
         return output_0
 
 class MLPModel(nn.Module):
-    def __init__(self, num_layers):
+    def __init__(self, num_layers: int):
         super().__init__()
         self.num_layers = num_layers
         self.mlp = MLP(num_layers)
 
-    def forward(self, input_0) -> torch.Tensor:
+    def forward(self, input_0: torch.Tensor) -> torch.Tensor:
         output_0 = self.mlp(input_0)
 
         return output_0
