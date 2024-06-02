@@ -1,12 +1,16 @@
 {
   "name": "sne_frontend",
   "email": "seppi@neureiter.bayern",
-  "url": "http://localhost:5555",
+  "url": "http://localhost:3000",
   "devDependencies": {
     "@tauri-apps/cli": "^1.5.14",
+    "live-server": "^1.2.2",
     "typescript": "^5.4.5"
   },
   "scripts": {
-    "typescript": "tsc && python3 scripts/py/move_js_files.py temp dist"
+    "linux-dev": "exec npm run dev-server & echo $! > dev_server/PID && npm run build & tail -f /proc/$(cat dev_server/PID)/fd/1",
+    "dev-server": "live-server . --port=3000 --no-browser",
+    "build": "tsc && python3 scripts/py/move_js_files.py temp dist",
+    "cleanup": "kill $(cat dev_server/PID) 2> /dev/null; rm dev_server/PID"
   }
 }

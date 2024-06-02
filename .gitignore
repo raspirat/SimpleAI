@@ -2,5 +2,7 @@ target
 .idea
 venv
 Cargo.lock
+frontend/package-lock.json
+frontend/dev_server/PID
 frontend/node_modules
 frontend/dist
