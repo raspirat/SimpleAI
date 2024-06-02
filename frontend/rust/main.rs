@@ -16,5 +16,7 @@ fn main() {
     tauri::WindowUrl::App("pages/start_page/html/index.html".into())
   ).build().expect("failed to build window");
 
+  start_page.open_devtools();
+
   app.run(|_, _| {});
 }

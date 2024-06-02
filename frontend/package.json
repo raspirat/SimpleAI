@@ -1,7 +1,7 @@
 {
   "name": "sne_frontend",
   "email": "seppi@neureiter.bayern",
-  "url": "http://localhost:3000",
+  "url": "http://localhost:5555",
   "devDependencies": {
     "@tauri-apps/cli": "^1.5.14",
     "typescript": "^5.4.5"

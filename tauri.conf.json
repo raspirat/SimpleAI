@@ -3,7 +3,7 @@
     "beforeBuildCommand": "npm run typescript",
     "beforeDevCommand": "npm run typescript",
     "devPath": "frontend",
-    "distDir": ""
+    "distDir": "frontend"
   },
   "package": {
     "productName": "SimpleNodeEditor",

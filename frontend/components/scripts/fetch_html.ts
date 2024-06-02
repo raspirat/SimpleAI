@@ -1,14 +1,19 @@
 export function fetch_html(self: & HTMLElement, path: & string) {
-    const PATH_URL = new URL(path);
-    fetch(PATH_URL)
+    fetch(path)
         .then(response => response.text())
         .then(data => {
-                const TEMPLATE = document.createElement('template');
+                const TEMPLATE = document.createElement('div');
                 const SHADOW_ROOT = self.attachShadow({mode: 'open'});
                 TEMPLATE.innerHTML = data;
-                SHADOW_ROOT.appendChild(
-                    TEMPLATE.content.cloneNode(true)
-                );
+                try {
+                    SHADOW_ROOT.appendChild(
+                        TEMPLATE.firstChild.cloneNode(true)
+                    );
+                }
+                catch (error)
+                {
+                    console.log("couldn't register custom html component.");
+                }
             }
         )
 }
