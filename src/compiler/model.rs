@@ -1,7 +1,8 @@
 use crate::util::read_json_file;
+use jsonschema::JSONSchema;
 use serde_json::Value;
 use std::collections::HashSet;
-use std::fs::File;
+use std::fs::{self, File};
 use std::io::prelude::*;
 use std::path::Path;
 
@@ -116,10 +117,16 @@ fn make_model(model_graph: Value, file: &mut File) -> std::io::Result<()> {
                                 if let Some(object) = forward_step["object"].as_str() {
                                     let node_path = format!("nodes/{}.json", object);
                                     let node_json = read_json_file(Path::new(&node_path))?;
+
                                     if let Some(needs_init) = node_json["needs-init"].as_bool() {
                                         if needs_init {
+                                            lint(&node_json, "module.scm", &node_path)?;
                                             make_model(node_json.clone(), file)?;
+                                        } else {
+                                            lint(&node_json, "no-init.scm", &node_path)?;
                                         }
+                                    } else {
+                                        lint(&node_json, "module.scm", &node_path)?;
                                     }
                                     if let Some(construct) = node_json["construct"].as_str() {
                                         let mut construct_code = construct.to_string();
@@ -183,6 +190,8 @@ fn make_model(model_graph: Value, file: &mut File) -> std::io::Result<()> {
                 if let Some(object) = forward_step["object"].as_str() {
                     let node_path = format!("nodes/{}.json", object);
                     let node_json = read_json_file(Path::new(&node_path))?;
+                    // println!("Lint time!");
+                    lint(&node_json, "module.scm", &node_path)?;
 
                     if let Some(forward_code) = node_json["usage"].as_array() {
                         for code in forward_code {
@@ -239,8 +248,49 @@ fn make_model(model_graph: Value, file: &mut File) -> std::io::Result<()> {
     Ok(())
 }
 
+fn load_schema(schema_name: &str) -> std::io::Result<JSONSchema> {
+    let schema_path = Path::new("schemas").join(schema_name);
+    let schema_content = fs::read_to_string(schema_path)?;
+    let schema_json: Value = serde_json::from_str(&schema_content)?;
+    let schema = JSONSchema::compile(&schema_json).unwrap();
+
+    Ok(schema)
+}
+
+fn validate_json(json: &Value, schema: &JSONSchema) -> Result<(), Vec<String>> {
+    let validation = schema.validate(json);
+    let mut errors = Vec::new();
+    if let Err(err) = validation {
+        for error in err {
+            errors.push(format!("{} ({})", error, error.instance_path).replace("()", "(/)"));
+        }
+    }
+    if errors.is_empty() {
+        Ok(())
+    } else {
+        Err(errors)
+    }
+}
+
+fn lint(json: &Value, schema_name: &str, display_name: &str) -> std::io::Result<()> {
+    let schema = load_schema(schema_name)?;
+    match validate_json(json, &schema) {
+        Ok(_) => {
+            println!("{}: OK", display_name);
+        }
+        Err(errors) => {
+            println!("{}: Errors:", display_name);
+            for error in errors {
+                println!("  - {}", error);
+            }
+        }
+    }
+    Ok(())
+}
+
 pub fn generate_model(model_graph: Value, save_path: String) -> std::io::Result<()> {
     let mut model_file = File::create(save_path)?;
+    lint(&model_graph, "module.scm", "Model")?;
     make_imports(model_graph.clone(), &mut model_file)?;
     make_model(model_graph.clone(), &mut model_file)?;
 
