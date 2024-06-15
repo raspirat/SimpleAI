@@ -122,9 +122,11 @@ fn make_model(model_graph: Value, file: &mut File) -> std::io::Result<()> {
                                         if needs_init {
                                             lint(&node_json, "module.scm", &node_path)?;
                                             make_model(node_json.clone(), file)?;
+                                        } else if object.contains("func") {
+                                            lint(&node_json, "func.scm", &node_path)?;
                                         } else {
                                             lint(&node_json, "no-init.scm", &node_path)?;
-                                        }
+                                        }                                        
                                     } else {
                                         lint(&node_json, "module.scm", &node_path)?;
                                     }
@@ -190,8 +192,17 @@ fn make_model(model_graph: Value, file: &mut File) -> std::io::Result<()> {
                 if let Some(object) = forward_step["object"].as_str() {
                     let node_path = format!("nodes/{}.json", object);
                     let node_json = read_json_file(Path::new(&node_path))?;
-                    // println!("Lint time!");
-                    lint(&node_json, "module.scm", &node_path)?;
+                    if let Some(needs_init) = node_json["needs-init"].as_bool() {
+                        if needs_init {
+                            lint(&node_json, "module.scm", &node_path)?;
+                        } else if object.contains("func") {
+                            lint(&node_json, "func.scm", &node_path)?;
+                        } else {
+                            lint(&node_json, "no-init.scm", &node_path)?;
+                        }                                        
+                    } else {
+                        lint(&node_json, "module.scm", &node_path)?;
+                    }
 
                     if let Some(forward_code) = node_json["usage"].as_array() {
                         for code in forward_code {
@@ -274,15 +285,10 @@ fn validate_json(json: &Value, schema: &JSONSchema) -> Result<(), Vec<String>> {
 
 fn lint(json: &Value, schema_name: &str, display_name: &str) -> std::io::Result<()> {
     let schema = load_schema(schema_name)?;
-    match validate_json(json, &schema) {
-        Ok(_) => {
-            println!("{}: OK", display_name);
-        }
-        Err(errors) => {
-            println!("{}: Errors:", display_name);
-            for error in errors {
-                println!("  - {}", error);
-            }
+    if let Err(errors) = validate_json(json, &schema) {
+        println!("{}: Errors:", display_name);
+        for error in errors {
+            println!("  - {}", error);
         }
     }
     Ok(())

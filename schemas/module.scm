@@ -2,8 +2,12 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
     "properties": {
-        "title": { "type": "string" },
-        "desc": { "type": "string" },
+        "title": {
+            "type": "string"
+        },
+        "desc": {
+            "type": "string"
+        },
         "inputs": {
             "type": "array",
             "items": {
@@ -12,19 +16,40 @@
                     "object": {
                         "type": "object",
                         "properties": {
-                            "type": { "type": "string" },
-                            "display": { "type": "string" },
-                            "dtype": { "type": "string" },
+                            "type": {
+                                "type": "string"
+                            },
+                            "display": {
+                                "type": "string"
+                            },
+                            "dtype": {
+                                "type": "string"
+                            },
                             "dims": {
                                 "type": "array",
-                                "items": { "type": ["integer", "string"] }
+                                "items": {
+                                    "type": [
+                                        "integer",
+                                        "string"
+                                    ]
+                                }
                             }
                         },
-                        "required": ["type", "display", "dtype", "dims"]
+                        "required": [
+                            "type",
+                            "display",
+                            "dtype",
+                            "dims"
+                        ]
                     },
-                    "desc": { "type": "string" }
+                    "desc": {
+                        "type": "string"
+                    }
                 },
-                "required": ["object", "desc"]
+                "required": [
+                    "object",
+                    "desc"
+                ]
             }
         },
         "outputs": {
@@ -35,39 +60,77 @@
                     "object": {
                         "type": "object",
                         "properties": {
-                            "type": { "type": "string" },
-                            "display": { "type": "string" },
-                            "dtype": { "type": "string" },
+                            "type": {
+                                "type": "string"
+                            },
+                            "display": {
+                                "type": "string"
+                            },
+                            "dtype": {
+                                "type": "string"
+                            },
                             "dims": {
                                 "type": "array",
-                                "items": { "type": ["integer", "string"] }
+                                "items": {
+                                    "type": [
+                                        "integer",
+                                        "string"
+                                    ]
+                                }
                             }
                         },
-                        "required": ["type", "display", "dtype", "dims"]
+                        "required": [
+                            "type",
+                            "display",
+                            "dtype",
+                            "dims"
+                        ]
                     },
-                    "desc": { "type": "string" }
+                    "desc": {
+                        "type": "string"
+                    }
                 },
-                "required": ["object", "desc"]
+                "required": [
+                    "object",
+                    "desc"
+                ]
             }
         },
-        "construct": { "type": "string" },
+        "construct": {
+            "type": "string"
+        },
         "args": {
             "type": "array",
             "items": {
                 "type": "object",
                 "properties": {
-                    "id": { "type": "string" },
+                    "id": {
+                        "type": "string"
+                    },
                     "object": {
                         "type": "object",
                         "properties": {
-                            "type": { "type": "string" },
-                            "display": { "type": "string" }
+                            "type": {
+                                "type": "string"
+                            },
+                            "display": {
+                                "type": "string"
+                            }
                         },
-                        "required": ["type", "display"]
+                        "required": [
+                            "type",
+                            "display"
+                        ]
                     },
-                    "desc": { "type": "string" }
+                    "desc": {
+                        "type": "string"
+                    }
                 },
-                "required": ["id", "object", "desc"]
+                "required": [
+                    "id",
+                    "object",
+                    "desc"
+                ]
             }
         },
         "init": {
@@ -75,11 +138,19 @@
             "items": {
                 "type": "object",
                 "properties": {
-                    "object": { "type": "string" },
-                    "value": { "type": "string" },
-                    "code": { "type": "string" }
+                    "object": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "code": {
+                        "type": "string"
+                    }
                 },
-                "required": ["object"]
+                "required": [
+                    "object"
+                ]
             }
         },
         "forward": {
@@ -87,20 +158,57 @@
             "items": {
                 "type": "object",
                 "properties": {
-                    "input": { "type": "string" },
-                    "id": { "type": "string" },
-                    "object": { "type": "string" },
-                    "output": { "type": "string" },
-                    "code": { "type": "string" }
+                    "input": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "object": {
+                        "type": "string"
+                    },
+                    "output": {
+                        "type": "string"
+                    },
+                    "code": {
+                        "type": "string"
+                    }
                 },
-                "required": ["input", "object"]
+                "oneOf": [
+                    {
+                        "required": [
+                            "input",
+                            "object"
+                        ]
+                    },
+                    {
+                        "required": [
+                            "code"
+                        ]
+                    }
+                ]
             }
         },
         "dependencies": {
             "type": "array",
-            "items": { "type": "string" }
+            "items": {
+                "type": "string"
+            }
         },
-        "device-agnostic": { "type": "boolean" }
+        "device-agnostic": {
+            "type": "boolean"
+        }
     },
-    "required": ["title", "desc", "inputs", "outputs", "construct", "args", "init", "forward", "dependencies", "device-agnostic"]
+    "required": [
+        "title",
+        "desc",
+        "inputs",
+        "outputs",
+        "construct",
+        "args",
+        "init",
+        "forward",
+        "dependencies",
+        "device-agnostic"
+    ]
 }
