@@ -1,0 +1,73 @@
+/*------------------------ FONTS ------------------------*/
+@import "/assets/fonts/Poppins/poppins.css";
+
+/*------------------------ VARS ------------------------*/
+:root
+{
+    /*------ BUTTON ------*/
+    --i-page-button-background-color: var(--page-button-background-color, transparent);
+    --i-page-button-border-color: var(--page-button-border-color, transparent);
+    --i-page-button-border-radius: var(--page-button-border-radius, 1em);
+    --i-page-button-color: var(--page-button-color, var(--i-page-color));
+    --i-page-button-hover-background-color: var(--page-button-hover-background-color, lightgrey);
+    /*------ GLOBAL ------*/
+    --i-global-font-family: var(--global-font-family, Poppins);
+    --i-global-font-size: var(--global-font-size, 20px);
+    /*------ ICONS ------*/
+    --i-page-icon-color: var(--page-icon-color, var(--i-page-color));
+    /*------ PAGE ------*/
+    --i-page-border-width: var(--page-border-width, 2px);
+    --i-page-background-image: var(--page-background-image, none);
+    --i-page-background-color: var(--page-background-color, white);
+    --i-page-border-color: var(--page-border-color, grey);
+    --i-page-color: var(--page-color, black);
+    --i-page-light-color: var(--page-light-color, grey);
+}
+
+/*------ PAGE ------*/
+html
+{
+    height: 100%;
+}
+
+/*------ BODY ------*/
+body
+{
+    background-color: var(--i-page-background-color);
+    background-image: var(--i-page-background-image);
+    border-color: var(--i-page-border-color);
+    border-style: solid;
+    border-width: var(--i-page-border-width);
+    color: var(--i-page-color);
+    display: flex;
+    flex-direction: column;
+    font-family: var(--i-global-font-family), serif;
+    height: calc(100% - var(--i-page-border-width) * 2);
+    margin: 0;
+    padding: 0;
+}
+
+/*------ BUTTONS ------*/
+button
+{
+    background-color: var(--i-page-button-background-color);
+    border-color: var(--i-page-button-border-color);
+    border-radius: var(--i-page-button-border-radius);
+    border-style: solid;
+    color: var(--i-page-button-color);
+}
+
+button:hover
+{
+    /*-VARS-*/
+    /*-DEFINES-*/
+    background-color: var(--i-page-button-hover-background-color);
+}
+
+/*------ ICONS ------*/
+i
+{
+    /*-VARS-*/
+    /*-DEFINES-*/
+    color: var(--i-page-icon-color);
+}

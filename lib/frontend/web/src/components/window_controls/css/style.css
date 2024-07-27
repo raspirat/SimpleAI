@@ -1,0 +1,83 @@
+/*------------------------ VARS ------------------------*/
+#window_controls
+{
+    /*---------- WINDOW CONTROLS ----------*/
+    --i-wc-background-color: var(--wc-background-color, transparent);
+    /*---------- BUTTONS ----------*/
+    --i-wc-icon-color: var(--wc-icon-color, var(--i-hdr-icon-color));
+    --i-wc-button-hover-background-color: var(--wc-button-hover-background-color, var(--i-hdr-button-hover-background-color));
+    --i-wc-button-hover-minimize-background-color: var(--wc-button-hover-fullscreen-background-color, var(--i-wc-button-hover-background-color));
+    --i-wc-button-hover-fullscreen-background-color: var(--wc-button-hover-fullscreen-background-color, var(--i-wc-button-hover-background-color));
+    --i-wc-button-hover-close-background-color: var(--wc-button-hover-fullscreen-background-color, var(--i-wc-button-hover-background-color));
+}
+
+/*------------------------ WINDOW CONTROLS ------------------------*/
+#window_controls
+{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+/*------------------------ ICONS ------------------------*/
+i
+{
+    color: var(--i-wc-icon-color);
+    font-size: 1.1em;
+}
+
+/*------------------------ NAVIGATIONS ------------------------*/
+/*---------- NAVS ----------*/
+nav.controls
+{
+    height: inherit;
+}
+
+/*---------- UL ELEMENTS ----------*/
+ul.nav
+{
+    height: inherit;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+}
+
+/*---------- LI ELEMENTS ----------*/
+li.nav
+{
+    height: inherit;
+    flex-grow: 1;
+    text-align: center;
+}
+
+/*------------------------ BUTTONS ------------------------*/
+button.nav
+{
+    background-color: var(--i-wc-background-color);
+    cursor: pointer;
+    height: inherit;
+    width: 3em;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button.nav.minimize:hover
+{
+    background-color: var(--i-wc-button-hover-minimize-background-color);
+}
+
+button.nav.fullscreen:hover
+{
+    background-color: var(--i-wc-button-hover-fullscreen-background-color);
+}
+
+button.nav.close:hover
+{
+    background-color: var(--i-wc-button-hover-close-background-color);
+}

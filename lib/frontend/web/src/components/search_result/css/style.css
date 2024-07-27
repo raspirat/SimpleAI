@@ -1,0 +1,107 @@
+/*------------------------ VARS ------------------------*/
+#search_result
+{
+    /*------ LINKS ------*/
+    --i-sr-link-background-color: var(--sr-link-background-color, var(--i-page-button-hover-background-color));
+    --i-sr-link-border-color: var(--sr-link-border-color, var(--i-page-button-border-color));
+    --i-sr-link-border-radius: var(--sr-link-border-radius, var(--i-page-button-border-radius));
+   /*------ ICONS ------*/
+    --i-sr-icon-color: var(--sr-icon-color, var(--i-page-icon-color));
+    /*------ RESULT ------*/
+    --i-sr-background-color: var(--sr-background-color, transparent);
+    --i-sr-border-color: var(--sr-border-color, grey);
+    --i-sr-border-radius: var(--sr-border-radius, var(--i-page-button-border-radius));
+}
+
+/*------------------------ SEARCH RESULT ------------------------*/
+#search_result
+{
+    background-color: var(--i-sr-background-color);
+    border-color: var(--i-sr-border-color);
+    border-radius: var(--i-sr-border-radius);
+    border-style: solid;
+    border-width: 0.13em;
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+    padding: 1em;
+}
+
+/*------------------------ ICONS ------------------------*/
+i
+{
+    color: var(--i-sr-icon-color);
+    cursor: pointer;
+    font-size: 1.4em;
+    margin-left: 0.3em;
+}
+
+.i.wrapper
+{
+    align-self: start;
+    justify-content: right;
+}
+
+#open
+{
+    position: relative;
+    top: 0.04em;
+}
+
+/*------------------------ LIST ------------------------*/
+li
+{
+    list-style: none;
+}
+
+/*------------------------ H ------------------------*/
+/*------ H3 ------*/
+h3
+{
+    margin: 0 0.5em 0 0;
+}
+/*------ SPAN ------*/
+#id
+{
+    color: var(--i-page-light-color);
+}
+
+/*------ H5 ------*/
+h5
+{
+    color: var(--i-page-light-color);
+    margin: 0;
+    padding: 0;
+}
+
+/*------------------------ A ------------------------*/
+a
+{
+    background-color: var(--i-sr-link-background-color);
+    border-color: var(--i-sr-link-border-color);
+    border-radius: var(--i-sr-link-border-radius);
+    border-style: solid;
+    color: var(--i-page-link-color);
+    text-decoration: none;
+    margin: 0 0 0 0.5em;
+    padding: 0.1em 0.5em;
+}
+
+.a.wrapper
+{
+    justify-content: left;
+}
+
+/*------------------------ DIV ------------------------*/
+div.wrapper
+{
+    align-items: center;
+    display: flex;
+    width: 100%;
+}
+
+/*------------------------ ADRESS ------------------------*/
+address
+{
+    color: var(--i-page-light-color);
+}

@@ -1,0 +1,98 @@
+/*------------------------ VARS ------------------------*/
+#main_page_selector
+{
+    /*------ BUTTONS ------*/
+    --i-mps-button-background-color: var(--mps-button-background-color, --i-page-button-background-color);
+    --i-mps-button-border-color: var(--mps-button-border-color, var(--i-page-border-color));
+    --i-mps-button-border-radius: var(--mps-button-border-radius, var(--i-page-button-border-radius));
+    --i-mps-button-hover-background-color: var(--mps-button-hover-background-color, var(--i-page-button-hover-background-color));
+    /*------ ICONS ------*/
+    --i-scp-icon-color: var(--mps-icon-color, var(--i-page-icon-color));
+    /*------ SELECTOR ------*/
+    --i-mps-background-color: var(--mps-background-color, transparent);
+    --i-mps-border-color: var(--mps-border-color, transparent);
+    --i-mps-border-radius: var(--mps-border-radius, var(--i-page-button-border-radius));
+}
+
+/*------------------------ MAIN PAGE SELECTOR ------------------------*/
+#main_page_selector
+{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*------------------------ ICONS ------------------------*/
+i
+{
+    color: var(--i-scp-icon-color);
+    font-size: 1.4em;
+}
+
+/*------------------------ BUTTON ------------------------*/
+button
+{
+    background-color: var(--i-mps-button-background-color);
+    border-color: var(--i-mps-button-border-color);
+    border-radius: var(--i-mps-button-border-radius);
+    border-style: solid;
+}
+
+button:hover
+{
+    background-color: var(--i-mps-button-hover-background-color);
+}
+
+/*---------- NAV ----------*/
+button.nav
+{
+    cursor: pointer;
+    padding: 10px;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*------------------------ NAVIGATION ------------------------*/
+/*---------- NAVS ----------*/
+nav.selector
+{
+    background-color: var(--i-mps-background-color);
+    border-color: var(--i-mps-border-color);
+    border-radius: var(--i-mps-border-radius);
+    border-style: solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+/*---------- UL ELEMENTS ----------*/
+ul.nav
+{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+
+}
+
+/*---------- LI ELEMENTS ----------*/
+li.nav
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2em;
+}
+
+/*------------------------ TEXT ------------------------*/
+p
+{
+    margin: 1em 0 0 0;
+}

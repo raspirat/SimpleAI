@@ -1,0 +1,112 @@
+/*------------------------ VARS ------------------------*/
+#search_bar
+{
+    /*------ BUTTONS ------*/
+    --i-sb-button-background-color: var(--sb-button-background-color, --i-page-button-background-color);
+    --i-sb-button-border-color: var(--sb-button-border-color, var(--i-page-border-color));
+    --i-sb-button-border-radius: var(--sb-button-border-radius, var(--i-page-button-border-radius));
+    --i-sb-button-hover-background-color: var(--sb-button-hover-background-color, var(--i-page-button-hover-background-color));
+    /*------ FORMS ------*/
+    --i-sb-form-background-color: var(--sb-form-background-color, --i-page-button-background-color);
+    --i-sb-form-border-color: var(--sb-form-border-color, var(--i-page-border-color));
+    --i-sb-form-border-radius: var(--sb-form-border-radius, var(--i-page-button-border-radius));
+    --i-sb-form-hover-background-color: var(--sb-form-hover-background-color, var(--i-page-button-hover-background-color));
+    /*------ ICONS ------*/
+    --i-sb-icon-color: var(--sb-icon-color, var(--i-page-icon-color));
+    /*------ SELECTOR ------*/
+    --i-sb-background-color: var(--sb-background-color, transparent);
+    --i-sb-border-color: var(--sb-border-color, grey);
+    --i-sb-border-radius: var(--sb-border-radius, var(--i-page-button-border-radius));
+}
+
+/*------------------------ MAIN PAGE SELECTOR ------------------------*/
+#search_bar
+{
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    width: 100%;
+}
+
+/*------------------------ ICONS ------------------------*/
+i
+{
+    color: var(--i-sb-icon-color);
+    font-size: 1.4em;
+}
+
+/*------------------------ BUTTON ------------------------*/
+button
+{
+    background-color: var(--i-sb-button-background-color);
+    border-color: var(--i-sb-button-border-color);
+    border-radius: var(--i-sb-button-border-radius);
+    border-style: solid;
+    cursor: pointer;
+    padding: 0.4em;
+}
+
+button:hover
+{
+    background-color: var(--i-sb-button-hover-background-color);
+}
+
+/*------------------------ LABEL ------------------------*/
+label
+{
+    display: none;
+}
+
+/*------------------------ FORM ------------------------*/
+form
+{
+    align-items: center;
+    background-color: var(--i-sb-background-color);
+    border-color: var(--i-sb-border-color);
+    border-radius: var(--i-sb-border-radius);
+    border-style: solid;
+    border-top-style: none;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    border-width: 0.18em;
+    display: flex;
+    padding: 1em;
+    width: 90%;
+    justify-content: space-between;
+}
+
+/*------------------------ INPUT ------------------------*/
+input
+{
+    background-color: var(--i-sb-form-background-color);
+    border-color: var(--i-sb-form-border-color);
+    border-radius: var(--i-sb-form-border-radius);
+    border-style: solid;
+    height: 100%;
+    padding: 0.5em;
+    -webkit-appearance: none;
+    width: 100%;
+    margin: 0 0.5em 0 0;
+}
+
+input:hover
+{
+    background-color: var(--i-sb-form-hover-background-color);
+    -webkit-appearance: none;
+}
+
+input:focus
+{
+    -webkit-appearance: none;
+    outline: none;
+}
+
+input:focus-visible
+{
+    -webkit-appearance: none;
+}
+
+::-webkit-search-cancel-button
+{
+    display: none;
+}

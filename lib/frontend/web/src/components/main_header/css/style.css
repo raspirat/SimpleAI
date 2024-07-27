@@ -1,0 +1,228 @@
+/*------------------------ VARS ------------------------*/
+header
+{
+    /*------ BUTTONS ------*/
+    --i-hdr-button-background-color: var(--hdr-button-background-color, var(--i-page-button-background-color));
+    --i-hdr-button-border-color: var(--hdr-button-border-color, var(--i-page-button-border-color));
+    --i-hdr-button-border-radius: var(--hdr-button-border-radius, var(--i-page-button-border-radius));
+    --i-hdr-button-color: var(--hdr-button-color, var(--i-page-button-color));
+    --i-hdr-button-hover-background-color: var(--hdr-button-hover-background-color, var(--i-page-button-hover-background-color));
+    /*------ HEADER ------*/
+    --i-hdr-background-color: var(--hdr-background-color, white);
+    --i-hdr-border-color: var(--hdr-border-color, var(--i-page-border-color));
+    /*------ ICONS ------*/
+    --i-hdr-icon-color: var(--hdr-icon-color, var(--i-page-icon-color));
+    /*------ LOGOS ------*/
+    --i-hdr-logo-color: var(--page-logo-color);
+    /*------ HOVERNAV ------*/
+    --i-hdr-hovernav-border-radius: var(--hdr-hovernav-border-radius, var(--i-page-button-border-radius));
+}
+
+/*------------------------ HEADER ------------------------*/
+header
+{
+    background-color: var(--i-hdr-background-color);
+    align-items: center;
+    border-bottom-color: var(--i-hdr-border-color);
+    border-bottom-style: solid;
+    display: flex;
+    font-size: var(--i-global-font-size);
+    height: 2.5em;
+    margin: 0;
+    padding: 0;
+    position: sticky;
+    user-select: none;
+    width: 100%;
+}
+
+/*------------------------ ICONS ------------------------*/
+i
+{
+    color: var(--i-hdr-icon-color);
+    font-size: 1.5em;
+}
+
+/*------------------------ BUTTONS ------------------------*/
+button
+{
+    background-color: var(--i-hdr-button-background-color);
+    border-color: var(--i-hdr-button-border-color);
+    border-radius: var(--i-hdr-button-border-radius);
+    border-style: solid;
+    color: var(--i-hdr-button-color);
+    font-family: var(--i-global-font-family);
+}
+
+button:hover
+{
+    background-color: var(--i-hdr-button-hover-background-color);
+}
+
+/*---------- NAV ----------*/
+
+/*--- MAIN ---*/
+ul.nav.main>li>div>button
+{
+    border-style: solid;
+    padding: 0.7em 0.4em;
+}
+
+/*--- HOVERNAV ---*/
+ul.nav.main>li>nav>ul>li>button
+{
+    overflow: visible;
+    margin: 0;
+    padding: 0.4em;
+}
+
+ul.nav.main>li>nav>ul>li>button:hover
+{
+    cursor: pointer;
+}
+
+/*--- OPTIONS ---*/
+button.nav.options
+{
+    cursor: pointer;
+    padding: 0.5em;
+}
+
+/*------------------------ LOGOS ------------------------*/
+.logo
+{
+    color: var(--i-hdr-logo-color);
+}
+
+/*------------------------ WRAPPERS ------------------------*/
+div.wrapper
+{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    user-select: none;
+}
+
+/*------ LOGO ------*/
+div.wrapper.logo
+{
+    flex: 1;
+}
+
+/*------ LOGO ------*/
+div.wrapper.drag
+{
+    flex-grow: 1;
+    width: 100%;
+}
+
+/*---------- NAV ----------*/
+/*--- MAIN ---*/
+div.wrapper.nav.main
+{
+    flex: 20;
+}
+/*- BUTTON -*/
+ul.nav.main>li>div
+{
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
+/*------------------------ TEXT ------------------------*/
+/*---------- LOGO ----------*/
+p.logo
+{
+    margin: 0 0 0 0.7em;
+    padding: 0;
+    user-select: none;
+}
+
+/*------------------------ NAVIGATIONS ------------------------*/
+/*---------- LI ELEMENTS ----------*/
+ul.nav>li
+{
+    justify-content: left;
+    text-align: center;
+}
+
+/*--- HOVERNAV ---*/
+ul.nav.main>li>nav>ul>li
+{
+    width: 100%;
+    display: flex;
+}
+
+/*---------- UL ELEMENTS ----------*/
+/*--- MAIN ---*/
+ul.nav.main
+{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+}
+
+/*--- HOVERNAV ---*/
+ul.nav.main>li>nav>ul
+{
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0.1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+/*--- OPTIONS ---*/
+ul.options
+{
+    display: flex;
+    justify-content: right;
+    list-style: none;
+    padding: 0;
+    margin: 0 0.3em 0 0;
+}
+
+/*---------- NAVS ----------*/
+/*--- MAIN ---*/
+nav.nav.main
+{
+    height: 100%;
+    list-style: none;
+    padding-left: 1em;
+    user-select: none;
+}
+
+/*--- HOVERNAV ---*/
+ul.nav.main>li>nav
+{
+    background-color: var(--i-hdr-background-color);
+    border-color: var(--i-hdr-border-color);
+    border-radius: var(--i-hdr-hovernav-border-radius);
+    border-style: solid;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    display: none; /* none */
+    margin: 0;
+    padding: 0.5em;
+    position: absolute;
+}
+
+ul.nav.main>li:hover>nav
+{
+    display: flex;
+}
+
+/*------ WINDOW CONTROLS ------*/
+window-controls
+{
+    height: 100%;
+}
+
+
+
+
