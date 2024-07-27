@@ -1,0 +1,19 @@
+[package]
+name = "LibBackSimpleNodeEditor"
+version = "0.1.0"
+description = "SNE backend library."
+authors = ["raspirat", "sert"]
+license = ""
+repository = ""
+edition = "2021"
+rust-version = "1.60"
+
+[lib]
+name = "libbacksne"
+path = "src/rust/main.rs"
+
+[dependencies]
+dirs = { version = "5" }
+serde = { version = "1"}
+toml = { version = "0.8"}
+url = { version = "2", features = ["serde"] }

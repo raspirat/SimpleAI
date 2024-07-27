@@ -1,8 +1,0 @@
-{
-  "compilerOptions": {
-    "module": "ESNext",
-    "target" : "ESNext",
-    "outDir": "temp/components"
-  },
-  "include": ["components/**/ts/*", "components/scripts/*", "pages/**/ts/*"]
-}

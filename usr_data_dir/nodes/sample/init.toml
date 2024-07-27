@@ -1,0 +1,12 @@
+[node]
+
+[node.info]
+name = "asdf"
+
+[node.include]
+samplenode = { version = "1.0", path = "nodes/asldjf;"}
+
+[node.sources]
+
+
+
