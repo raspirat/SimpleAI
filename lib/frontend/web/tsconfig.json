@@ -10,64 +10,45 @@
     "moduleDetection": "force"
   },
   "aliases": {
-    "@node_modules": {
+    "node_modules": {
       "ts": "node_modules",
       "js": "/node_modules"
     },
-    "@node_modules/boxicons": {
-      "ts": "node_modules/boxicons",
-      "js": "/node_modules/boxicons/dist/boxicons.js"
-    },
-    "@tauri-app-window":
-    {
-      "ts": "node_modules/@tauri-apps/api/window",
-      "js": "/node_modules/@tauri-apps/api/window.js"
-    },
-    "@scripts": {
+    "scripts": {
       "ts": "scripts/ts",
       "js": "/scripts/js"
     },
-    "@themes": {
-      "asset": true,
-      "ts": "themes",
-      "js": "/themes"
-    },
-    "@config": {
-      "asset": true,
-      "ts": "config",
-      "js": "/config"
-    },
-    "@scripts/fetch_html": {
-      "ts": "scripts/ts/fetch_html/fetch_html.alias.ts",
-      "js": "/scripts/js/fetch_html/fetch_html.js"
-    },
-    "@scripts/register_css": {
-      "ts": "scripts/ts/register_css",
-      "js": "/scripts/js/register_css"
-    },
-    "@main_header": {
+    "main_header": {
       "ts": "components/main_header/ts",
       "js": "/components/main_header/js"
     },
-    "@window_controls": {
+    "window_controls": {
       "ts": "components/window_controls/ts",
       "js": "/components/window_controls/js"
     },
-    "@main_page_selector": {
+    "main_page_selector": {
       "ts": "components/main_page_selector/ts",
       "js": "/components/main_page_selector/js"
     },
-    "@search_component": {
+    "search_component": {
       "ts": "components/search_component/ts",
       "js": "/components/search_component/js"
     },
-    "@search_bar": {
+    "search_bar": {
       "ts": "components/search_bar/ts",
       "js": "/components/search_bar/js"
     },
-    "@search_result": {
+    "search_result": {
       "ts": "components/search_result/ts",
       "js": "/components/search_result/js"
+    },
+    "node_pref": {
+      "ts": "components/node_pref/ts",
+      "js": "/components/node_pref/js"
+    },
+    "error_page": {
+      "ts": "pages/error_page/ts",
+      "js": "/pages/error_page/js"
     }
   }
 }

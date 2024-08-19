@@ -12,11 +12,17 @@ export class MainPageSelector extends HTMLElement
             this,
             '/components/main_page_selector/html/index.html',
             () => {
-                let search = this.shadowRoot.querySelector("#search");
-                console.log('search');
+                let search: HTMLButtonElement = this.shadowRoot.querySelector("#search");
                 search.addEventListener('click', () => {
                     invoke('search_page');
                 });
+                let node: HTMLButtonElement = this.shadowRoot.querySelector("#new");
+                node.addEventListener('click', () => {
+                    invoke('new_node_page');
+                });
+                let market: HTMLButtonElement = this.shadowRoot.querySelector("#market");
+                let ml: HTMLLIElement = this.shadowRoot.querySelector("li.nav.selector.marketplace");
+                ml.style.display = "none";
             });
     }
 }

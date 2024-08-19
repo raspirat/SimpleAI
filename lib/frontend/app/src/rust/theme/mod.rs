@@ -16,34 +16,22 @@ use serde::{
 };
 use url::Url;
 use libbacksne::{
-	category::{
-		Categories
-	},
 	info::{
 		Info
 	},
-	sources::{
-		Sources
-	}
 };
-use libbacksne::category::Category;
-use libbacksne::sources::Source;
 
 #[derive(Serialize, Deserialize)]
 struct Theme
 {
-	categories: Categories,
 	info: Info,
-	sources: Sources
 }
 
 impl Theme
 {
-	pub fn new(categories: Categories, info: Info, sources: Sources) -> Self {
+	pub fn new(info: Info) -> Self {
 		Self {
-			categories,
-			info,
-			sources
+			info
 		}
 	}
 }
@@ -52,15 +40,14 @@ impl Default for Theme
 {
 	fn default() -> Self {
 		 Self::new(
-			 vec!(Category::default()),
-			  Info::new(
-				  "DefaultTheme",
-				  "1.0.0",
-				  "This is the default theme.",
-				  "sert",
-				  Url::from_str("https://github.com/sertschgi").unwrap()
-			  ),
-			  vec!(Source::default())
+			 Info::new(
+				 "DefaultTheme",
+				 "1.0.0",
+				 "This is the default theme.",
+				 "sert",
+				 vec!["default, theme"],
+				 Url::from_str("https://github.com/sertschgi").unwrap(),
+				 vec!["themes"]),
 		 )
 	}
 }
@@ -72,7 +59,7 @@ impl From<PathBuf> for Theme
 		if fobj.is_ok()
 		{
 			let sfobj = fobj.unwrap();
-			return toml::from_str(sfobj.into()).unwrap_or(Self::default());
+			return toml::from_str(sfobj.as_str()).unwrap_or(Self::default());
 		}
 		return Self::default();
 	}

@@ -2,7 +2,7 @@ import { reg_css, fetch_html } from "@scripts";
 reg_css("search-bar", "sb");
 
 // @ts-ignore
-// const invoke = window.__TAURI__.invoke; // uncomment
+const invoke = window.__TAURI__.invoke; // uncomment
 export class SearchBar extends HTMLElement
 {
     onresult = (results) => {};
@@ -18,8 +18,9 @@ export class SearchBar extends HTMLElement
                         event.preventDefault();
                         let search_input: HTMLInputElement = this.shadowRoot.querySelector('#search_bar_input');
                         console.log("searching: ", search_input.value);
-                        // let results = invoke('search', {query: search_input.value);
-                        // onresult(this.results);
+                        let results = invoke('search', {query: search_input.value});
+                        console.log(results);
+                        this.onresult(results);
                     }
                 )
             });

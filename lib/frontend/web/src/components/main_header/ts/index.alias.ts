@@ -2,7 +2,13 @@ import { reg_css, fetch_html } from "@scripts";
 reg_css("header", "hdr");
 import { WindowControls } from "@window_controls";
 console.log("Dependencies loaded: ", WindowControls.name)
-import { appWindow } from "@node_modules/@tauri-apps/api/window.js";
+
+
+// @ts-ignore
+const invoke = window.__TAURI__.invoke;
+// @ts-ignore
+const appWindow = window.__TAURI__.window.appWindow;
+
 export class MainHeader extends HTMLElement
 {
     constructor()
@@ -12,6 +18,24 @@ export class MainHeader extends HTMLElement
             this,
             '/components/main_header/html/index.html',
             () => {
+                let sb: HTMLButtonElement = this.shadowRoot.querySelector('#settings-button');
+                let hb: HTMLButtonElement = this.shadowRoot.querySelector('#home-button');
+
+                sb.addEventListener('click', () => {
+                    invoke('settings_page');
+                });
+                hb.addEventListener('click', () => {
+                    invoke('start_page');
+                });
+
+                if (! this.hasAttribute('settings'))
+                {
+                    sb.style.display = "none";
+                }
+                if (! this.hasAttribute('home'))
+                {
+                    hb.style.display = "none";
+                }
                 let listener = () => {appWindow.startDragging();};
                 this.shadowRoot.querySelector('#logo')
                     .addEventListener('mousedown', listener);

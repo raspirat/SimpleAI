@@ -1,0 +1,106 @@
+/*------------------------ DEFAULT ------------------------*/
+@import "/components/page/css/style.css";
+
+
+/*------------------------ MAIN PAGE SELECTOR ------------------------*/
+body
+{
+    display: flex;
+}
+
+section
+{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+h1
+{
+    margin: 0;
+    padding: 0;
+}
+h3
+{
+    margin: 0;
+    padding: 0;
+}
+h4
+{
+    margin: 0;
+    padding: 0;
+}
+p
+{
+    margin: 0;
+    padding: 0;
+}
+
+button
+{
+    border-color: grey;
+    border-style: solid;
+    font-size: 1.1em;
+    height: 2em;
+    margin-top: 1em;
+    width: 100%;
+}
+
+form
+{
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    width: 80%;
+}
+
+textarea
+{
+    resize: vertical;
+    max-height: 15em;
+}
+
+.row
+{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.element
+{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+
+#ermw
+{
+    width: 200px;
+}
+
+#ermww
+{
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
+#ercw
+{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+#codetxt
+{
+    margin: 0.25em;
+}
+
+#desc
+{
+}

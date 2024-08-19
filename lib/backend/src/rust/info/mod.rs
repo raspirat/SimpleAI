@@ -1,6 +1,14 @@
 use std::{
+	collections::{
+		HashSet
+	},
 	fs::{
 		read_to_string
+	},
+	hash::{
+		Hash,
+		Hasher,
+		DefaultHasher
 	},
 	path::{
 		PathBuf
@@ -9,6 +17,7 @@ use std::{
 		FromStr
 	}
 };
+
 use url::{
 	Url
 };
@@ -18,7 +27,15 @@ use serde::{
 	Deserialize
 };
 
-#[derive(Serialize, Deserialize)]
+use crate::{
+	util::{
+		default_hash::{DefaultHash},
+		*
+	},
+	errors::{*}
+};
+
+#[derive(Serialize, Deserialize, DefaultHash, Eq, Ord, PartialEq, PartialOrd, Clone, Hash)]
 pub struct Info
 {
 	name: String,
@@ -26,7 +43,8 @@ pub struct Info
 	description: String,
 	author: String,
 	keywords: Vec<String>,
-	website: Url
+	website: Url,
+	categories: Vec<String>
 }
 
 impl Info
@@ -36,8 +54,9 @@ impl Info
 		version: &str,
 		description: &str,
 		author: &str,
-		keywords: Vec<&str>, // not sure if works
-		website: Url
+		keywords: Vec<&str>,
+		website: Url,
+		categories: Vec<&str>
 	) -> Self
 	{
 		Self {
@@ -45,37 +64,26 @@ impl Info
 			version: version.into(),
 			description: description.into(),
 			author: author.into(),
-			keywords: keywords.into(),
-			website
+			keywords: keywords.iter().map(|&s| s.to_string()).collect(),
+			website,
+			categories: categories.iter().map(|&s| s.to_string()).collect()
 		}
 	}
-}
 
-impl Default for Info
-{
-	fn default() -> Self {
-		Self::new(
-			"Default",
-			"1.0.0",
-			"The default Information",
-			"sert",
-			vec!["default"],
-			Url::from_str("https://github.com/sertschgi").unwrap()
-		)
+	pub fn name(&self) -> String
+	{
+		self.clone().name
 	}
 }
 
-impl From<PathBuf> for Info
+impl TryFrom<PathBuf> for Info
 {
-	fn from(path: PathBuf) -> Self {
-		let fobj = read_to_string(path.join("init.toml"));
-		if fobj.is_ok()
-		{
-			let sfobj = fobj.unwrap();
-			return toml::from_str(sfobj.into()).unwrap_or(Self::default());
-		}
-		return Self::default();
+	type Error = Error;
+
+	fn try_from(value: PathBuf) -> Result<Self, Self::Error> {
+	//	try_from_json(value)
+		todo!();
 	}
 }
 
-pub type Infos = Vec<Info>;
+pub type Infos = HashSet<Info>;

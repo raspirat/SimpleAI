@@ -1,7 +1,8 @@
 import { reg_css, fetch_html } from "@scripts";
 reg_css("window_controls");
 
-import { appWindow } from "@node_modules/@tauri-apps/api/window.js";
+// @ts-ignore
+const appWindow = window.__TAURI__.window.appWindow;
 
 export class WindowControls extends HTMLElement
 {

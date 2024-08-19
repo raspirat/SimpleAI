@@ -1,0 +1,66 @@
+/*------------------------ VARS ------------------------*/
+#search_component
+{
+    /*------ BUTTONS ------*/
+    --i-scp-button-background-color: var(--scp-button-background-color, --i-page-button-background-color);
+    --i-scp-button-border-color: var(--scp-button-border-color, var(--i-page-border-color));
+    --i-scp-button-border-radius: var(--scp-button-border-radius, var(--i-page-button-border-radius));
+    --i-scp-button-hover-background-color: var(--scp-button-hover-background-color, var(--i-page-button-hover-background-color));
+    /*------ ICONS ------*/
+    --i-scp-icon-color: var(--scp-icon-color, var(--i-page-icon-color));
+    /*------ SELECTOR ------*/
+    --i-scp-background-color: var(--scp-background-color, transparent);
+    --i-scp-border-color: var(--scp-border-color, transparent);
+    --i-scp-border-radius: var(--scp-border-radius, var(--i-page-button-border-radius));
+}
+
+/*------------------------ MAIN PAGE SELECTOR ------------------------*/
+#search_component
+{
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+    width: 100%;
+}
+
+/*------------------------ ICONS ------------------------*/
+i
+{
+    color: var(--i-scp-icon-color);
+    font-size: 1.4em;
+}
+
+/*------------------------ BUTTON ------------------------*/
+button
+{
+    background-color: var(--i-scp-button-background-color);
+    border-color: var(--i-scp-button-border-color);
+    border-radius: var(--i-scp-button-border-radius);
+    border-style: solid;
+}
+
+button:hover
+{
+    background-color: var(--i-scp-button-hover-background-color);
+}
+
+/*------------------------ SEARCH BAR ------------------------*/
+search-bar
+{
+    width: 100%;
+}
+
+/*------------------------ UL ------------------------*/
+ul
+{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+/*------------------------ SEARCH RESULT ------------------------*/
+search-result
+{
+    width: 90%;
+}

@@ -10,10 +10,16 @@ rust-version = "1.60"
 
 [lib]
 name = "libbacksne"
-path = "src/rust/main.rs"
+path = "src/rust/lib.rs"
 
 [dependencies]
 dirs = { version = "5" }
 serde = { version = "1"}
+serde_json = { version = "1" }
+json = { version = "0.12" }
 toml = { version = "0.8"}
 url = { version = "2", features = ["serde"] }
+syn = "2.0.66"
+quote = "1.0.36"
+boyer-moore-magiclen = "0.2.20"
+default_hash_derive = { path = "src/rust/util/default_hash/default_hash_derive" }

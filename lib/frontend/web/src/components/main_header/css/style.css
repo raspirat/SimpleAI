@@ -4,7 +4,7 @@ header
     /*------ BUTTONS ------*/
     --i-hdr-button-background-color: var(--hdr-button-background-color, var(--i-page-button-background-color));
     --i-hdr-button-border-color: var(--hdr-button-border-color, var(--i-page-button-border-color));
-    --i-hdr-button-border-radius: var(--hdr-button-border-radius, var(--i-page-button-border-radius));
+    --i-hdr-button-border-radius: var(--hdr-button-border-radius, 0.6em);
     --i-hdr-button-color: var(--hdr-button-color, var(--i-page-button-color));
     --i-hdr-button-hover-background-color: var(--hdr-button-hover-background-color, var(--i-page-button-hover-background-color));
     /*------ HEADER ------*/
@@ -18,6 +18,13 @@ header
     --i-hdr-hovernav-border-radius: var(--hdr-hovernav-border-radius, var(--i-page-button-border-radius));
 }
 
+/*------------------------ ALL ------------------------*/
+*
+{
+    user-select: none;
+    -webkit-user-select: none;
+}
+
 /*------------------------ HEADER ------------------------*/
 header
 {
@@ -25,13 +32,13 @@ header
     align-items: center;
     border-bottom-color: var(--i-hdr-border-color);
     border-bottom-style: solid;
+    border-width: 0.08em;
     display: flex;
     font-size: var(--i-global-font-size);
-    height: 2.5em;
+    height: 2em;
     margin: 0;
     padding: 0;
     position: sticky;
-    user-select: none;
     width: 100%;
 }
 
@@ -39,23 +46,36 @@ header
 i
 {
     color: var(--i-hdr-icon-color);
-    font-size: 1.5em;
+    flex-grow: 1;
+    font-size: 1.4em;
 }
 
 /*------------------------ BUTTONS ------------------------*/
 button
 {
+    align-items: center;
     background-color: var(--i-hdr-button-background-color);
     border-color: var(--i-hdr-button-border-color);
     border-radius: var(--i-hdr-button-border-radius);
     border-style: solid;
     color: var(--i-hdr-button-color);
+    display: flex;
     font-family: var(--i-global-font-family);
+    height: 100%;
+    justify-content: center;
+    width: 100%;
 }
 
 button:hover
 {
     background-color: var(--i-hdr-button-hover-background-color);
+}
+
+/*--- OPTIONS ---*/
+button.nav.options
+{
+    cursor: pointer;
+    padding: 0.2em;
 }
 
 /*---------- NAV ----------*/
@@ -80,12 +100,6 @@ ul.nav.main>li>nav>ul>li>button:hover
     cursor: pointer;
 }
 
-/*--- OPTIONS ---*/
-button.nav.options
-{
-    cursor: pointer;
-    padding: 0.5em;
-}
 
 /*------------------------ LOGOS ------------------------*/
 .logo

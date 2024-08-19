@@ -12,7 +12,7 @@ use serde::{
 	Deserialize
 };
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Hash, Eq, PartialEq, Clone)]
 pub(crate) struct IncludeOptions
 {
 	version: String,
@@ -28,3 +28,4 @@ fn include(includes: Includes)
 		todo!() // implement this
 	}
 }
+
