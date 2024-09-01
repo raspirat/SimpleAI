@@ -2,62 +2,73 @@
 @import "/components/page/css/style.css";
 
 
-/*------------------------ MAIN PAGE SELECTOR ------------------------*/
 body
 {
+    --i-select-border-color: #bbbbbb;
+    --i-select-border-width: 0.25em;
+}
+
+/*------------------------ MAIN PAGE SELECTOR ------------------------*/
+
+main-header
+{
+    z-index: 10;
+}
+
+main
+{
     display: flex;
-}
-
-h1
-{
-    margin: 0;
-    padding: 0;
-}
-h3
-{
-    margin: 0;
-    padding: 0;
-}
-h4
-{
-    margin: 0;
-    padding: 0;
-}
-p
-{
-    margin: 0;
-    padding: 0;
-}
-
-.row
-{
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-}
-
-
-#ermw
-{
-    width: 200px;
-}
-
-#ermww
-{
-    align-items: center;
-    display: flex;
+    flex-direction: row;
+    justify-content: right;
     height: 100%;
-    justify-content: center;
+    width: 100%;
+    -webkit-user-select: none;
 }
 
-#ercw
+section
 {
-    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+aside
+{
+    background-color: var(--i-page-background-color);
+    border-left-color: var(--i-select-border-color);
+    border-left-style: solid;
+    border-width: var(--i-select-border-width);
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: right;
+    height: 100%;
+    margin-right: var(--i-page-border-width);
+    width: 34em;
+    min-width: min-content;
+    z-index: 1;
 }
 
-#codetxt
+aside > div
 {
-    margin: 0.25em;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+aside > div > search-component
+{
+    min-width: 30em;
+}
+
+aside > div > search-component.installed
+{
+    border-top-color: var(--i-select-border-color);
+    border-top-style: solid;
+    border-width: var(--i-select-border-width);
+}
+
+aside > right-sidebar
+{
+    height: 100%;
+    z-index: 2;
 }

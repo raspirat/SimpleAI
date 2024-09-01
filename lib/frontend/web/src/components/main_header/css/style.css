@@ -10,6 +10,7 @@ header
     /*------ HEADER ------*/
     --i-hdr-background-color: var(--hdr-background-color, white);
     --i-hdr-border-color: var(--hdr-border-color, var(--i-page-border-color));
+    --i-hdr-border-width: 0.08em;
     /*------ ICONS ------*/
     --i-hdr-icon-color: var(--hdr-icon-color, var(--i-page-icon-color));
     /*------ LOGOS ------*/
@@ -32,7 +33,7 @@ header
     align-items: center;
     border-bottom-color: var(--i-hdr-border-color);
     border-bottom-style: solid;
-    border-width: 0.08em;
+    border-width: var(--i-hdr-border-width);
     display: flex;
     font-size: var(--i-global-font-size);
     height: 2em;
@@ -40,6 +41,7 @@ header
     padding: 0;
     position: sticky;
     width: 100%;
+    z-index: 100;
 }
 
 /*------------------------ ICONS ------------------------*/
@@ -76,6 +78,12 @@ button.nav.options
 {
     cursor: pointer;
     padding: 0.2em;
+}
+
+/*--- RUN BUTTON ---*/
+#run-button-element
+{
+    margin-right: 2em
 }
 
 /*---------- NAV ----------*/

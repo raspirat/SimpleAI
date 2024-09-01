@@ -1,0 +1,52 @@
+/*------------------------ MAIN PAGE SELECTOR ------------------------*/
+section
+{
+    /*------ BUTTONS ------*/
+    --i-rsb-button-background-color: var(--ndpf-button-background-color, var(--i-page-button-background-color));
+    --i-rsb-button-active-background-color: var(--rsb-button-background-color, var(--i-page-button-hover-background-color));
+    --i-ndpf-button-border-color: var(--ndpf-button-border-color, grey);
+    --i-ndpf-button-border-radius: var(--ndpf-button-border-radius, 0.6em);
+    --i-ndpf-button-color: var(--ndpf-button-color, var(--i-page-button-color));
+    --i-ndpf-button-hover-background-color: var(--ndpf-button-hover-background-color, var(--i-page-button-hover-background-color));
+
+    align-items: center;
+    background-color: var(--i-page-background-color);
+    border-left-color: var(--i-page-border-color);
+    border-left-style: solid;
+    border-width: var(--i-hdr-border-width, 0.08em);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: start;
+    width: 100%;
+}
+
+div
+{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    margin-top: 0.5em;
+    width: 3em;
+}
+
+button
+{
+    background-color: var(--i-rsb-button-active-background-color);
+    border-color: var(--i-ndpf-button-border-color);
+    border-radius: var(--i-ndpf-button-border-radius);
+    border-style: solid;
+    cursor: pointer;
+    font-family: var(--i-page-button-font-family);
+    font-size: 1.1em;
+    height: 2em;
+    margin-top: 0.5em;
+    width: 2em;
+}
+
+/*button:hover*/
+/*{*/
+/*    background-color: var(--i-ndpf-button-hover-background-color);*/
+/*}*/
+

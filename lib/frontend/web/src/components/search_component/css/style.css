@@ -17,10 +17,12 @@
 /*------------------------ MAIN PAGE SELECTOR ------------------------*/
 #search_component
 {
+    background-color: var(--i-page-background-color);
     display: flex;
     flex-direction: column;
     height: inherit;
     width: 100%;
+    -webkit-user-select: none;
 }
 
 /*------------------------ ICONS ------------------------*/

@@ -1,0 +1,40 @@
+/*------------------------ DEFAULT ------------------------*/
+@import "/components/page/css/style.css";
+
+div
+{
+    background-color: var(--i-page-background-color);
+    border-color: var(--i-page-border-color);
+    border-style: solid;
+    border-radius: 2em;
+    border-width: var(--i-page-border-width);
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    left: inherit;
+    position: absolute;
+    top: inherit;
+    width: 13.3em;
+    scale: inherit;
+}
+
+header
+{
+    cursor: grab;
+    align-items: center;
+    display: flex;
+    height: 4em;
+    justify-content: center;
+    width: 100%;
+}
+
+main
+{
+    width: 100%;
+}
+
+footer
+{
+    height: 2em;
+    width: 100%;
+}

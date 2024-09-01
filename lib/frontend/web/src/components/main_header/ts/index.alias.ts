@@ -18,6 +18,7 @@ export class MainHeader extends HTMLElement
             this,
             '/components/main_header/html/index.html',
             () => {
+                let rb: HTMLButtonElement = this.shadowRoot.querySelector('#run-button');
                 let sb: HTMLButtonElement = this.shadowRoot.querySelector('#settings-button');
                 let hb: HTMLButtonElement = this.shadowRoot.querySelector('#home-button');
 
@@ -28,6 +29,10 @@ export class MainHeader extends HTMLElement
                     invoke('start_page');
                 });
 
+                if (! this.hasAttribute('run'))
+                {
+                    rb.style.display = "none";
+                }
                 if (! this.hasAttribute('settings'))
                 {
                     sb.style.display = "none";

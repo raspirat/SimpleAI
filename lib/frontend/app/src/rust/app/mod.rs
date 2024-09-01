@@ -13,7 +13,16 @@ use crate::{
 fn get_app() -> App
 {
 	tauri::Builder::default()
-		.invoke_handler(generate_handler![start_page, search_page, settings_page, new_node_page, search])
+		.invoke_handler(
+			generate_handler![
+				start_page,
+				search_page,
+				settings_page,
+				new_node_page,
+				editor_page,
+				search
+			]
+		)
 		.build(tauri::generate_context!())
 		.expect("error while running tauri application")
 }
@@ -77,7 +86,7 @@ fn error_page(app_handle: AppHandle, error: Error) -> Page
 	let p: Page = Page::new(
 
 		app_handle,
-		"errorpage",
+		"error_page",
 		"/pages/error_page/html/index.html",
 		300,
 		300
@@ -87,6 +96,12 @@ fn error_page(app_handle: AppHandle, error: Error) -> Page
 		p.emit("error_message", error.clone());
 	});
 	pc
+}
+
+#[tauri::command]
+fn editor_page(app_handle: AppHandle)
+{
+	Page::new(app_handle, "editor_page", "/pages/editor_page/html/index.html", 1920, 1080);
 }
 
 #[tauri::command]

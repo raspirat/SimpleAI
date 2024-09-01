@@ -1,7 +1,7 @@
 import { reg_css, fetch_html } from "@scripts";
 reg_css("search-component", "scp");
 import { SearchBar } from "@search_bar";
-import { SearchResult} from "@search_result";
+import { SearchResult } from "@search_result";
 
 console.log("Dependencies loaded: ", SearchBar.name, SearchResult.name);
 // @ts-ignore

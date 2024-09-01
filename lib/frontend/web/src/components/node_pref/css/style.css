@@ -1,66 +1,116 @@
-/*------------------------ VARS ------------------------*/
-#search_component
+/*------------------------ MAIN PAGE SELECTOR ------------------------*/
+section
 {
     /*------ BUTTONS ------*/
-    --i-scp-button-background-color: var(--scp-button-background-color, --i-page-button-background-color);
-    --i-scp-button-border-color: var(--scp-button-border-color, var(--i-page-border-color));
-    --i-scp-button-border-radius: var(--scp-button-border-radius, var(--i-page-button-border-radius));
-    --i-scp-button-hover-background-color: var(--scp-button-hover-background-color, var(--i-page-button-hover-background-color));
-    /*------ ICONS ------*/
-    --i-scp-icon-color: var(--scp-icon-color, var(--i-page-icon-color));
-    /*------ SELECTOR ------*/
-    --i-scp-background-color: var(--scp-background-color, transparent);
-    --i-scp-border-color: var(--scp-border-color, transparent);
-    --i-scp-border-radius: var(--scp-border-radius, var(--i-page-button-border-radius));
-}
+    --i-ndpf-button-background-color: var(--ndpf-button-background-color, var(--i-page-button-background-color));
+    --i-ndpf-button-border-color: var(--ndpf-button-border-color, grey);
+    --i-ndpf-button-border-radius: var(--ndpf-button-border-radius, 0.6em);
+    --i-ndpf-button-color: var(--ndpf-button-color, var(--i-page-button-color));
+    --i-ndpf-button-hover-background-color: var(--ndpf-button-hover-background-color, var(--i-page-button-hover-background-color));
 
-/*------------------------ MAIN PAGE SELECTOR ------------------------*/
-#search_component
-{
+    align-items: center;
     display: flex;
-    flex-direction: column;
-    height: inherit;
-    width: 100%;
-}
-
-/*------------------------ ICONS ------------------------*/
-i
-{
-    color: var(--i-scp-icon-color);
-    font-size: 1.4em;
-}
-
-/*------------------------ BUTTON ------------------------*/
-button
-{
-    background-color: var(--i-scp-button-background-color);
-    border-color: var(--i-scp-button-border-color);
-    border-radius: var(--i-scp-button-border-radius);
-    border-style: solid;
-}
-
-button:hover
-{
-    background-color: var(--i-scp-button-hover-background-color);
-}
-
-/*------------------------ SEARCH BAR ------------------------*/
-search-bar
-{
-    width: 100%;
-}
-
-/*------------------------ UL ------------------------*/
-ul
-{
-    display: flex;
+    height: 100%;
     justify-content: center;
+    width: 100%;
+}
+
+h1
+{
+    margin: 0;
+    padding: 0;
+}
+h3
+{
+    margin: 0;
+    padding: 0;
+}
+h4
+{
+    margin: 0;
+    padding: 0;
+}
+p
+{
     margin: 0;
     padding: 0;
 }
 
-/*------------------------ SEARCH RESULT ------------------------*/
-search-result
+button
 {
-    width: 90%;
+    background-color: var(--i-ndpf-button-background-color);
+    border-color: var(--i-ndpf-button-border-color);
+    border-radius: var(--i-ndpf-button-border-radius);
+    border-style: solid;
+    cursor: pointer;
+    font-family: var(--i-page-button-font-family);
+    font-size: 1.1em;
+    height: 2em;
+    margin-top: 1em;
+    width: 100%;
+}
+
+button:hover
+{
+    background-color: var(--i-ndpf-button-hover-background-color);
+}
+
+form
+{
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    justify-content: space-evenly;
+    width: 80%;
+}
+
+textarea
+{
+    resize: vertical;
+    max-height: 15em;
+}
+
+.row
+{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.element
+{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+
+#ermw
+{
+    width: 200px;
+}
+
+#ermww
+{
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
+#ercw
+{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+#codetxt
+{
+    margin: 0.25em;
+}
+
+#desc
+{
 }

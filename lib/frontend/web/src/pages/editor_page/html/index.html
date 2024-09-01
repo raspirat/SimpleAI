@@ -8,11 +8,33 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Simple Node Editor</title>
     <link rel="stylesheet" href="/assets/icons/remixicons/remixicon.css"> <!-- <---- uncomment if just using app -->
-    <link rel="stylesheet" href="/pages/new_node_page/css/style.css">
+    <link rel="stylesheet" href="/pages/editor_page/css/style.css">
+    <script src="/pages/editor_page/js/index.js" type="module"></script>
     <script src="/components/main_header/js/index.js" type="module"></script>
-    <script src="/pages/new_node_page/js/index.js" type="module"></script>
+    <script src="/components/right_sidebar/js/index.js" type="module"></script>
+    <script src="/components/search_component/js/index.js" type="module"></script>
+    <script src="/components/editor_section/js/index.js" type="module"></script>
 </head>
 <body>
-    <main-header></main-header>
+    <main-header run home></main-header>
+    <main>
+        <section>
+            <editor-section></editor-section>
+        </section>
+        <aside>
+            <div>
+                <search-component class="project"></search-component>
+                <search-component class="installed"></search-component>
+            </div>
+            <right-sidebar>
+                <button class="project">
+                    <i class="ri-file-text-line"></i>
+                </button>
+                <button class="installed">
+                    <i class="ri-book-shelf-line"></i>
+                </button>
+            </right-sidebar>
+        </aside>
+    </main>
 </body>
 </html>
