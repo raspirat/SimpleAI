@@ -18,6 +18,7 @@ div
     height: 1em;
     position: relative;
     width: 1em;
+    z-index: 1;
 }
 
 div.left
@@ -28,4 +29,10 @@ div.left
 div.right
 {
     left: 0.5em;
+}
+
+canvas
+{
+    position: fixed;
+    pointer-events: none;
 }

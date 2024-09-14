@@ -54,7 +54,14 @@ export class Node extends HTMLElement
     get pX(): number { return this.vSDXM + this.xM - this.hw; }
     get pY(): number { return this.vSDYM + this.yM - this.hh; }
 
-    set ssc(s: number) { this.style.scale = s.toString(); }
+    set ssc(s: number) {
+        let nodeArgs: NodeListOf<NodeArg> = this.shadowRoot.querySelectorAll('node-arg');
+        nodeArgs.forEach((e) => {
+            e.scale = s;
+        });
+        console.log(nodeArgs);
+        this.style.scale = s.toString();
+    }
     set ssx(px: number) { this.style.left = px + 'px'; }
     set ssy(px: number) { this.style.top = px + 'px'; }
 
@@ -135,6 +142,9 @@ export class Node extends HTMLElement
 
                 this.he.addEventListener('mousedown', this.dragStart);
                 window.addEventListener('mouseup', this.dragStop);
+
+
+
             });
     }
 }
