@@ -4,4 +4,7 @@ mod app;
 mod page;
 mod theme;
 
-pub use app::run;
+fn main()
+{
+	app::run();
+}

@@ -1,9 +1,9 @@
 {
   "build": {
     "beforeBuildCommand": "pnpm run build",
-    "beforeDevCommand": "pwsh -Start-Job -ScriptBlock { pnpm run dev-server } && pnpm run build'",
-    "devPath": "http://localhost:3001",
-    "distDir": "web/tauri_dist",
+    "beforeDevCommand": "pnpm run dev",
+    "devPath": "http://localhost:3000",
+    "distDir": "web",
     "withGlobalTauri": true
   },
   "package": {

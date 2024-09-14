@@ -1,7 +1,0 @@
-web/.idea
-web/dist
-web/node_modules
-web/venv
-web/dev_server/PID
-web/pnpm-lock.yaml
-web/package-lock.json

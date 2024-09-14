@@ -10,7 +10,8 @@
     "tsc-alias": "^1.8.10"
   },
   "scripts": {
-    "dev-server": "live-server dist --port=3001",
+    "dev": "pnpm run move && pwsh -Command pnpm run dev-server &",
+    "dev-server": "live-server dist --port=3000",
     "build": "tsc && tsc-alias && pnpm run move",
     "move": "python scripts/py/copy_files.py -i src -o dist -e \"*.ts\" -f && python scripts/py/copy_files.py -i node_modules/@tauri-apps -o dist/node_modules/@tauri-apps"
   }
