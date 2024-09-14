@@ -6,18 +6,12 @@
     "@tauri-apps/api": "^1.6.0",
     "@tauri-apps/cli": "^1.5.14",
     "live-server": "^1.2.2",
-    "tsc-alias": "^1.8.10",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "tsc-alias": "^1.8.10"
   },
   "scripts": {
-    "linux-dev-cleanup": "pnpm run linux-dev; pnpm run cleanup",
-    "linux-dev": "exec pnpm run dev-server & echo $! > dev_server/PID && pnpm run build & tail -f /proc/$(cat dev_server/PID)/fd/1",
     "dev-server": "live-server dist --port=3001",
-    "build": "rm -r dist; python scripts/py/handle_aliases.py -r; pnpm run move",
-    "move": "python scripts/py/copy_files.py -i src -o dist -e \"*.ts\" -f; python scripts/py/copy_files.py -i node_modules/@tauri-apps -o dist/node_modules/@tauri-apps",
-    "cleanup": "kill $(cat dev_server/PID) 2> /dev/null; rm dev_server/PID"
-  },
-  "dependencies": {
-    "boxicons": "^2.1.4"
+    "build": "tsc && tsc-alias && pnpm run move",
+    "move": "python scripts/py/copy_files.py -i src -o dist -e \"*.ts\" -f && python scripts/py/copy_files.py -i node_modules/@tauri-apps -o dist/node_modules/@tauri-apps"
   }
 }

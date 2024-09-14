@@ -1,0 +1,10 @@
+/*------------------------ DEFAULT ------------------------*/
+@import "../../components/page/style.css";
+
+/*------------------------ MAIN PAGE SELECTOR ------------------------*/
+main-page-selector
+{
+    height: 100%;
+    justify-self: center;
+    align-self: center;
+}

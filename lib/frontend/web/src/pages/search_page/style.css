@@ -1,0 +1,12 @@
+/*------------------------ DEFAULT ------------------------*/
+@import "../../components/page/style.css";
+
+
+/*------------------------ DEFAULT ------------------------*/
+search-component
+{
+    align-self: center;
+    height: 100%;
+    justify-self: center;
+    width: 100%;
+}

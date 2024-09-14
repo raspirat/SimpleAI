@@ -1,82 +1,16 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "module": "ESNext",
     "target" : "ESNext",
     "rootDir": "src",
     "outDir": "dist",
-    "esModuleInterop": true,
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "resolveJsonModule": true,
     "moduleDetection": "force"
   },
-  "aliases": {
-    "node_modules": {
-      "ts": "node_modules",
-      "js": "/node_modules"
-    },
-    "scripts": {
-      "ts": "scripts/ts",
-      "js": "/scripts/js"
-    },
-    "main_header": {
-      "ts": "components/main_header/ts",
-      "js": "/components/main_header/js"
-    },
-    "window_controls": {
-      "ts": "components/window_controls/ts",
-      "js": "/components/window_controls/js"
-    },
-    "main_page_selector": {
-      "ts": "components/main_page_selector/ts",
-      "js": "/components/main_page_selector/js"
-    },
-    "search_component": {
-      "ts": "components/search_component/ts",
-      "js": "/components/search_component/js"
-    },
-    "search_bar": {
-      "ts": "components/search_bar/ts",
-      "js": "/components/search_bar/js"
-    },
-    "search_result": {
-      "ts": "components/search_result/ts",
-      "js": "/components/search_result/js"
-    },
-    "node": {
-      "ts": "components/node/ts",
-      "js": "/components/node/js"
-    },
-    "node_arg": {
-      "ts": "components/node_arg/ts",
-      "js": "/components/node_arg/js"
-    },
-    "viewport": {
-      "ts": "components/viewport/ts",
-      "js": "/components/viewport/js"
-    },
-    "right_sidebar": {
-      "ts": "components/right_sidebar/ts",
-      "js": "/components/right_sidebar/js"
-    },
-    "editor_section": {
-      "ts": "components/editor_section/ts",
-      "js": "/components/editor_section/js"
-    },
-    "tab_component": {
-      "ts": "components/tab_component/ts",
-      "js": "/components/tab_component/js"
-    },
-    "error_page": {
-      "ts": "pages/error_page/ts",
-      "js": "/pages/error_page/js"
-    },
-    "new_node_page": {
-      "ts": "pages/new_node_page/ts",
-      "js": "/pages/new_node_page/js"
-    },
-    "editor_page": {
-      "ts": "pages/editor_page/ts",
-      "js": "/pages/editor_page/js"
-    }
+  "tsc-alias": {
+    "resolveFullPaths": true,
+    "verbose": false
   }
 }

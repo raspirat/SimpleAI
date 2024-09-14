@@ -1,0 +1,38 @@
+/*------------------------ DEFAULT ------------------------*/
+@import "../page/style.css";
+
+section
+{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: 3em;
+    justify-content: space-between;
+    width: 100%;
+}
+
+div
+{
+    background-color: dimgrey;
+    border-radius: 1em;
+    height: 1em;
+    position: relative;
+    width: 1em;
+    z-index: 1;
+}
+
+div.left
+{
+    right: 0.5em;
+}
+
+div.right
+{
+    left: 0.5em;
+}
+
+canvas
+{
+    position: fixed;
+    pointer-events: none;
+}

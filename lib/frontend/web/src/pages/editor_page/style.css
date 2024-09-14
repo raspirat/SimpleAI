@@ -1,0 +1,74 @@
+/*------------------------ DEFAULT ------------------------*/
+@import "../../components/page/style.css";
+
+
+body
+{
+    --i-select-border-color: #bbbbbb;
+    --i-select-border-width: 0.25em;
+}
+
+/*------------------------ MAIN PAGE SELECTOR ------------------------*/
+
+main-header
+{
+    z-index: 10;
+}
+
+main
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    height: 100%;
+    width: 100%;
+    -webkit-user-select: none;
+}
+
+section
+{
+    height: 100%;
+    width: 100%;
+}
+
+aside
+{
+    background-color: var(--i-page-background-color);
+    border-left-color: var(--i-select-border-color);
+    border-left-style: solid;
+    border-width: var(--i-select-border-width);
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    height: 100%;
+    margin-right: var(--i-page-border-width);
+    width: 34em;
+    min-width: min-content;
+    z-index: 1;
+}
+
+aside > div
+{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+aside > div > search-component
+{
+    min-width: 30em;
+}
+
+aside > div > search-component.installed
+{
+    border-top-color: var(--i-select-border-color);
+    border-top-style: solid;
+    border-width: var(--i-select-border-width);
+}
+
+aside > right-sidebar
+{
+    height: 100%;
+    z-index: 2;
+}

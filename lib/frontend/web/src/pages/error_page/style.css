@@ -1,0 +1,64 @@
+/*------------------------ DEFAULT ------------------------*/
+@import "../../components/page/style.css";
+
+
+
+/*------------------------ MAIN PAGE SELECTOR ------------------------*/
+body
+{
+    display: flex;
+}
+
+h1
+{
+    margin: 0;
+    padding: 0;
+}
+h3
+{
+    margin: 0;
+    padding: 0;
+}
+h4
+{
+    margin: 0;
+    padding: 0;
+}
+p
+{
+    margin: 0;
+    padding: 0;
+}
+
+.row
+{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+#ermw
+{
+    width: 200px;
+}
+
+#ermww
+{
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
+#ercw
+{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+#codetxt
+{
+    margin: 0.25em;
+}

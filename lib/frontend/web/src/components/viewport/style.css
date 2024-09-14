@@ -1,0 +1,19 @@
+/*------------------------ DEFAULT ------------------------*/
+@import "../page/style.css";
+
+section
+{
+    height: 100%;
+    width: 100%;
+}
+
+main
+{
+    height: 100%;
+    width: 100%;
+}
+
+node-elm
+{
+    left: 5em;
+}

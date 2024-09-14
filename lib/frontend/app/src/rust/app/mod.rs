@@ -39,7 +39,7 @@ pub fn run()
 
 fn i_start_page(app_handle: AppHandle) -> Page
 {
-	Page::new(app_handle, "start_page", "/pages/start_page/html/index.html", 700, 500)
+	Page::new(app_handle, "start_page", "pages/start_page/index.html", 700, 500)
 }
 
 #[tauri::command]
@@ -50,7 +50,7 @@ fn start_page(app_handle: AppHandle)
 
 fn i_new_node_page(app_handle: AppHandle) -> Page
 {
-	Page::new(app_handle, "new_node_page", "/pages/new_node_page/html/index.html", 700, 1000)
+	Page::new(app_handle, "new_node_page", "pages/new_node_page/index.html", 700, 1000)
 }
 #[tauri::command]
 fn settings_page(app_handle: AppHandle)
@@ -60,7 +60,7 @@ fn settings_page(app_handle: AppHandle)
 
 fn i_settings_page(app_handle: AppHandle) -> Page
 {
-	Page::new(app_handle, "settings_page", "/pages/settings_page/html/index.html", 600, 600)
+	Page::new(app_handle, "settings_page", "pages/settings_page/index.html", 600, 600)
 }
 
 #[tauri::command]
@@ -71,7 +71,7 @@ fn new_node_page(app_handle: AppHandle)
 
 fn i_search_page(app_handle: AppHandle) -> Page
 {
-	Page::new(app_handle, "search_page", "/pages/search_page/html/index.html", 700, 1000)
+	Page::new(app_handle, "search_page", "pages/search_page/index.html", 700, 1000)
 }
 
 #[tauri::command]
@@ -87,7 +87,7 @@ fn error_page(app_handle: AppHandle, error: Error) -> Page
 
 		app_handle,
 		"error_page",
-		"/pages/error_page/html/index.html",
+		"pages/error_page/index.html",
 		300,
 		300
 	);
@@ -101,7 +101,7 @@ fn error_page(app_handle: AppHandle, error: Error) -> Page
 #[tauri::command]
 fn editor_page(app_handle: AppHandle)
 {
-	Page::new(app_handle, "editor_page", "/pages/editor_page/html/index.html", 1920, 1080);
+	Page::new(app_handle, "editor_page", "pages/editor_page/index.html", 1920, 1080);
 }
 
 #[tauri::command]

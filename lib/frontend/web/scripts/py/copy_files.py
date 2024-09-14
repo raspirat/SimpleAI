@@ -86,7 +86,7 @@ def copy_files(in_dir: Path,
     if not out_dir.exists():
         out_dir.mkdir(parents=True)
     if not out_dir.is_dir():
-        raise Exception("[Error]: Your specified in-directory is not a valid directory.")
+        raise Exception("[Error]: Your specified out-directory is not a valid directory.")
     if rm_out_dir:
         rmtree(out_dir)
 
