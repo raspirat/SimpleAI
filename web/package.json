@@ -10,9 +10,9 @@
     "tsc-alias": "^1.8.10"
   },
   "scripts": {
-    "dev": "pnpm run move && pwsh -Command pnpm run dev-server &",
+    "dev": "pnpm run build && pwsh -Command pnpm run dev-server &",
     "dev-server": "pnpm exec live-server dist --port=3000",
-    "build": "tsc && tsc-alias && pnpm run move",
+    "build": "pnpm exec tsc && pnpm exec tsc-alias && pnpm run move",
     "move": "python scripts/py/copy_files.py -i src -o dist -e \"*.ts\" -f"
   }
 }
