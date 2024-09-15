@@ -6,13 +6,17 @@
     "@tauri-apps/api": "^1.6.0",
     "@tauri-apps/cli": "^1.5.14",
     "live-server": "^1.2.2",
-    "typescript": "^5.4.5",
-    "tsc-alias": "^1.8.10"
+    "tsc-alias": "^1.8.10",
+    "typescript": "^5.4.5"
   },
   "scripts": {
     "dev": "pnpm run build && pwsh -Command pnpm run dev-server &",
     "dev-server": "pnpm exec live-server dist --port=3000",
     "build": "pnpm exec tsc && pnpm exec tsc-alias && pnpm run move",
     "move": "python scripts/py/copy_files.py -i src -o dist -e \"*.ts\" -f"
+  },
+  "dependencies": {
+    "-": "^0.0.1",
+    "@types/node": "^22.5.5"
   }
 }
