@@ -128,7 +128,8 @@ const regButton = (b: regableButton) => {
             b.be.style.backgroundColor = "var(--i-rsb-button-active-background-color)";
             b.be.classList.remove("hidden");
             b.e.classList.remove("hidden");
-            vd1.unhideBorder();
+            vd1.unhideBorders();
+            hd1.unhideBorders();
         }
         else
         {
@@ -139,6 +140,7 @@ const regButton = (b: regableButton) => {
             for (let i: number = 0; i < asideButtonList.length; ++i)
                 if (! (asideButtonList[i].e.classList.contains("hidden"))) { hideBorder = false; break; }
             if (hideBorder) vd1.hideBorder();
+            hd1.hideBorder();
         }
     });
 }

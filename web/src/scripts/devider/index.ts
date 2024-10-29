@@ -42,32 +42,44 @@ export class Divider
             nb: 100 - newBorderPercent + "%",
             bW: this.borderWidth()
         }
+        console.log(this.savedStyles);
         this.applyStyles();
+    }
+
+    initStyles()
+    {
+        this.savedStyles = {
+            b: this.border.style.width,
+            nb:  this.noBorder.style.width,
+            bW: this.borderWidth()
+        }
     }
 
     applyStyles()
     {
         this.borderStyle(this.savedStyles.b);
         this.noBorderStyle(this.savedStyles.nb);
+        this.border.style.borderWidth = `${this.savedStyles.bW}px`;
+        console.log("bw:", this.border.style.borderWidth);
     }
 
-    unhideBorder()
+    unhideBorders()
     {
         this.applyStyles();
-        // this.border.style.borderWidth = this.savedStyles
     }
 
     hideBorder()
     {
         this.borderStyle("0%");
         this.noBorderStyle("100%");
-        // this.borderW
+        this.border.style.borderWidth = "0";
     }
 
     hideNoBorder()
     {
         this.borderStyle("100%");
         this.noBorderStyle("0%");
+        this.border.style.borderWidth = "0";
     }
 
     mouseDown(e: MouseEvent)
@@ -110,7 +122,7 @@ export class Divider
         this.border = border;
 
         let bzi: number = parseFloat(getComputedStyle(this.noBorder).zIndex);
-        this.border.style.zIndex = (bzi - 1).toString() ;
+        this.border.style.zIndex = (bzi - 1).toString();
 
         this.border.addEventListener('mousedown', (e) => {this.mouseDown(e)});
         document.addEventListener('mouseup', (e) => {this.mouseUp(e)});
@@ -120,7 +132,7 @@ export class Divider
 
 export class VerticalDivider extends Divider
 {
-    borderWidth = () => { return parseFloat(getComputedStyle(this.border).borderLeftWidth); }
+    borderWidth = (): number => { return parseFloat(getComputedStyle(this.border).borderLeftWidth); }
     pos = (e) => { return e.x; }
     offset = (e) => { return e.offsetX; }
 
@@ -150,13 +162,14 @@ export class VerticalDivider extends Divider
             parent,
             noBorder,
             border
-        )
+        );
+        this.initStyles();
     }
 }
 
 export class HorizontalDivider extends Divider
 {
-    borderWidth = () => { return parseFloat(getComputedStyle(this.border).borderTopWidth); }
+    borderWidth = (): number => { return parseFloat(getComputedStyle(this.border).borderTopWidth); }
     pos = (e) => { return e.y; }
     offset = (e) => { return e.offsetY; }
 
@@ -186,7 +199,8 @@ export class HorizontalDivider extends Divider
             parent,
             noBorder,
             border
-        )
+        );
+        this.initStyles();
     }
 }
 
