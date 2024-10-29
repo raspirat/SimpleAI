@@ -28,6 +28,11 @@ impl Page {
             let window = tauri::WindowBuilder::new(&app, &name, tauri::WindowUrl::App(path.into()))
                 .decorations(false)
                 .fullscreen(fullscreen)
+                .minimizable(true)
+                .maximizable(true)
+                .resizable(true)
+                .closable(true)
+                .title(name)
                 .build()
                 .expect("failed to build window");
             window.set_size(LogicalSize::new(width, height)).unwrap();

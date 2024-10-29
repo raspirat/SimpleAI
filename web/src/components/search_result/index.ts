@@ -3,7 +3,11 @@ reg_css("search-result", "sr");
 
 // @ts-ignore
 const tauri = window.__TAURI__;
+
+// @ts-ignore
 const appWindow = tauri.window.appWindow;
+
+// @ts-ignore
 const invoke = tauri.invoke; // uncomment
 
 export class SearchResult extends HTMLElement {
