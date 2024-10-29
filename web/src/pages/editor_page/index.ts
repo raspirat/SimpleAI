@@ -76,47 +76,71 @@
 //     }
 //     st.style.width = (mw() - rth) + "px"
 // });
-import { VerticalDevider, HorizontalDevider } from "scripts";
+import { VerticalDivider, HorizontalDivider } from "scripts";
 
-let vd = new VerticalDevider(
-    document.querySelector('main'),
-    document.querySelector('section'),
-    document.querySelector('aside')
+const main: HTMLElement = document.querySelector('main');
+const section: HTMLElement = document.querySelector('section');
+const aside: HTMLElement = document.querySelector('aside');
+let vd1 = new VerticalDivider(
+    main,
+    section,
+    aside
 );
 
-let hd1 = new HorizontalDevider(
-    document.querySelector('div'),
-    document.querySelector('search-component.project'),
-    document.querySelector('search-component.installed')
+const div: HTMLElement = document.querySelector('div');
+const sc_project: HTMLElement = document.querySelector('search-component.project');
+const sc_installed: HTMLElement = document.querySelector('search-component.installed');
+let hd1 = new HorizontalDivider(
+    div,
+    sc_project,
+    sc_installed
 )
 
 
-let as: HTMLElement = document.querySelector('aside');
-let sb: HTMLElement = document.querySelector('right-sidebar');
-let sb_w: number = parseInt(getComputedStyle(sb).width);
-function regButton(be: HTMLButtonElement, e: HTMLElement)
-{
-    be.addEventListener('click', () => {
-        if (e.style.display == "none")
+const sb: HTMLElement = document.querySelector('right-sidebar');
+const sb_w: number = parseInt(getComputedStyle(sb).width);
+
+
+type regableButton = {
+    be: HTMLButtonElement,
+    e: HTMLElement
+};
+
+const projectButton: regableButton = {
+    be: document.querySelector('button.project'),
+    e: sc_project
+};
+
+const installedButton = {
+    be: document.querySelector('button.installed'),
+    e: sc_installed
+};
+
+const asideButtonList = [
+    projectButton,
+    installedButton
+];
+
+const regButton = (b: regableButton) => {
+    b.be.addEventListener('click', () => {
+        if (b.e.classList.contains("hidden"))
         {
-            be.style.backgroundColor = "var(--i-rsb-button-active-background-color)"
-            e.style.display = "initial";
+            b.be.style.backgroundColor = "var(--i-rsb-button-active-background-color)";
+            b.be.classList.remove("hidden");
+            b.e.classList.remove("hidden");
+            vd1.unhideBorder();
         }
         else
         {
-            be.style.backgroundColor = "var(--i-rsb-button-background-color)"
-            e.style.display = "none";
-            as.style.width = sb_w + "px";
+            b.be.style.backgroundColor = "var(--i-rsb-button-background-color)";
+            b.be.classList.add("hidden");
+            b.e.classList.add("hidden");
+            let hideBorder = true;
+            for (let i: number = 0; i < asideButtonList.length; ++i)
+                if (! (asideButtonList[i].e.classList.contains("hidden"))) { hideBorder = false; break; }
+            if (hideBorder) vd1.hideBorder();
         }
-    })
+    });
 }
 
-// the following works because this script is run before the right-sidebar script
-let pb: HTMLButtonElement = document.querySelector('button.project');
-let psc: HTMLElement = document.querySelector('search-component.project');
-regButton(pb, psc);
-
-let ib: HTMLButtonElement = document.querySelector('button.installed');
-let isc: HTMLElement = document.querySelector('search-component.installed');
-regButton(ib, isc);
-
+asideButtonList.forEach(regButton);

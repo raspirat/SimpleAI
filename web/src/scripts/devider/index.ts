@@ -1,4 +1,4 @@
-export class Devider
+export class Divider
 {
     parent: HTMLElement;
     noBorder: HTMLElement;
@@ -6,6 +6,12 @@ export class Devider
     isMouseDown: boolean = false;
     startPos: number;
     borderStartWidth: number;
+    savedStyles: {
+        b: string
+        nb: string
+        bW: number
+    }
+
     mouseMoveListener = (e) => {this.mouseMove(e)}
 
     borderWidth: () => number;
@@ -24,11 +30,46 @@ export class Devider
     mouseMove(e: MouseEvent)
     {
         let diff: number = this.startPos - this.pos(e);
+        this.move(diff);
+    }
+
+    move(diff: number)
+    {
         let newBorderPos: number = this.borderStartWidth + diff;
         let newBorderPercent: number = newBorderPos / this.parentElementSize() * 100;
-        this.borderStyle( newBorderPercent + "%");
-        this.noBorderStyle(100 - newBorderPercent + "%");
+        this.savedStyles = {
+            b: newBorderPercent + "%",
+            nb: 100 - newBorderPercent + "%",
+            bW: this.borderWidth()
+        }
+        this.applyStyles();
     }
+
+    applyStyles()
+    {
+        this.borderStyle(this.savedStyles.b);
+        this.noBorderStyle(this.savedStyles.nb);
+    }
+
+    unhideBorder()
+    {
+        this.applyStyles();
+        // this.border.style.borderWidth = this.savedStyles
+    }
+
+    hideBorder()
+    {
+        this.borderStyle("0%");
+        this.noBorderStyle("100%");
+        // this.borderW
+    }
+
+    hideNoBorder()
+    {
+        this.borderStyle("100%");
+        this.noBorderStyle("0%");
+    }
+
     mouseDown(e: MouseEvent)
     {
         this.isMouseDown = true;
@@ -77,7 +118,7 @@ export class Devider
     }
 }
 
-export class VerticalDevider extends Devider
+export class VerticalDivider extends Divider
 {
     borderWidth = () => { return parseFloat(getComputedStyle(this.border).borderLeftWidth); }
     pos = (e) => { return e.x; }
@@ -113,7 +154,7 @@ export class VerticalDevider extends Devider
     }
 }
 
-export class HorizontalDevider extends Devider
+export class HorizontalDivider extends Divider
 {
     borderWidth = () => { return parseFloat(getComputedStyle(this.border).borderTopWidth); }
     pos = (e) => { return e.y; }

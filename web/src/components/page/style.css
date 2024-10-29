@@ -79,12 +79,19 @@ i
 /*------ MAIN HEADER ------*/
 main-header
 {
+    height: 2.5em;
     position: sticky;
 }
 
-/*------ MAIN HEADER ------*/
+/*------ INPUT ------*/
 input,
 textarea
 {
     font-family: var(--i-page-input-font-family);
+}
+
+/*------ HIDE DRAG ------*/
+.hide-drag
+{
+    visibility: hidden;
 }

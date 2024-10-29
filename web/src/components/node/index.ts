@@ -100,11 +100,19 @@ export class Node extends HTMLElement
         this.ssy = this.vPY;
     }
 
+    updateArgConnections = () => {
+        const args: NodeListOf<NodeArg> = this.shadowRoot.querySelectorAll('node-arg');
+        args.forEach((arg: NodeArg) => {
+            arg.connectionUpdate();
+        });
+    }
+
     dragListener = (e: MouseEvent) => {
         let movementX: number = e.x - this.dragStartX;
         let movementY: number = e.y - this.dragStartY;
         this.regXPos((this.dragStartLeft + movementX) + 'px');
         this.regYPos((this.dragStartTop + movementY) + 'px');
+        this.updateArgConnections();
     }
 
     dragStart = (e) => {

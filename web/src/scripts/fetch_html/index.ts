@@ -1,16 +1,10 @@
-export function fetch_html(self: & HTMLElement, path: & string, after = () => {}) {
+export function fetch_html(element: & HTMLElement, path: & string, after = () => {}, noshadow=false) {
     fetch(path)
         .then(response => response.text())
         .then(data => {
-                const SHADOW_ROOT = self.attachShadow({mode: 'open'});
-                try {
-                    SHADOW_ROOT.innerHTML = data;
-                }
-                catch (error)
-                {
-                    console.log("couldn't register custom html component.");
-                    return;
-                }
+                let root: any = element;
+                if (! noshadow) root = root.attachShadow({mode: 'open'});
+                root.innerHTML = data;
                 after();
             }
         )

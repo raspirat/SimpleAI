@@ -1,0 +1,49 @@
+---
+title: Frontend-Backend Interface
+---
+classDiagram
+    namespace frontend {
+        class frontendNode["Node"] {
+        }
+        class windowTAURI["window.__TAURI__"] {
+            +invoke(tauriCommandName: string):Object
+        }
+    }
+    namespace backend {
+        class backendNode["Node"] {
+
+        }
+    }
+    namespace tauri {
+        class Builder {
+            +invoke_handler(TokenStream):Builder
+            +build():Builder
+        }
+        class command {
+            <<attrib_macro>>
+        }
+        class generate_handler["generate_handler"] {
+            <<func_macro>>
+        }
+    }
+    note for generate_handler "---------------------------
+        location: app/mod.rs
+        ---------------------------
+
+        [tauri::command]
+        command1(app_handle: AppHandle)
+
+        [tauri::command]
+        command2(app_handle: AppHandle, ...)
+
+        // use this handler for invoke_handler
+        generate_handler![command1, command2, ...]::TokenStream"
+
+    windowTAURI ..> command : invoke() triggers
+    command ..> windowTAURI : returns Object
+    generate_handler ..> command : uses
+    generate_handler ..> Builder : generates TokenStream for invoke_handler()
+    frontendNode ..> windowTAURI : uses invoke to get an Object to construct itself
+    command ..> backendNode : returns Object of
+
+

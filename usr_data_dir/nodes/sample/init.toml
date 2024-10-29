@@ -4,9 +4,36 @@
 name = "asdf"
 
 [node.include]
-samplenode = { version = "1.0", path = "nodes/asldjf;"}
+samplenode = { version = "1.0", path = "nodes/asldjf;" }
+torch = { version = "1" }
 
 [node.sources]
+[python]
+    file = { path = "..." }
 
+[node]
+
+include
+
+
+inputs
+
+output
+
+
+[node.sources]
+[python]
+    
+[c++]
+    include Sne
+[java]
+    inclue Sne
+
+
+
+import SNE
+
+SNE.input
+SNE.output
 
 

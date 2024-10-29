@@ -13,12 +13,13 @@ section
 
 div
 {
-    background-color: dimgrey;
+    background-color: gray;
     border-radius: 1em;
     height: 1em;
     position: relative;
     width: 1em;
     z-index: 1;
+    top: -1px;
 }
 
 div.left
@@ -31,8 +32,19 @@ div.right
     left: 0.5em;
 }
 
-canvas
+canvas.draw
 {
+    /*outline: 1px solid black;*/
+    /*outline-offset: -1px;*/
     position: fixed;
     pointer-events: none;
+    z-index: 10;
+    /*background-color: #0949d1;*/
+    /*height: 0;*/
+    /*width: 0;*/
+}
+
+p
+{
+    margin: 0;
 }

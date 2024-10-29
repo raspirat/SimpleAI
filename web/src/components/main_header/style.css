@@ -36,12 +36,11 @@ header
     border-width: var(--i-hdr-border-width);
     display: flex;
     font-size: var(--i-global-font-size);
-    height: 2em;
+    height: 100%;
     margin: 0;
     padding: 0;
     position: sticky;
     width: 100%;
-    z-index: 100;
 }
 
 /*------------------------ ICONS ------------------------*/

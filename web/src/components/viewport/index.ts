@@ -1,5 +1,6 @@
 import { fetch_html, reg_css } from "scripts";
 import { Node } from "components/node";
+import { NodeArg } from "components/node_arg"
 
 console.log("Dependencies loaded: ", Node.name);
 reg_css("node_pref", "tcpt");
@@ -9,6 +10,14 @@ reg_css("node_pref", "tcpt");
 export class Viewport extends HTMLElement
 {
     main: HTMLElement;
+    dragOrigin: NodeArg;
+
+    dragStart(e: NodeArg){ this.dragOrigin = e; }
+    dragEnd(): NodeArg {
+        const r = this.dragOrigin;
+        this.dragOrigin = null;
+        return r;
+    }
 
     cs = (child) => getComputedStyle(child);
     scale = (cs) => parseFloat(cs.scale);
