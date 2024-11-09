@@ -1,50 +1,48 @@
 /*------------------------ DEFAULT ------------------------*/
 @import "../page/style.css";
 
-section
-{
-    align-items: center;
+section {
     display: flex;
+    align-items: center;
     flex-direction: row;
-    height: 3em;
     justify-content: space-between;
     width: 100%;
+    height: var(--i-node-arg-height);
+    --i-node-arg-height: 3em;
+    --i-node-arg-node-thickness: 1.1em;
+    --i-node-arg-node-margin: 1em;
+    --i-node-arg-node-offset: calc(var(--i-node-arg-node-thickness) + var(--i-node-arg-node-margin) / 2);
 }
 
-div
-{
-    background-color: gray;
-    border-radius: 1em;
-    height: 1em;
+div {
     position: relative;
-    width: 1em;
     z-index: 1;
-    top: -1px;
+    width: var(--i-node-arg-node-thickness);
+    height: var(--i-node-arg-node-thickness);
+    margin: var(--i-node-arg-node-margin);
+    border-radius: 50%;
+    background-color: gray;
 }
 
-div.left
-{
-    right: 0.5em;
+div.left {
+    right: var(--i-node-arg-node-offset);
 }
 
-div.right
-{
-    left: 0.5em;
+div.right {
+    left: var(--i-node-arg-node-offset);
 }
 
-canvas.draw
-{
+canvas.draw {
     /*outline: 1px solid black;*/
     /*outline-offset: -1px;*/
     position: fixed;
-    pointer-events: none;
     z-index: 10;
+    pointer-events: none;
     /*background-color: #0949d1;*/
     /*height: 0;*/
     /*width: 0;*/
 }
 
-p
-{
+p {
     margin: 0;
 }

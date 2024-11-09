@@ -19,6 +19,8 @@ export class Viewport extends HTMLElement
         return r;
     }
 
+    get connecting() { return this.dragOrigin != null; }
+
     cs = (child) => getComputedStyle(child);
     scale = (cs) => parseFloat(cs.scale);
     posX = (cs): number => parseFloat(cs.left);

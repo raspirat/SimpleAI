@@ -2,8 +2,7 @@
 @import "../../assets/fonts/Poppins/poppins.css";
 
 /*------------------------ VARS ------------------------*/
-:root
-{
+:root {
     /*------ INPUT ------*/
     --i-page-input-font-family: var(--page-input-font-family, var(--i-global-font-family));
     /*------ BUTTON ------*/
@@ -25,17 +24,17 @@
     --i-page-border-color: var(--page-border-color, grey);
     --i-page-color: var(--page-color, black);
     --i-page-light-color: var(--page-light-color, grey);
+    /*------ PAGE ------*/
+    --i-divider-thickness: 2rem;
 }
 
 /*------ PAGE ------*/
-html
-{
+html {
     height: 100%;
 }
 
 /*------ BODY ------*/
-body
-{
+body {
     background-color: var(--i-page-background-color);
     background-image: var(--i-page-background-image);
     border-color: var(--i-page-border-color);
@@ -52,8 +51,7 @@ body
 }
 
 /*------ BUTTONS ------*/
-button
-{
+button {
     align-items: center;
     background-color: var(--i-page-button-background-color);
     border-color: var(--i-page-button-border-color);
@@ -61,37 +59,65 @@ button
     border-style: solid;
     color: var(--i-page-button-color);
     display: flex;
-    font-family: var(--i-page-button-font-family);
+    font-family: var(--i-page-button-font-family), serif;
     justify-content: center;
 }
 
-button:hover
-{
+button:hover {
     background-color: var(--i-page-button-hover-background-color);
 }
 
 /*------ ICONS ------*/
-i
-{
+i {
     color: var(--i-page-icon-color);
 }
 
 /*------ MAIN HEADER ------*/
-main-header
-{
+main-header {
     height: 2.5em;
     position: sticky;
 }
 
 /*------ INPUT ------*/
 input,
-textarea
-{
-    font-family: var(--i-page-input-font-family);
+textarea {
+    font-family: var(--i-page-input-font-family), serif;
 }
 
 /*------ HIDE DRAG ------*/
-.hide-drag
-{
+.hide-drag {
     visibility: hidden;
+}
+
+/*------ DIVIDER ------*/
+vertical-divider,
+horizontal-divider {
+    background-color: transparent;
+}
+
+vertical-divider > div,
+horizontal-divider > div {
+    background-color: var(--i-page-border-color);
+}
+
+/*------ VERTICAL DIVIDER ------*/
+vertical-divider {
+    height: 100%;
+    width: var(--i-divider-thickness);
+}
+
+vertical-divider > div {
+    height: 100%;
+    width: var(--i-page-border-width);
+}
+
+/*------ HORIZONTAL DIVIDER ------*/
+horizontal-divider {
+    height: var(--i-divider-thickness);
+    width: 100%;
+}
+
+horizontal-divider > div {
+    height: var(--i-page-border-width);
+    width: 100%;
 }

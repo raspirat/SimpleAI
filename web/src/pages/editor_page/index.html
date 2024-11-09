@@ -14,6 +14,7 @@
     <script src="components/right_sidebar/index.js" type="module"></script>
     <script src="components/search_component/index.js" type="module"></script>
     <script src="components/editor_section/index.js" type="module"></script>
+    <script src="components/divider/index.js" type="module"></script>
 </head>
 <body>
     <main-header run home></main-header>
@@ -21,20 +22,22 @@
         <section>
             <editor-section></editor-section>
         </section>
+        <vertical-divider></vertical-divider>
         <aside>
             <div>
                 <search-component class="project"></search-component>
+                <horizontal-divider></horizontal-divider>
                 <search-component class="installed"></search-component>
             </div>
-            <right-sidebar>
-                <button class="project">
-                    <i class="ri-file-text-line"></i>
-                </button>
-                <button class="installed">
-                    <i class="ri-book-shelf-line"></i>
-                </button>
-            </right-sidebar>
         </aside>
+        <right-sidebar>
+            <button class="project">
+                <i class="ri-file-text-line"></i>
+            </button>
+            <button class="installed">
+                <i class="ri-book-shelf-line"></i>
+            </button>
+        </right-sidebar>
     </main>
 </body>
 </html>

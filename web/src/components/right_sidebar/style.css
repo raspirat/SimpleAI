@@ -45,6 +45,11 @@ button
     width: 2em;
 }
 
+button.hidden
+{
+    background-color: var(--i-rsb-button-background-color);
+}
+
 /*button:hover*/
 /*{*/
 /*    background-color: var(--i-ndpf-button-hover-background-color);*/
