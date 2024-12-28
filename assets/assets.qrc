@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/fonts">
-        <file alias="Micro5.ttf">fonts/Micro_5/Micro5-Regular.ttf</file>
-        <file alias="VT323.ttf">fonts/VT323/VT323-Regular.ttf</file>
-        <file alias="NotoSansMono.ttf">fonts/Noto_Sans_Mono/NotoSansMono-VariableFont_wdth,wght.ttf</file>
-    </qresource>
-</RCC>
