@@ -1,0 +1,28 @@
+html
+{
+    height  : 100%;
+    margin  : 0;
+    padding : 0;
+    width   : 100%;
+}
+
+body
+{
+    height  : 100%;
+    margin  : 0;
+    padding : 0;
+    width   : 100%;
+}
+
+div
+{
+    height           : 100%;
+    margin           : 0;
+    padding          : 0;
+    width            : 100%;
+}
+
+div#main
+{
+    background-color : var(--background-color);
+}
