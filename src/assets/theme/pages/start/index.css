@@ -1,0 +1,53 @@
+@import "../index.css";
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ROOT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+:root
+{
+}
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ SECTION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+section
+{
+    display         : flex;
+    height          : fit-content;
+    justify-content : space-evenly;
+    width           : 20rem;
+}
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ BUTTON ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+button
+{
+    animation     : button-out 100ms ease-out, 1s paused center-content;
+    border-radius : 50%;
+    border-width  : 0.2rem;
+    height        : 4rem;
+    margin        : 1em;
+    width         : 4rem;
+}
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ DIV ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+div.icon
+{
+    background-color : var(--button-border-color);
+    color            : var(--button-border-color);
+    height           : 3em;
+    width            : 3em;
+}
+
+div.icon.search
+{
+    mask : url("../../icons/search_1.svg") center/contain no-repeat;
+}
+
+div.icon.new
+{
+    mask : url("../../icons/new_1.svg") center/contain no-repeat;
+}

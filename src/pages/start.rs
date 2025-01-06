@@ -3,23 +3,33 @@ use dioxus::prelude::*;
 use crate::platform::window::*;
 use crate::utils::*;
 use crate::pages::*;
-use crate::pages::start::platform::window;
 
 static CURRENT_PAGE_NAME: &str  = "start";
-static STYLE: Asset = asset!("/assets/theme/pages/start/index.css");
+static STYLE: Asset = asset!("/src/assets/theme/pages/start/index.css");
 
 #[cfg(feature = "desktop")]
 pub mod platform {
+	use crate::pages::start::*;
 
-	use dioxus::desktop::Config;
+	use dioxus::desktop::{Config, LogicalSize, WindowBuilder, WindowCloseBehaviour};
 	fn config() -> Config {
-		Config::default()
+		let size = LogicalSize::new(480, 330);
+		Config::new()
+			.with_menu(None)
+			.with_window(
+				WindowBuilder::new()
+					.with_max_inner_size(size)
+					.with_min_inner_size(size)
+					.with_resizable(true)
+					.with_maximizable(false)
+					.with_transparent(true)
+					.with_title(CURRENT_PAGE_NAME)
+			)
 	}
 
 	use crate::platform::window::Window;
 	pub fn window() -> Window
 	{
-		use crate::pages::start::app;
 		Window { app, config }
 	}
 }
@@ -29,17 +39,22 @@ pub fn app() -> Element {
 		search::platform::window().open();
 	};
 
-	let close_search = move |_| {
+	let open_new = move |_| {
+		new::platform::window().open();
 	};
 
 	rsx! {
-		document::Stylesheet {
-			href: STYLE
+		head {
+			document::Stylesheet {
+				href: STYLE
+			}
 		}
-		article {
-			section {
-				button { class: "search", onclick: open_search, div { class: "icon search" } }
-				button { class: "new", onclick: close_search, div { class: "icon new" } }
+		main {
+			article {
+				section {
+					button { class: "search", onclick: open_search, div { class: "icon search" } }
+					button { class: "new", onclick: open_new, div { class: "icon new" } }
+				}
 			}
 		}
 	}
