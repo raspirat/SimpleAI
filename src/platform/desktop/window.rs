@@ -1,8 +1,7 @@
 use std::fmt::Debug;
 use dioxus::desktop::{Config};
-use dioxus::desktop::launch::launch_virtual_dom;
 use dioxus::dioxus_core::{Element};
-use dioxus::prelude::VirtualDom;
+use dioxus::prelude::*;
 
 pub struct Window
 {
@@ -26,10 +25,10 @@ impl Window
 	}
 	pub fn open(&self)
 	{
-		dioxus::desktop::window()
+		_ = dioxus::desktop::window()
 			.new_window(
 				self.virtual_dom(),
 				self.config()
-			);
+			)
 	}
 }

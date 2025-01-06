@@ -1,4 +1,4 @@
-use dioxus::desktop::Config;
+use dioxus::desktop::{Config, WindowCloseBehaviour};
 use dioxus::dioxus_core::VirtualDom;
 
 pub mod window;
@@ -11,6 +11,6 @@ pub fn launch(start_window: window::Window)
 	};
 	launch_virtual_dom(
 		VirtualDom::new(start_window.app),
-		Config::default().with_menu(None)
+		start_window.config()
 	);
 }
