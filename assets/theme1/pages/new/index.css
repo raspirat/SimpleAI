@@ -1,0 +1,14 @@
+@import "../index.css";
+
+
+button
+{
+    width: 30%;
+    margin-top: 2em;
+    border-color: var(--color-2-shaded-1)
+}
+
+input
+{
+
+}

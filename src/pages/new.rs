@@ -1,10 +1,10 @@
 use dioxus::prelude::*;
 // ─────────────────────────────────────────────────────────────────────────────────────
-use crate::platform::window::*;
+use crate::platform::{ config::*, window::* };
 use crate::utils::*;
 
 static CURRENT_PAGE_NAME: &str  = "new";
-static STYLE: Asset = asset!("/src/assets/theme/pages/new/index.css");
+static STYLE: Asset = asset!("/assets/theme/pages/new/index.css");
 
 #[cfg(feature = "desktop")]
 pub mod platform {
@@ -35,8 +35,12 @@ pub mod platform {
 	}
 }
 
-fn app() -> Element {
-	use crate::components::elements::LabeledBox;
+#[cfg(feature = "web")]
+crate::web_platform_window!(CURRENT_PAGE_NAME);
+
+#[component]
+pub fn New() -> Element {
+	use crate::components::*;
 
 	rsx! {
 		document::Stylesheet {

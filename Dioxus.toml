@@ -1,0 +1,15 @@
+[application]
+name = "Simple AI Editor"
+asset_dir = "assets"
+
+[web.app]
+title = "Simple AI Editor"
+
+[web.watcher]
+reload_html = true
+watch_path = ["src", "assets"]
+index_on_404 = true
+
+[bundle]
+publisher = "TheSimpleAIProject"
+icon = [ "assets/icons/icon.png" ]

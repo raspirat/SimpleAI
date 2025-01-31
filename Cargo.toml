@@ -1,5 +1,5 @@
 [package]
-name = "simple_ai_editor"
+name = "SimpleAIEditor"
 version = "0.1.0"
 edition = "2021"
 
@@ -21,15 +21,28 @@ serde = { version = "1.0.215", features = ["derive"] }
 serde_json = { version = "1.0.133" }
 dirs = { version = "5.0.1" }
 toml = { version = "0.8.19" }
+include_dir = { version = "0.7.3" }
 anyhow = { version = "1.0.95" }
 colored = { version = "2.0.4" }
 regex = { version = "1.11.1" }
 
 [features]
-default = ["desktop"]
+default = ["web"]
 desktop = ["dioxus/desktop"]
-web = ["dioxus/web"]
+web = ["dioxus/web", "dioxus/router"]
 mobile = ["dioxus/mobile"]
 dev = ["dioxus/devtools", "dioxus/liveview"]
+
+[profile]
+
+[profile.wasm-dev]
+inherits = "dev"
+opt-level = 1
+
+[profile.server-dev]
+inherits = "dev"
+
+[profile.android-dev]
+inherits = "dev"
 
 

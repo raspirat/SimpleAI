@@ -1,0 +1,83 @@
+.Search
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: scroll;
+}
+
+.Search > main
+{
+    overflow: visible;
+    display         : flex;
+    flex-direction  : row;
+    flex-wrap       : wrap;
+    justify-content : space-around;
+    height: 100%;
+    width: 100%;
+}
+
+.Search > header
+{
+    align-items     : center;
+    display         : flex;
+    flex-direction  : column;
+    justify-content : space-evenly;
+    position        : sticky;
+    top             : 1.5rem;
+    width           : 78%;
+}
+
+header > input
+{
+    width : 100%;
+}
+
+header > input:focus
+{
+    transform : scale(1.1);
+    margin: 0;
+}
+
+nav
+{
+    align-items     : center;
+    display         : flex;
+    flex-direction  : row;
+    justify-content : space-around;
+    width           : 70%;
+}
+
+nav > *
+{
+    margin : 1rem;
+}
+
+.Search > main > section
+{
+    all             : revert;
+    display         : flex;
+    flex-wrap       : wrap;
+    justify-content : space-around;
+    margin          : 0;
+}
+
+.SearchResult
+{
+    height  : 15rem;
+    margin  : 1rem;
+    padding : 2rem;
+    width   : 30rem;
+}
+
+.spacer
+{
+    height : 6rem;
+}
+
+aside
+{
+    margin: 0;
+    padding: 0;
+}
+
