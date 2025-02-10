@@ -1,3 +1,2 @@
-use dioxus::prelude::*;
-
-pub static ICON: Asset = asset!("/assets/icons/icon.png", ImageAssetOptions::new().with_preload(true));
+pub static DEFAULT_ICONS: &str = "con1";
+pub static DEFAULT_STYLES: &str = "cybr1";

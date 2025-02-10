@@ -1,10 +1,6 @@
 use dioxus::prelude::*;
 // ─────────────────────────────────────────────────────────────────────────────────────
 use crate::platform::window::*;
-use crate::utils::*;
-
-static CURRENT_PAGE_NAME: &str  = "search";
-static STYLE: Asset = asset!("/assets/theme/pages/search/index.css");
 
 #[cfg(feature = "desktop")]
 crate::desktop_platform_window!({
@@ -20,15 +16,7 @@ crate::desktop_platform_window!({
 #[cfg(feature = "web")]
 crate::web_platform_window!(CURRENT_PAGE_NAME);
 
-#[component]
-pub fn Search() -> Element {
-	use crate::components::*;
 	rsx! {
-		head {
-			document::Stylesheet {
-				href: STYLE
-			}
-		}
 		main {
 			Search {}
 		}

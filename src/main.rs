@@ -1,10 +1,16 @@
-mod platform;
-mod components;
-mod pages;
-mod utils;
+mod assets;
+// mod components;
 mod config;
+mod pages;
+mod platform;
 
+pub(crate) use assets::dirs::current_theme_dir;
 
 fn main() {
-	platform::launch();
+    use dioxus::logger::*;
+    dioxus::logger::init(dioxus::logger::tracing::Level::DEBUG).expect("failed to init logger");
+
+    tracing::debug!("Starting!");
+
+    platform::launch();
 }

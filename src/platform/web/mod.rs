@@ -1,12 +1,10 @@
 pub mod window;
-pub mod config;
-pub mod macros;
-
-use crate::components::*;
+pub use window::*;
 
 use crate::pages::*;
 
 use dioxus::prelude::*;
+
 #[derive(Routable, Clone)]
 #[rustfmt::skip]
 enum Route {
@@ -106,8 +104,7 @@ fn App() -> Element {
     rsx! { Router::<Route> {} }
 }
 
-pub fn launch()
-{
-    use dioxus::web::{ Config, launch::launch_virtual_dom };
+pub fn launch() {
+    use dioxus::web::{launch::launch_virtual_dom, Config};
     launch_virtual_dom(VirtualDom::new(App), Config::default());
 }
