@@ -4,6 +4,8 @@ pub fn Start(style: String, icons: Icons) -> Element {
     let new_icon = icons.get("new").expect("new icon not found").clone();
     let editor_icon = icons.get("editor").expect("editor icon not found").clone();
 
+    pub use crate::platform::window::*;
+
     rsx! {
         style { { style } }
         main {
