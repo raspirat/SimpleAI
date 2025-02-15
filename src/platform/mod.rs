@@ -1,5 +1,5 @@
 pub(crate) trait WindowLike {
-    fn open(&self);
+    pub fn open(&self);
 }
 
 #[cfg(feature = "desktop")]
@@ -13,6 +13,3 @@ pub mod web;
 
 #[cfg(feature = "web")]
 pub use web::*;
-
-
-

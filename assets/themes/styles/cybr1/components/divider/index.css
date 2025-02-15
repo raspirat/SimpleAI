@@ -1,0 +1,22 @@
+.Divider
+{
+    height: 100%;
+    width: 100%;
+}
+
+.Divider > .wrapper
+{
+    all: revert;
+    height: 100%;
+    width: 1rem;
+    display: flex;
+    justify-content: center;
+    margin: 0 -0.44rem;
+}
+
+.Divider > .wrapper > .inner
+{
+    height: 100%;
+    width: 0.12em;
+    background-color: white;
+}

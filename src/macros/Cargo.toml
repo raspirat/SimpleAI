@@ -1,0 +1,11 @@
+[package]
+name = "sai_macros"
+
+[lib]
+path = "src/lib.rs"
+proc-macro = true
+
+[dependencies]
+proc-macro2 = { version = "1" }
+syn = { version = "2.0", features = ["full"] }
+quote = { version = "1.0" }

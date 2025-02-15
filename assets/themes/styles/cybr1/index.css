@@ -1,0 +1,217 @@
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ HTML ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+html {
+  border-width: var(--border-width);
+  color: var(--font-color);
+
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 33, 34, 0.8) 0%,
+    rgba(0, 29, 30, 0.85) 30%,
+    rgba(0, 25, 26, 0.9) 50%,
+    rgba(0, 21, 22, 0.95) 70%,
+    rgba(0, 17, 18, 0.98) 90%,
+    rgba(0, 13, 14, 0.99) 100%
+  );
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CENTER & FULL SIZE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+html,
+body,
+main,
+article,
+section,
+div {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ BUTTON ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+button {
+  /* ━━━━━━━━━ BEAUTY ━━━━━━━━━ */
+  background-color: var(--button-background-color);
+  color: var(--button-font-color);
+  box-shadow: var(--button-box-shadow);
+
+  /* ━━━━━━━━━ BORDER ━━━━━━━━━ */
+  border-style: solid;
+  border-width: var(--button-border-width);
+  border-color: var(--button-border-color);
+  border-radius: var(--button-border-radius);
+
+  /* ━━━━━━━━━ LAYOUT ━━━━━━━━━ */
+  padding: 0.8em;
+
+  /* ━━━━━━━━━ ANIMATION ━━━━━━━━━ */
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+button:hover {
+  /* ━━━━━━━━━ BEAUTY ━━━━━━━━━ */
+  box-shadow: var(--button-box-shadow-animated);
+
+  /* ━━━━━━━━━ ANIMATION ━━━━━━━━━ */
+  transform: var(--button-hover-scale);
+}
+
+button:focus {
+  /* ━━━━━━━━━ BEAUTY ━━━━━━━━━ */
+  outline: none;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ FORM ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  justify-content: space-around;
+  width: 90%;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ INPUT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+input,
+.LabeledBox {
+  border-width: var(--border-width);
+  background-color: var(--input-background-color);
+  border-color: var(--input-border-color-animated);
+  --input-border-color-animated: var(--input-grayed-out);
+  border-radius: 1em;
+  border-style: solid;
+  box-shadow: 0.2em 0.4em 0.3em rgba(0, 0, 0, 0.4);
+  caret-shape: block;
+  color: var(--input-font-color);
+  height: 3rem;
+  transition:
+    box-shadow 0.5s ease,
+    transform 0.5s ease,
+    margin 0.5s ease,
+    padding 0.5s ease,
+    height 0.5s ease,
+    border-color 0.5s ease;
+  width: 80%;
+}
+
+input:hover,
+.LabeledBox:hover {
+  box-shadow: 0.4em 0.8em 0.8em rgba(0, 0, 0, 0.5);
+  transform: scale(1.1);
+}
+
+input:focus,
+.LabeledBox:has(> input:focus) {
+  border-color: var(--input-border-color-animated);
+  --input-border-color-animated: var(--input-border-color);
+  box-shadow: 0.4em 0.8em 0.8em rgba(0, 0, 0, 0.5);
+  height: 4rem;
+  margin: 2rem 0;
+  outline: none;
+  transform: scale(1.2);
+}
+
+input::placeholder {
+  color: var(--input-grayed-out);
+  font-style: italic;
+  transition: color 0.5s ease;
+}
+
+input:focus::placeholder {
+  color: gray;
+}
+
+input {
+  width: calc(80% - 2rem);
+  padding: 0 1rem;
+}
+
+input::-webkit-file-upload-button {
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  color: var(--input-grayed-out);
+  font-weight: bold;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  height: 10px;
+  border-radius: 5px;
+  background: transparent;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--input-border-color-animated);
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+}
+
+input[type="range"]::-webkit-slider-thumb:focus {
+  background-color: var(--input-border-color-animated);
+}
+
+.LabeledBox > input {
+  all: revert;
+  background-color: transparent;
+  border-color: transparent;
+  caret-color: var(--input-border-color-animated);
+  color: var(--input-font-color);
+  flex-grow: 1;
+  padding: 1rem;
+}
+
+.LabeledBox > input:focus {
+  caret-color: var(--input-border-color-animated);
+  outline: none;
+}
+
+.LabeledBox > .divider {
+  background-color: var(--input-border-color-animated);
+  height: 100%;
+  transition: background-color 0.5s ease;
+  width: var(--border-width);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ LABEL ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+label {
+  color: var(--input-border-color-animated);
+  font-weight: bold;
+  padding: 1em;
+  transition: color 0.5s ease;
+}
+
+div.icon {
+  width: 2rem;
+  height: 2rem;
+  color: var(--icon-color);
+}
+
+svg {
+  width: 2rem;
+  height: 2rem;
+}
