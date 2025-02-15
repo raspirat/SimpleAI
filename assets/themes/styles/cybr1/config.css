@@ -1,0 +1,10 @@
+:root {
+  --border-width: 0.2rem;
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ BUTTON ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  --button-border-width: var(--border-width);
+  --button-border-radius: 2rem;
+  --button-box-shadow: 0.2em 0.4em 0.3em rgba(0, 0, 0, 0.4);
+  --button-box-shadow-animated: 0.4em 0.8em 0.8em rgba(0, 0, 0, 0.5);
+  --button-hover-scale: scale(1.05);
+}
