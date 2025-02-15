@@ -1,9 +1,12 @@
+mod divider;
 mod labeled_box;
 mod search;
 mod search_result;
-mod divider;
+mod viewport;
 
-pub use labeled_box::{LabeledBox};
-pub use divider::{Divider};
-pub use search::{Search};
-pub use search_result::{SearchResult};
+pub use divider::Divider;
+pub use labeled_box::LabeledBox;
+pub use search::Search;
+pub use search_result::SearchResult;
+pub use viewport::Viewport;
+

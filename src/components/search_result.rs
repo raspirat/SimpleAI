@@ -1,13 +1,7 @@
-use dioxus::prelude::*;
-
-component!("|")
-
-#[component]
-pub fn SearchResult() -> Element
+#[sai_macros::element("component")]
+pub fn SearchResult(style: String, icons: Icons) -> Element {
     rsx! {
-        style {
-            style()
-        }
+        style { {style} }
         div {
             class: "SearchResult",
             div {
@@ -42,4 +36,3 @@ pub fn SearchResult() -> Element
         }
     }
 }
-

@@ -1,16 +1,6 @@
-use dioxus::prelude::*;
-use dioxus::html::{ label, input };
-
-
-#[component]
-pub fn LabeledBox(
-	#[props(extends = GlobalAttributes)]
-	attributes: Vec<Attribute>,
-	children: Element
-) -> Element
-{
-	let script =
-		r#####"
+#[sai_macros::element("component")]
+pub fn LabeledBox(children: Element) -> Element {
+    let script = r#####"
 ((c) =>{
 	console.log("hello");
 	let l = c.parentElement;
@@ -21,11 +11,11 @@ pub fn LabeledBox(
 	l.insertBefore(div, l.children[middleIndex + 1]);
 })(document.currentScript);
 "#####;
-	rsx! {
-		div {
-			class: "LabeledBox",
-			script { { script } }
-			{ children }
-		}
-	}
+    rsx! {
+        div {
+            class: "LabeledBox",
+            script { { script } }
+            { children }
+        }
+    }
 }

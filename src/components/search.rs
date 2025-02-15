@@ -1,11 +1,8 @@
-use dioxus::prelude::*;
-static STYLE: Asset = asset!("/assets/theme/components/search/index.css");
-
-#[component]
-pub fn Search() -> Element {
+#[sai_macros::element("component")]
+pub fn Search(style: String, icons: Icons) -> Element {
 	use crate::components::*;
 	rsx! {
-		document::Stylesheet { href: STYLE }
+		style { { style } }
 		div {
 			class: "Search",
 			header {
@@ -34,4 +31,5 @@ pub fn Search() -> Element {
 			}
 		}
 	}
+
 }
