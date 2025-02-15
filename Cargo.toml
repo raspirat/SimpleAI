@@ -1,0 +1,48 @@
+[package]
+name = "SimpleAIEditor"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "SimpleAIEditor"
+path = "src/main.rs"
+
+[build-dependencies]
+copy_dir = { version = "0.1.3" }
+
+[dependencies]
+sai_macros = { path = "src/macros" }
+async-recursion = { version = "1.1.1" }
+chrono = { version = "0.4.38", features = ["serde"] }
+#simple_ai_backend = { git = "" }
+dioxus = { git = "https://github.com/DioxusLabs/dioxus.git" }
+futures = "0.3.31"
+reqwest = { version = "0.12.9", features = ["json"] }
+serde = { version = "1.0.215", features = ["derive"] }
+serde_json = { version = "1.0.133" }
+dirs = { version = "6.0.0" }
+toml = { version = "0.8.19" }
+include_dir = { version = "0.7.3" }
+anyhow = { version = "1.0.95" }
+colored = { version = "3.0.0" }
+regex = { version = "1.11.1" }
+
+[features]
+desktop = ["dioxus/desktop"]
+web = ["dioxus/web", "dioxus/router"]
+mobile = ["dioxus/mobile"]
+dev = ["dioxus/devtools", "dioxus/liveview"]
+
+[profile]
+
+[profile.wasm-dev]
+inherits = "dev"
+opt-level = 1
+
+[profile.server-dev]
+inherits = "dev"
+
+[profile.android-dev]
+inherits = "dev"
+
+
