@@ -1,0 +1,7 @@
+.Node {
+  width: var(--node-width);
+  height: var(--node-height);
+  border-width: var(--node-border-width);
+  border-radius: vor(--node-border-radius);
+  border-style: solid;
+}

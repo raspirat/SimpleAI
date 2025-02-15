@@ -1,0 +1,7 @@
+:root {
+  --node-width: 3rem;
+  --node-height: 8rem;
+
+  --node-border-width: var(--element-border-width);
+  --node-border-radius: var(--element-border-radius);
+}
