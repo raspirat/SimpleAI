@@ -1,16 +1,8 @@
-use dioxus::desktop::{Config, WindowCloseBehaviour};
-use dioxus::dioxus_core::VirtualDom;
-
 pub mod window;
+pub use window::*;
 
-pub fn launch(start_window: window::Window)
-{
-	use dioxus::{
-		dioxus_core::VirtualDom,
-		desktop::launch::launch_virtual_dom
-	};
-	launch_virtual_dom(
-		VirtualDom::new(start_window.app),
-		start_window.config()
-	);
+pub fn launch() {
+    use dioxus::desktop::{launch::launch_virtual_dom, Config};
+    let start_window = crate::pages::start::StartWindow();
+    launch_virtual_dom(start_window.virtual_dom(), start_window.config());
 }

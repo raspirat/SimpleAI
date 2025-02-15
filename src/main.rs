@@ -1,10 +1,9 @@
-use dioxus::prelude::*;
-
-mod platform;
+mod assets;
 mod components;
+mod config;
 mod pages;
-mod utils;
+mod platform;
 
 fn main() {
-	platform::launch(pages::start::platform::window());
+    platform::launch();
 }
