@@ -1,7 +1,33 @@
 .Node {
   width: var(--node-width);
-  height: var(--node-height);
+  height: fit-content;
   border-width: var(--node-border-width);
-  border-radius: vor(--node-border-radius);
+  border-radius: var(--node-border-radius);
   border-style: solid;
+  border-color: var(--node-border-color);
+  display: flex;
+  flex-direction: column;
+  margin: var(--node-margin);
+  overflow: visible;
+}
+
+.Node > main {
+  overflow: inherit;
+}
+
+.Node > header {
+  width: 100%;
+  height: var(--node-header-height);
+  border-bottom: inherit;
+  border-color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Node > footer {
+  border-top: inherit;
+  border-color: inherit;
+  width: 100%;
+  height: var(--node-footer-height);
 }

@@ -25,8 +25,6 @@ pub fn Search(style: String, icons: Icons) -> Element {
 					SearchResult {}
 					SearchResult {}
 					SearchResult {}
-					SearchResult {}
-					SearchResult {}
 				}
 			}
 		}

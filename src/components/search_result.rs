@@ -1,9 +1,13 @@
 #[sai_macros::element("component")]
 pub fn SearchResult(style: String, icons: Icons) -> Element {
+    let dragstart = move |_| *crate::global::DRAG_CONTEXT.write() = String::from("sample");
+
     rsx! {
         style { {style} }
         div {
+            draggable: true,
             class: "SearchResult",
+            ondragstart: dragstart,
             div {
                 class: "wrapper items",
                 h3 { span { id: "name", "SampleNode" } }
