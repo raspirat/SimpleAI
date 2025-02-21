@@ -1,0 +1,26 @@
+.NamedParam {
+  height: var(--namedparam-height);
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-width: var(--namedparam-border-width);
+  border-color: var(--namedparam-border-color);
+  margin: var(--namedparam-margin) 0;
+  justify-content: space-between;
+  overflow: visible;
+}
+
+.NamedParam > .connection {
+  position: relative;
+  background-color: var(--param-connection-color);
+  border-radius: 100%;
+  width: var(--param-connection-diameter);
+  height: var(--param-connection-diameter);
+}
+
+.NamedParam > .input {
+  left: var(--param-connection-margin);
+}
+
+.NamedParam > .output {
+  right: var(--param-connection-margin);
+}

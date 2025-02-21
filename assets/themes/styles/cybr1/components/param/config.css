@@ -1,0 +1,6 @@
+:root {
+  --namedparam-height: 3rem;
+  --namedparam-border-width: var(--node-border-width);
+  --namedparam-border-color: var(--node-border-color);
+  --namedparam-margin: var(--param-margin);
+}

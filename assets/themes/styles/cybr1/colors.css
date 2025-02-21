@@ -38,4 +38,6 @@
   --input-font-color: var(--element-font-color);
 
   --icon-color: var(--element-border-color);
+
+  --param-connection-color: var(--element-border-color);
 }

@@ -4,6 +4,7 @@ pub fn Editor(style: String, icons: Icons) -> Element {
 
     rsx! {
         style { { style } }
+        style { "html {{overflow: hidden;}}"}
         main {
             Divider
             {
@@ -11,6 +12,7 @@ pub fn Editor(style: String, icons: Icons) -> Element {
                     Viewport {}
                 }
                 aside {
+                    z_index: 2,
                     nav {}
                     section {
                         Search {}
