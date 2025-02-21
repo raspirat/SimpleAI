@@ -7,13 +7,10 @@ pub fn Viewport() -> Element {
 
     let drop = move |e: Event<DragData>| {
         e.prevent_default();
-        for _ in 0..1000 {
-            nodes.push(
-                InternNode::builder()
-                    .name(crate::global::DRAG_CONTEXT())
-                    .build(),
-            );
-        }
+
+        let mut node = InternNode::from(crate::global::context::DRAG_NODE.unwrap());
+        node.position.set(e.page_coordinates().to_vector());
+        nodes.push(node);
     };
 
     let dragover = move |e: DragEvent| {

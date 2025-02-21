@@ -1,6 +1,19 @@
+use crate::utils::Node;
+
+#[derive(PartialEq, Props, Clone)]
+pub struct InternSearchResult {
+    node: Node,
+}
+
+impl From<Node> for InternSearchResult {
+    fn from(node: Node) -> Self {
+        Self::builder().node(node).build()
+    }
+}
+
 #[sai_macros::element("component")]
-pub fn SearchResult(style: String, icons: Icons) -> Element {
-    let dragstart = move |_| *crate::global::DRAG_CONTEXT.write() = String::from("sample");
+pub fn SearchResult(style: String, icons: Icons, intern: InternSearchResult) -> Element {
+    let dragstart = move |_| *crate::global::context::DRAG_NODE.write() = Some(intern.node.clone());
 
     rsx! {
         style { {style} }
