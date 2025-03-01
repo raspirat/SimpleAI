@@ -1,4 +1,4 @@
-use crate::components::*;
+use super::*;
 use crate::utils;
 use dioxus::html::geometry::{euclid::Vector2D, *};
 use dioxus::prelude::*;
@@ -7,7 +7,9 @@ use dioxus::prelude::*;
 pub struct InternNode {
     pub node: utils::StrongNode,
     #[props(default = Signal::default())]
-    pub params: Signal<Vec<InternParam>>,
+    pub runtime_params: Signal<Vec<InternStaticParam>>,
+    #[props(default = Signal::default())]
+    pub static_params: Signal<Vec<InternRuntimeParam>>,
     #[props(default = Signal::default())]
     pub pressed: Signal<bool>,
     #[props(default = Signal::default())]
@@ -18,16 +20,18 @@ pub struct InternNode {
 
 impl From<utils::StrongNode> for InternNode {
     fn from(node: utils::StrongNode) -> Self {
-        let b = Self::builder();
+        let b = Self::builder().node(node.clone());
         if let Ok(data) = node.context.lock() {
-            b.params(Signal::new(
-                data.params
-                    .iter()
-                    .map(|param| InternParam::from(*param))
-                    .collect(),
-            ));
+            return b
+                .params(Signal::new(
+                    data.params
+                        .iter()
+                        .map(|param| InternParam::from(param.clone()))
+                        .collect(),
+                ))
+                .build();
         }
-        b.node(node).build()
+        b.build()
     }
 }
 

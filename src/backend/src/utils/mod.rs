@@ -110,8 +110,8 @@ pub enum RuntimeParamKind {
 // -------------------- RUNTIME PARAM -------------------- //
 #[derive(Builder, Clone, PartialEq)]
 pub struct RuntimeParam {
-    kind: RuntimeParamKind,
-    connection: Connection,
+    pub kind: RuntimeParamKind,
+    pub connection: Connection,
 }
 
 // -------------------- STATIC PARAM -------------------- //
