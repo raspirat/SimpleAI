@@ -1,11 +1,10 @@
-use crate::utils::NodeConnection;
+use crate::utils;
 use dioxus::html::geometry::{euclid::*, *};
 use dioxus::prelude::*;
-use std::rc::Rc;
 
 #[derive(PartialEq, Props, Clone)]
 pub struct InternConnection {
-    pub connection: NodeConnection,
+    pub kind: utils::RuntimeParamKind,
     #[props(default = Signal::default())]
     pub dimensions: Signal<Vector2D<f64, PageSpace>>,
     #[props(default = Signal::default())]
@@ -13,16 +12,12 @@ pub struct InternConnection {
     #[props(default = Signal::default())]
     pub pressed: Signal<bool>,
 }
-impl From<NodeConnection> for InternConnection {
-    fn from(connection: NodeConnection) -> Self {
-        Self::builder().connection(connection).build()
-    }
+impl From<utils::RuntimeParamKind> for InternConnection {
+    fn from(kind: utils::RuntimeParamKind) -> Self {}
 }
 
 #[sai_macros::element("component")]
 pub fn Connection(style: String, intern: InternConnection) -> Element {
-    use std::ops::*;
-
     let mut stroke_width = use_signal(|| 3);
 
     let mut left = use_signal(|| "unset");
@@ -53,11 +48,9 @@ pub fn Connection(style: String, intern: InternConnection) -> Element {
     let mut svg_path = use_signal(String::new);
 
     use_effect(move || {
-        // let mut p = "m 0 c 100 50, 0 50, 50 c 50, 100 100, 100 100, 100";
-        //let mut p = "m 0,297 c 0,0 105,0 105,-148.5 C 105,0 210,0 210,0";
         dioxus::logger::tracing::debug!("RECT: {}", div_rect().height());
 
-        let start = (svg_pos() * -1f64); // .add(Vector2D::splat(div_rect().height()) / 2f64);
+        let start = svg_pos() * -1f64; // .add(Vector2D::splat(div_rect().height()) / 2f64);
         let end = (intern.dimensions)();
         let ls = Vector2D::<f64, PageSpace>::new(end.x, 0f64);
         let le = Vector2D::<f64, PageSpace>::new(0f64, end.y);
@@ -70,12 +63,13 @@ pub fn Connection(style: String, intern: InternConnection) -> Element {
 
     let offset = "calc((var(--connection-diameter) + var(--node-border-width) / 2) / -2)";
 
-    use_effect(move || match intern.connection {
-        NodeConnection::Input => {
+    let kind = intern.kind.clone();
+    use_effect(move || match kind {
+        utils::RuntimeParamKind::Input => {
             class.set("Input");
             left.set(offset);
         }
-        NodeConnection::Output => {
+        utils::RuntimeParamKind::Output => {
             class.set("Output");
             right.set(offset);
         }
