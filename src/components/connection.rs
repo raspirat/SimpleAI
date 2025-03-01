@@ -12,9 +12,9 @@ pub struct InternConnection {
     #[props(default = Signal::default())]
     pub pressed: Signal<bool>,
 }
-impl From<utils::RuntimeParamKind> for InternConnection {
-    fn from(kind: utils::RuntimeParamKind) -> Self {}
-}
+// impl From<utils::RuntimeParamKind> for InternConnection {
+//     fn from(kind: utils::RuntimeParamKind) -> Self {}
+// }
 
 #[sai_macros::element("component")]
 pub fn Connection(style: String, intern: InternConnection) -> Element {

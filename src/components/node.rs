@@ -7,9 +7,9 @@ use dioxus::prelude::*;
 pub struct InternNode {
     pub node: utils::StrongNode,
     #[props(default = Signal::default())]
-    pub runtime_params: Signal<Vec<InternStaticParam>>,
+    pub runtime_params: Signal<Vec<InternRuntimeParam>>,
     #[props(default = Signal::default())]
-    pub static_params: Signal<Vec<InternRuntimeParam>>,
+    pub static_params: Signal<Vec<InternStaticParam>>,
     #[props(default = Signal::default())]
     pub pressed: Signal<bool>,
     #[props(default = Signal::default())]

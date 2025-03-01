@@ -30,7 +30,7 @@ pub fn Viewport() -> Element {
         e.prevent_default();
 
         let mut node = crate::global::context::DRAG_NODE.unwrap();
-        node.position.set(e.page_coordinates().to_vector());
+        // node.position.set(e.page_coordinates().to_vector());
         nodes.push(node.clone());
     };
 
@@ -65,14 +65,14 @@ pub fn Viewport() -> Element {
 
     let mousedown = move |e: MouseEvent| {
         for mut node in nodes.frontend_node_container.iter_mut() {
-            for mut param in node.params.iter_mut() {
-                if let Some(connection) = (param.connection)() {
-                    if (connection.pressed)() {
-                        cursor_start_coords.set(e.page_coordinates().to_vector());
-                        pressed_connection.set(Some(connection.clone()));
-                        return;
-                    }
-                }
+            for mut param in node.runtime_params.iter_mut() {
+                // if let Some(connection) = (param.connection)() {
+                //     if (connection.pressed)() {
+                //         cursor_start_coords.set(e.page_coordinates().to_vector());
+                //         pressed_connection.set(Some(connection.clone()));
+                //         return;
+                //     }
+                // }
             }
             if (node.pressed)() {
                 node.cursor.set("grabbing".into());
@@ -97,9 +97,9 @@ pub fn Viewport() -> Element {
         } else if let Some(mut node) = pressed_node() {
             node.cursor.set("grabbing".into());
             node.position.set(get_node_coords(&e));
-            for mut param in node.params.iter_mut() {
-                if let Some(connection) = (param.connection)() {}
-            }
+            // for mut param in node.runtime_params.iter_mut() {
+            //     if let Some(connection) = (param.connection)() {}
+            // }
         } else if pressed() {
             cursor.set("move".into());
             position.set(get_coords(&e));
