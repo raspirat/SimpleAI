@@ -1,1 +1,0 @@
-fn(SearchResultProps) -> Result<VNode, dioxus::prelude::RenderError> {search_result::SearchResult}
