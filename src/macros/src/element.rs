@@ -1,10 +1,6 @@
-extern crate proc_macro2;
-extern crate quote;
-extern crate syn;
-
-use self::proc_macro2::TokenStream;
-use self::quote::quote;
-use self::syn::{
+use proc_macro2::TokenStream;
+use quote::quote;
+use syn::{
     parse::{Parse, ParseStream, Result},
     parse2,
     punctuated::Punctuated,
