@@ -1,0 +1,7 @@
+:root {
+  --connection-diameter: 1rem;
+  --connection-position: calc(
+    var(--connection-diameter) / -2 - var(--node-border-width) / 2
+  );
+  --connection-stroke-width: var(--element-border-width);
+}

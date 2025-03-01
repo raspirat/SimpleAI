@@ -1,30 +1,52 @@
-use crate::utils::NodeParam;
+use crate::utils;
+
+use super::InternConnection;
 
 #[derive(PartialEq, Props, Clone)]
 pub struct InternParam {
-    param: NodeParam,
+    pub param: utils::StrongParam,
+    #[props(default = Signal::default())]
+    pub connection: Signal<Option<InternConnection>>,
 }
-impl From<NodeParam> for InternParam {
-    fn from(param: NodeParam) -> Self {
-        Self::builder().param(param).build()
+impl From<utils::StrongParam> for InternParam {
+    fn from(param: utils::StrongParam) -> Self {
+        let b = Self::builder();
+        b.param(param).build()
     }
 }
 #[sai_macros::element("component")]
 pub fn Param(style: String, intern: InternParam) -> Element {
-    // let rendered_intern = use_signal(|| rsx! { h1 { "sample" } });
-    let rendered_intern = use_signal(|| match intern.param {
-        NodeParam::Named { name } => {
-            rsx! { h3 { { name } } }
+    use super::{Connection, InternConnection};
+
+    let mut rendered_connection = use_signal(|| {
+        rsx! {}
+    });
+
+    use_effect(move || {
+        if let Some(intern) = (intern.connection)() {
+            rendered_connection.set(rsx! { Connection { intern } });
         }
     });
+
+    let mut rendered_intern = use_signal(|| rsx! {});
+
+    let mounted = move |_| {
+        if let NodeParamKind::Connected { param, .. } = &intern.param {
+            match param {
+                NodeParam::Named { name } => rendered_intern.set(rsx! {
+                     h3 { { name.clone() } }
+                }),
+            }
+        };
+    };
 
     rsx! {
         style { { style } }
         body {
-            class: "NamedParam Param Named",
-            div { class: "input connection" }
-            { rendered_intern }
-            div { class: "output connection" }
+            onmounted: mounted,
+            class: "Param",
+                { rendered_connection }
+                { rendered_intern }
         }
     }
 }
