@@ -1,9 +1,13 @@
+extern crate chrono;
+extern crate derive_builder;
+extern crate derive_new;
+
 use std::sync::*;
 
-use derive_builder::Builder;
-use derive_new::new;
+use self::derive_builder::Builder;
+use self::derive_new::new;
 
-use chrono::prelude::*;
+use self::chrono::prelude::*;
 
 // -------------------- DATE -------------------- //
 pub type Date = DateTime<Utc>;
@@ -13,11 +17,13 @@ pub type Date = DateTime<Utc>;
 pub struct StrongContext<T> {
     pub context: Arc<Mutex<T>>,
 }
+
 impl<T> StrongContext<T> {
-    pub fn downgrade(&self) -> WeakContext<T> {
-        WeakContext::from(*self)
+    pub fn downgrade(self) -> WeakContext<T> {
+        WeakContext::from(self)
     }
 }
+
 impl<T> PartialEq for StrongContext<T>
 where
     T: PartialEq,
@@ -31,11 +37,13 @@ where
         false
     }
 }
+
 impl<T> From<T> for StrongContext<T> {
     fn from(t: T) -> Self {
         Self::new(Arc::new(Mutex::new(t)))
     }
 }
+
 impl<T> From<WeakContext<T>> for Option<StrongContext<T>> {
     fn from(weak: WeakContext<T>) -> Option<StrongContext<T>> {
         if let Some(c) = weak.context.upgrade() {
@@ -51,8 +59,8 @@ pub struct WeakContext<T> {
     context: Weak<Mutex<T>>,
 }
 impl<T> WeakContext<T> {
-    fn upgrade(&self) -> Option<StrongContext<T>> {
-        Option::<StrongContext<T>>::from(*self)
+    fn upgrade(self) -> Option<StrongContext<T>> {
+        Option::<StrongContext<T>>::from(self)
     }
 }
 impl<T> PartialEq for WeakContext<T>
