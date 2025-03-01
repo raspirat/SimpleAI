@@ -1,0 +1,7 @@
+:root {
+  --param-margin: 1rem;
+  --param-height: 3rem;
+  --border-width: var(--node-border-width);
+  --param-border-color: var(--node-border-color);
+  --param-margin: var(--param-margin);
+}

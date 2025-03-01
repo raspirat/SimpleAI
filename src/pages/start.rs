@@ -1,3 +1,5 @@
+pub use crate::platform::*;
+
 #[sai_macros::element("page")]
 pub fn Start(style: String, icons: Icons) -> Element {
     let search_icon = icons.get("search").expect("search icon not found").clone();
@@ -18,7 +20,6 @@ pub fn Start(style: String, icons: Icons) -> Element {
     }
 }
 
-use crate::platform::Window;
 pub fn StartWindow() -> Window {
     #[cfg(feature = "desktop")]
     {

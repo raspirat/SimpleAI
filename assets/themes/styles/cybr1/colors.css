@@ -38,4 +38,7 @@
   --input-font-color: var(--element-font-color);
 
   --icon-color: var(--element-border-color);
+
+  --connection-color: var(--element-border-color);
+  --connection-stroke-color: var(--element-border-color);
 }

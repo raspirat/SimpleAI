@@ -1,0 +1,13 @@
+.Connection > .Input,
+.Connection > .Output {
+  width: var(--connection-diameter);
+  height: var(--connection-diameter);
+  background-color: var(--connection-color);
+  border-radius: 100%;
+}
+
+.Draw > .Curve {
+  fill: none;
+  stroke: var(--connection-stroke-color);
+  stroke-width: var(--connection-stroke-width);
+}

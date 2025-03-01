@@ -1,0 +1,9 @@
+.Param {
+  height: var(--param-height);
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-width: var(--param-border-width);
+  border-color: var(--param-border-color);
+  margin: var(--param-margin) 0;
+  overflow: visible;
+}

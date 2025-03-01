@@ -1,5 +1,5 @@
-pub(crate) trait WindowLike {
-    pub fn open(&self);
+pub trait WindowLike {
+    fn open(&self);
 }
 
 #[cfg(feature = "desktop")]
