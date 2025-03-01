@@ -15,6 +15,21 @@ html {
   );
 }
 
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ NO PADDING & MARGINS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+html,
+body,
+main,
+article,
+section,
+div,
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CENTER & FULL SIZE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 html,
@@ -25,8 +40,6 @@ section,
 div {
   width: 100%;
   height: 100%;
-  margin: 0;
-  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -211,7 +224,7 @@ div.icon {
   color: var(--icon-color);
 }
 
-svg {
+.Icon {
   width: 2rem;
   height: 2rem;
 }

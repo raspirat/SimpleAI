@@ -1,16 +1,37 @@
+use super::*;
+use crate::utils;
+
+pub struct ViewportNodeContainer {
+    pub backend_node_container: utils::NodeContainer,
+    pub frontend_node_container: Signal<Vec<InternNode>>,
+}
+impl ViewportNodeContainer {
+    pub fn new() -> Self {
+        Self {
+            backend_node_container: utils::NodeContainer::new(),
+            frontend_node_container: use_signal(Vec::<InternNode>::new),
+        }
+    }
+    pub fn push(&self, node: utils::Node) {
+        let node_ctx = utils::StrongContext::from(node);
+        self.backend_node_container.push_context(node_ctx);
+        self.frontend_node_container
+            .push(InternNode::from(node_ctx));
+    }
+}
+
 #[sai_macros::element("component")]
 pub fn Viewport() -> Element {
-    use super::{InternNode, Node};
     use dioxus::html::geometry::{euclid::*, *};
 
-    let mut nodes = use_signal(Vec::<InternNode>::new);
+    let nodes = ViewportNodeContainer::new();
 
     let drop = move |e: Event<DragData>| {
         e.prevent_default();
 
-        let mut node = InternNode::from(crate::global::context::DRAG_NODE.unwrap());
+        let mut node = crate::global::context::DRAG_NODE.unwrap();
         node.position.set(e.page_coordinates().to_vector());
-        nodes.push(node);
+        nodes.push(node.clone());
     };
 
     let dragover = move |e: DragEvent| {
@@ -22,14 +43,19 @@ pub fn Viewport() -> Element {
 
     let mut position = use_signal(Vector2D::<f64, _>::zero);
     let mut scale = use_signal(|| 1f64);
+
     let mut pressed = use_signal(|| false);
     let mut pressed_node = use_signal(|| Option::<InternNode>::None);
+    let mut pressed_connection = use_signal(|| Option::<InternConnection>::None);
+
     let mut cursor = use_signal(String::new);
 
-    let get_coords = move |e: &MouseEvent| -> Vector2D<f64, _> {
-        let d = e.page_coordinates().to_vector() - cursor_start_coords();
-        element_start_coords() + d
+    let get_diff = move |e: &MouseEvent| -> Vector2D<f64, _> {
+        e.page_coordinates().to_vector() - cursor_start_coords()
     };
+
+    let get_coords =
+        move |e: &MouseEvent| -> Vector2D<f64, _> { element_start_coords() + get_diff(e) };
 
     let get_node_coords = move |e: &MouseEvent| -> Vector2D<f64, _> {
         {
@@ -38,7 +64,16 @@ pub fn Viewport() -> Element {
     };
 
     let mousedown = move |e: MouseEvent| {
-        for mut node in nodes.iter_mut() {
+        for mut node in nodes.frontend_node_container.iter_mut() {
+            for mut param in node.params.iter_mut() {
+                if let Some(connection) = (param.connection)() {
+                    if (connection.pressed)() {
+                        cursor_start_coords.set(e.page_coordinates().to_vector());
+                        pressed_connection.set(Some(connection.clone()));
+                        return;
+                    }
+                }
+            }
             if (node.pressed)() {
                 node.cursor.set("grabbing".into());
                 cursor_start_coords.set(e.page_coordinates().to_vector());
@@ -57,9 +92,14 @@ pub fn Viewport() -> Element {
     };
 
     let mousemove = move |e: MouseEvent| {
-        if let Some(mut node) = pressed_node() {
+        if let Some(mut connection) = pressed_connection() {
+            connection.dimensions.set(get_diff(&e));
+        } else if let Some(mut node) = pressed_node() {
             node.cursor.set("grabbing".into());
             node.position.set(get_node_coords(&e));
+            for mut param in node.params.iter_mut() {
+                if let Some(connection) = (param.connection)() {}
+            }
         } else if pressed() {
             cursor.set("move".into());
             position.set(get_coords(&e));
@@ -67,7 +107,14 @@ pub fn Viewport() -> Element {
     };
 
     let mouseup = move |e: MouseEvent| {
-        if let Some(mut node) = pressed_node() {
+        if let Some(mut connection) = pressed_connection() {
+            connection.dimensions.set(get_diff(&e));
+            connection.pressed.set(false);
+            if let Some(mut c) = crate::global::context::CONNECTION() {
+                c.foreign_dimensions.set((connection.dimensions)());
+            }
+            pressed_connection.set(None);
+        } else if let Some(mut node) = pressed_node() {
             node.cursor.set("grab".into());
             node.position.set(get_node_coords(&e));
             node.pressed.set(false);
@@ -94,6 +141,7 @@ pub fn Viewport() -> Element {
     };
 
     let rendered_nodes = nodes
+        .frontend_node_container
         .iter()
         .map(|intern| rsx! { Node { intern: intern.clone() } });
 

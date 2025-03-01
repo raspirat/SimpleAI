@@ -26,6 +26,8 @@ include_dir = { version = "0.7.3" }
 anyhow = { version = "1.0.95" }
 colored = { version = "3.0.0" }
 regex = { version = "1.11.1" }
+derive-new = { version = "0.7.0" }
+derive_builder = { version = "0.20.2" }
 
 [features]
 desktop = ["dioxus/desktop"]
