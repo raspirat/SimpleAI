@@ -1,23 +1,22 @@
 use super::*;
-use crate::utils;
+use sai_backend::utils;
 
 #[derive(PartialEq, Props, Clone)]
 pub struct InternRuntimeParam {
     pub param: utils::StrongParam,
-    #[props(default = Signal::default())]
     pub connection: Signal<InternConnection>,
 }
 impl From<utils::StrongParam> for InternRuntimeParam {
     fn from(param: utils::StrongParam) -> Self {
-        let b = Self::builder().param(param);
-        // if let Ok(data) = param.context.lock() {
-        //     if let utils::ParamKind::Runtime { runtime } = data.kind {
-        //         return b
-        //             .connection(Signal::new(InternConnection::from(runtime.kind.clone())))
-        //             .build();
-        //     }
-        // }
-        b.build()
+        let b = Self::builder().param(param.clone());
+        if let Ok(data) = param.context.lock() {
+            if let utils::ParamKind::Runtime { runtime } = &data.kind {
+                return b
+                    .connection(Signal::new(InternConnection::from(runtime.kind.clone())))
+                    .build();
+            }
+        }
+        panic!("Couldn't create Param");
     }
 }
 

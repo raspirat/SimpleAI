@@ -161,16 +161,14 @@ pub fn macro_impl(attr: TokenStream, item: TokenStream) -> TokenStream {
         #fn_body
     };
 
-    let render_name = {
-        println!("{}", emt_type.value());
-        if emt_type.value() == "page" {
-            return quote! { static NAME: &str = #emt_name };
-        }
-        TokenStream::new()
-    };
+    // let render_name = {
+    //     if emt_type.value() == "page" {
+    //         quote! { static NAME: &str = #emt_name; };
+    //     }
+    //     TokenStream::new()
+    // };
 
     let output = quote! {
-        #render_name
         use dioxus::prelude::*;
         #[component]
         pub fn #fn_name(#new_fn_args) -> Element {

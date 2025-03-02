@@ -1,7 +1,7 @@
 use super::*;
-use crate::utils;
 use dioxus::html::geometry::{euclid::Vector2D, *};
 use dioxus::prelude::*;
+use sai_backend::utils;
 
 #[derive(PartialEq, Props, Clone)]
 pub struct InternNode {
@@ -21,16 +21,16 @@ pub struct InternNode {
 impl From<utils::StrongNode> for InternNode {
     fn from(node: utils::StrongNode) -> Self {
         let b = Self::builder().node(node.clone());
-        if let Ok(data) = node.context.lock() {
-            return b
-                .params(Signal::new(
-                    data.params
-                        .iter()
-                        .map(|param| InternParam::from(param.clone()))
-                        .collect(),
-                ))
-                .build();
-        }
+        // if let Ok(data) = node.context.lock() {
+        //     return b
+        //         .params(Signal::new(
+        //             data.params
+        //                 .iter()
+        //                 .map(|param| InternParam::from(param.clone()))
+        //                 .collect(),
+        //         ))
+        //         .build();
+        // }
         b.build()
     }
 }
@@ -48,9 +48,9 @@ pub fn Node(style: String, intern: InternNode) -> Element {
     };
 
     let rendered_params = intern
-        .params
+        .runtime_params
         .iter()
-        .map(|intern| rsx! { Param { intern: intern.clone() } });
+        .map(|intern| rsx! { RuntimeParam { intern: intern.clone() } });
 
     rsx! {
         style { { style } }
@@ -67,7 +67,7 @@ pub fn Node(style: String, intern: InternNode) -> Element {
                 user_select: "none",
                 onmousedown: mousedown,
                 onmouseover: move |_| { intern.cursor.set("grab".into()) },
-                h1 { { intern.node.name } }
+                h1 { { if let Ok(node) = intern.node.context.lock() { return rsx! { { node.name.clone() } } }  } }
             }
             main {
                 display: "flex",

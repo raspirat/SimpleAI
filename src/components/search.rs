@@ -1,7 +1,7 @@
 #[sai_macros::element("component")]
 pub fn Search(style: String, icons: Icons) -> Element {
     use crate::components::{InternSearchResult, SearchResult};
-    use crate::utils::*;
+    use sai_backend::utils::*;
 
     let mut search_results = use_signal(Vec::<InternSearchResult>::new);
 
