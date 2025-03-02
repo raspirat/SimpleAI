@@ -11,15 +11,15 @@ pub fn create_node(node: Node) -> Result<(), String> {
 
     if !check_name(name.clone()) {
         return Err(format!(
-            "Node name \"{}\" is not allowed! Please only use letters, dashes and underscores.",
+            "Node name {} is not allowed! Please only use letters, dashes and underscores.",
             name
         ));
     }
     if !Path::new("nodes/").exists() {
         create_dir(Path::new("nodes/")).map_err(|e| e.to_string())?;
     }
-    if !Path::new("nodes/").join(name.clone()).exists() {
-        return Err(format!("A node named \"{}\" does already exist!", name));
+    if Path::new("nodes/").join(name.clone()).exists() {
+        return Err(format!("A node named {} does already exist!", name));
     }
 
     create_dir(Path::new("nodes/").join(name.clone())).map_err(|e| e.to_string())?;

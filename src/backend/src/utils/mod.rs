@@ -142,7 +142,7 @@ pub type Connection = WeakContext<Param>;
 pub enum ParamKind {
     Runtime {
         kind: RuntimeParamKind,
-        connection: Connection,
+        connection: Option<Connection>,
         id: u128,
     },
     Static {
@@ -298,7 +298,7 @@ impl From<Node> for Metadata {
 pub enum SaveParamKind {
     Runtime {
         kind: RuntimeParamKind,
-        connected_to: u128,
+        connected_to: Option<u128>,
     },
     Static {
         value: String,
@@ -350,30 +350,37 @@ impl From<ParamKind> for SaveParamKind {
         } else {
             match param_kind {
                 ParamKind::Runtime {
-                    kind: _,
+                    kind,
                     connection,
                     id: _,
                 } => {
-                    let connected_param = connection
-                        .context
-                        .upgrade()
-                        .unwrap()
-                        .lock()
-                        .unwrap()
-                        .to_owned();
+                    if let Some(connected) = connection {
+                        let connected_param = connected
+                            .context
+                            .upgrade()
+                            .unwrap()
+                            .lock()
+                            .unwrap()
+                            .to_owned();
 
-                    if let ParamKind::Runtime {
-                        kind: connected_kind,
-                        connection: _,
-                        id,
-                    } = connected_param.kind
-                    {
-                        SaveParamKind::Runtime {
-                            kind: connected_kind,
-                            connected_to: id,
+                        if let ParamKind::Runtime {
+                            kind: _,
+                            connection: _,
+                            id,
+                        } = connected_param.kind
+                        {
+                            SaveParamKind::Runtime {
+                                kind,
+                                connected_to: Some(id),
+                            }
+                        } else {
+                            panic!("A parameter must be connected with a runtime parameter!");
                         }
                     } else {
-                        panic!("A parameter must be connected with a runtime parameter!");
+                        SaveParamKind::Runtime {
+                            kind,
+                            connected_to: None,
+                        }
                     }
                 }
                 _ => {
@@ -444,7 +451,7 @@ impl From<SaveNode> for Node {
                     },
                     SaveParamKind::Runtime { kind, .. } => ParamKind::Runtime {
                         kind: kind.clone(),
-                        connection: WeakContext::new(Weak::new()), // Placeholder
+                        connection: None,
                         id: save_param.id,
                     },
                 },
@@ -458,7 +465,7 @@ impl From<SaveNode> for Node {
             let mut param = strong_param.context.lock().unwrap();
             if let ParamKind::Runtime { connection, id, .. } = &mut param.kind {
                 if let Some(target) = param_map.get(id) {
-                    *connection = WeakContext::from(target.clone());
+                    *connection = Some(WeakContext::from(target.clone()));
                 }
             }
         }
