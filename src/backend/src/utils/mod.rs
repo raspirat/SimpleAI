@@ -161,18 +161,6 @@ pub struct Param {
     pub dtype: DType,
 }
 
-// -------------------- CODE NODE -------------------- //
-#[derive(Builder, Clone, PartialEq)]
-pub struct CodeNode {
-    pub code: String,
-}
-
-// -------------------- BUNDLED NODE -------------------- //
-#[derive(Builder, Clone, PartialEq)]
-pub struct BundledNode {
-    bundle: NodeContainer,
-}
-
 // -------------------- NODE KIND -------------------- //
 #[derive(Clone, PartialEq)]
 pub enum NodeKind {
@@ -194,6 +182,20 @@ pub struct Node {
     pub compiled: Option<String>, // or and bytes...
     pub environment: Environment,
     pub date: Date,
+}
+
+impl Node {
+    pub fn get_full_env(self) -> Environment {
+        let mut env = self.environment;
+        if let NodeKind::Bundled { bundle } = self.kind {
+            for context in bundle.tree.iter() {
+                let node: Node = context.context.lock().unwrap().to_owned();
+                env = node.get_full_env().merge(&env).unwrap();
+            }
+        }
+
+        env
+    }
 }
 
 // -------------------- ENVIRONEMENT -------------------- //
@@ -283,11 +285,14 @@ pub struct Metadata {
 impl From<Node> for Metadata {
     fn from(node: Node) -> Self {
         MetadataBuilder::default()
-            .name(node.name)
-            .description(node.description)
-            .author(node.author)
+            .name(node.name.clone())
+            .description(node.description.clone())
+            .author(node.author.clone())
             .date(node.date)
-            .impls(vec![(node.environment.clone(), node.environment.hash())])
+            .impls(vec![(
+                node.clone().get_full_env().clone(),
+                node.clone().get_full_env().hash(),
+            )])
             .build()
             .expect("Internal error")
     }
@@ -410,11 +415,11 @@ impl From<Node> for SaveNode {
     fn from(node: Node) -> Self {
         let mut binding = SaveNodeBuilder::default();
         let mut builder = binding
-            .name(node.name)
-            .description(node.description)
-            .author(node.author)
-            .compiled(node.compiled)
-            .environment(node.environment)
+            .name(node.name.clone())
+            .description(node.description.clone())
+            .author(node.author.clone())
+            .compiled(node.compiled.clone())
+            .environment(node.clone().get_full_env())
             .date(node.date);
 
         if let NodeKind::Code { code } = node.kind {
