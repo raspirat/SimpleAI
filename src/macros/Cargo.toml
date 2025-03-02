@@ -1,5 +1,6 @@
 [package]
 name = "sai_macros"
+edition = "2021"
 
 [lib]
 path = "src/lib.rs"
