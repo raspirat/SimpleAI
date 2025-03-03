@@ -1,22 +1,22 @@
-use crate::utils;
-
-use super::InternConnection;
+use super::*;
+use sai_backend::utils;
 
 #[derive(PartialEq, Props, Clone)]
 pub struct InternRuntimeParam {
     pub param: utils::StrongParam,
-    #[props(default = Signal::default())]
     pub connection: Signal<InternConnection>,
 }
-impl From<utils::StrongParam> for InternParam {
+impl From<utils::StrongParam> for InternRuntimeParam {
     fn from(param: utils::StrongParam) -> Self {
-        let b = Self::builder().param(param);
-        if let Ok(data) = intern.param.context.lock() {
-            if let utils::ParamKind::Runtime { runtime } = data.kind {
-                return b.connection(Signal::new(InternConnection::from(runtime.kind.clone())));
+        let b = Self::builder().param(param.clone());
+        if let Ok(data) = param.context.lock() {
+            if let utils::ParamKind::Runtime { runtime } = &data.kind {
+                return b
+                    .connection(Signal::new(InternConnection::from(runtime.kind.clone())))
+                    .build();
             }
         }
-        b.build()
+        panic!("Couldn't create Param");
     }
 }
 
@@ -26,7 +26,7 @@ pub fn RuntimeParam(style: String, intern: InternRuntimeParam) -> Element {
         style { { style } }
         body {
             class: "Param",
-            Connection { intern }
+            Connection { intern: (intern.connection)() }
         }
     }
 }
@@ -35,7 +35,7 @@ pub fn RuntimeParam(style: String, intern: InternRuntimeParam) -> Element {
 pub struct InternStaticParam {
     pub param: utils::StrongParam,
 }
-impl From<utils::StrongParam> for InternParam {
+impl From<utils::StrongParam> for InternStaticParam {
     fn from(param: utils::StrongParam) -> Self {
         let b = Self::builder();
         b.param(param).build()

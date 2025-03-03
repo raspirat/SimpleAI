@@ -1,6 +1,9 @@
-use super::*;
-use crate::utils;
+use std::ops::DerefMut;
 
+use super::*;
+use sai_backend::utils;
+
+#[derive(Clone)]
 pub struct ViewportNodeContainer {
     pub backend_node_container: utils::NodeContainer,
     pub frontend_node_container: Signal<Vec<InternNode>>,
@@ -12,9 +15,9 @@ impl ViewportNodeContainer {
             frontend_node_container: use_signal(Vec::<InternNode>::new),
         }
     }
-    pub fn push(&self, node: utils::Node) {
+    pub fn push(&mut self, node: utils::Node) {
         let node_ctx = utils::StrongContext::from(node);
-        self.backend_node_container.push_context(node_ctx);
+        self.backend_node_container.push_context(node_ctx.clone());
         self.frontend_node_container
             .push(InternNode::from(node_ctx));
     }
@@ -24,14 +27,16 @@ impl ViewportNodeContainer {
 pub fn Viewport() -> Element {
     use dioxus::html::geometry::{euclid::*, *};
 
-    let nodes = ViewportNodeContainer::new();
+    let mut node_context = utils::StrongContext::from(ViewportNodeContainer::new());
 
     let drop = move |e: Event<DragData>| {
         e.prevent_default();
 
         let mut node = crate::global::context::DRAG_NODE.unwrap();
-        node.position.set(e.page_coordinates().to_vector());
-        nodes.push(node.clone());
+        // node.position.set(e.page_coordinates().to_vector());
+        if let Ok(nodes) = node_context.clone().context.lock() {
+            nodes.deref_mut().push(node.clone());
+        }
     };
 
     let dragover = move |e: DragEvent| {
@@ -64,29 +69,31 @@ pub fn Viewport() -> Element {
     };
 
     let mousedown = move |e: MouseEvent| {
-        for mut node in nodes.frontend_node_container.iter_mut() {
-            for mut param in node.params.iter_mut() {
-                if let Some(connection) = (param.connection)() {
-                    if (connection.pressed)() {
-                        cursor_start_coords.set(e.page_coordinates().to_vector());
-                        pressed_connection.set(Some(connection.clone()));
-                        return;
-                    }
+        if let Ok(nodes) = node_context.context.lock() {
+            for mut node in nodes.frontend_node_container.iter_mut() {
+                for mut param in node.runtime_params.iter_mut() {
+                    // if let Some(connection) = (param.connection)() {
+                    //     if (connection.pressed)() {
+                    //         cursor_start_coords.set(e.page_coordinates().to_vector());
+                    //         pressed_connection.set(Some(connection.clone()));
+                    //         return;
+                    //     }
+                    // }
+                }
+                if (node.pressed)() {
+                    node.cursor.set("grabbing".into());
+                    cursor_start_coords.set(e.page_coordinates().to_vector());
+                    element_start_coords.set((node.position)() * scale());
+                    pressed_node.set(Some(node.clone()));
+                    return;
                 }
             }
-            if (node.pressed)() {
-                node.cursor.set("grabbing".into());
-                cursor_start_coords.set(e.page_coordinates().to_vector());
-                element_start_coords.set((node.position)() * scale());
-                pressed_node.set(Some(node.clone()));
-                return;
-            }
-        }
-        if let Some(button) = e.trigger_button() {
-            if button.into_web_code() == 1 {
-                cursor_start_coords.set(e.page_coordinates().to_vector());
-                element_start_coords.set(position());
-                pressed.set(true);
+            if let Some(button) = e.trigger_button() {
+                if button.into_web_code() == 1 {
+                    cursor_start_coords.set(e.page_coordinates().to_vector());
+                    element_start_coords.set(position());
+                    pressed.set(true);
+                }
             }
         }
     };
@@ -97,9 +104,9 @@ pub fn Viewport() -> Element {
         } else if let Some(mut node) = pressed_node() {
             node.cursor.set("grabbing".into());
             node.position.set(get_node_coords(&e));
-            for mut param in node.params.iter_mut() {
-                if let Some(connection) = (param.connection)() {}
-            }
+            // for mut param in node.runtime_params.iter_mut() {
+            //     if let Some(connection) = (param.connection)() {}
+            // }
         } else if pressed() {
             cursor.set("move".into());
             position.set(get_coords(&e));
@@ -140,10 +147,15 @@ pub fn Viewport() -> Element {
         dioxus::logger::tracing::debug!("sub: {sub}, scale: {scale}");
     };
 
-    let rendered_nodes = nodes
-        .frontend_node_container
-        .iter()
-        .map(|intern| rsx! { Node { intern: intern.clone() } });
+    let node_context_c1 = node_context.clone();
+    let rendered_nodes = {
+        if let Ok(nodes) = node_context_c1.context.lock() {
+            nodes
+                .frontend_node_container
+                .iter()
+                .map(|intern| rsx! { Node { intern: intern.clone() } });
+        }
+    };
 
     rsx! {
         body {

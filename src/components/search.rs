@@ -1,29 +1,13 @@
 #[sai_macros::element("component")]
 pub fn Search(style: String, icons: Icons) -> Element {
     use crate::components::{InternSearchResult, SearchResult};
-    use crate::utils::*;
+    use sai_backend::utils::*;
 
     let mut search_results = use_signal(Vec::<InternSearchResult>::new);
 
     let onchange = move |e: FormEvent| {
         dioxus::logger::tracing::debug!("submit");
-        search_results.push(InternSearchResult::from(Node {
-            name: "sample".into(),
-            params: vec![
-                NodeParamKind::Connected {
-                    connection: NodeConnection::Input,
-                    param: NodeParam::Named {
-                        name: "inputsample".into(),
-                    },
-                },
-                NodeParamKind::Connected {
-                    connection: NodeConnection::Output,
-                    param: NodeParam::Named {
-                        name: "outputsample".into(),
-                    },
-                },
-            ],
-        }));
+        // search_results.push();
     };
 
     let rendered_search_results = search_results
