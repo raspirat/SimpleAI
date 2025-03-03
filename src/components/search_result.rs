@@ -1,4 +1,4 @@
-use crate::utils::Node;
+use sai_backend::utils::Node;
 
 #[derive(PartialEq, Props, Clone)]
 pub struct InternSearchResult {

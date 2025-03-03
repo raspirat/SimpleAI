@@ -1,4 +1,9 @@
-use std::{collections::HashMap, sync::*};
+use std::{
+    collections::HashMap,
+    sync::{Arc, Weak},
+};
+
+use tokio::sync::Mutex;
 
 use derive_builder::Builder;
 use derive_new::new;
@@ -28,12 +33,9 @@ where
     T: PartialEq,
 {
     fn eq(&self, other: &Self) -> bool {
-        if let Ok(self_data) = self.context.lock() {
-            if let Ok(other_data) = other.context.lock() {
-                return *self_data == *other_data;
-            }
-        }
-        false
+        let self_data = self.context.blocking_lock();
+        let other_data = other.context.blocking_lock();
+        *self_data == *other_data
     }
 }
 
@@ -58,22 +60,18 @@ pub struct WeakContext<T> {
     context: Weak<Mutex<T>>,
 }
 impl<T> WeakContext<T> {
-    fn upgrade(self) -> Option<StrongContext<T>> {
+    pub fn upgrade(self) -> Option<StrongContext<T>> {
         Option::<StrongContext<T>>::from(self)
     }
 }
 impl<T> PartialEq for WeakContext<T>
 where
-    T: PartialEq,
+    T: PartialEq + Clone,
 {
     fn eq(&self, other: &Self) -> bool {
-        if let Some(self_ctx) = self.context.upgrade() {
-            if let Some(other_ctx) = other.context.upgrade() {
-                if let Ok(self_data) = self_ctx.lock() {
-                    if let Ok(other_data) = other_ctx.lock() {
-                        return *self_data == *other_data;
-                    }
-                }
+        if let Some(self_ctx) = self.clone().upgrade() {
+            if let Some(other_ctx) = other.clone().upgrade() {
+                return self_ctx == other_ctx;
             }
         }
         false
@@ -189,7 +187,7 @@ impl Node {
         let mut env = self.environment;
         if let NodeKind::Bundled { bundle } = self.kind {
             for context in bundle.tree.iter() {
-                let node: Node = context.context.lock().unwrap().to_owned();
+                let node: Node = context.context.try_lock().unwrap().to_owned();
                 env = node.get_full_env().merge(&env).unwrap();
             }
         }
@@ -341,7 +339,7 @@ impl From<NodeContainer> for SaveNodeKind {
     fn from(nodes: NodeContainer) -> Self {
         let mut save_nodes: Vec<SaveNode> = Vec::new();
         for context in nodes.tree.iter() {
-            let node: Node = context.context.lock().unwrap().to_owned();
+            let node: Node = context.context.try_lock().unwrap().to_owned();
             save_nodes.push(node.into());
         }
         SaveNodeKind::Bundled { bundle: save_nodes }
@@ -364,7 +362,7 @@ impl From<ParamKind> for SaveParamKind {
                             .context
                             .upgrade()
                             .unwrap()
-                            .lock()
+                            .try_lock()
                             .unwrap()
                             .to_owned();
 
@@ -398,7 +396,7 @@ impl From<ParamKind> for SaveParamKind {
 
 impl From<StrongParam> for SaveParam {
     fn from(strong_param: StrongParam) -> Self {
-        let param = strong_param.context.lock().unwrap().to_owned();
+        let param = strong_param.context.try_lock().unwrap().to_owned();
         let mut binding = SaveParamBuilder::default();
         let builder = binding
             .name(param.name)
@@ -467,7 +465,7 @@ impl From<SaveNode> for Node {
 
         // Second pass: resolve connections
         for strong_param in &params {
-            let mut param = strong_param.context.lock().unwrap();
+            let mut param = strong_param.context.try_lock().unwrap();
             if let ParamKind::Runtime { connection, id, .. } = &mut param.kind {
                 if let Some(target) = param_map.get(id) {
                     *connection = Some(WeakContext::from(target.clone()));
