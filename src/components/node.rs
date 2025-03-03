@@ -47,6 +47,16 @@ pub fn Node(style: String, intern: InternNode) -> Element {
         //     });
     };
 
+    let mut node_name = use_signal(String::new);
+
+    use_future(move || {
+        let context = intern.node.context.clone();
+        async move {
+            let node = context.lock().await;
+            node_name.set(node.name.clone());
+        }
+    });
+
     let rendered_params = intern
         .runtime_params
         .iter()
@@ -67,7 +77,7 @@ pub fn Node(style: String, intern: InternNode) -> Element {
                 user_select: "none",
                 onmousedown: mousedown,
                 onmouseover: move |_| { intern.cursor.set("grab".into()) },
-                h1 { { if let Ok(node) = intern.node.context.lock() { return rsx! { { node.name.clone() } } }  } }
+                h1 { {   } }
             }
             main {
                 display: "flex",
