@@ -176,17 +176,17 @@ pub type WeakNode = WeakContext<Node>;
 pub struct Node {
     pub name: String,
     pub params: Vec<StrongParam>,
+    pub version: Version,
     pub kind: NodeKind,
     pub description: String,
     pub author: String,
     pub compiled: Option<String>, // or and bytes...
-    pub environment: Environment,
     pub date: Date,
 }
 
 impl Node {
     pub fn get_full_env(self) -> Environment {
-        let mut env = self.environment;
+        let mut env = self.version.env;
         if let NodeKind::Bundled { bundle } = self.kind {
             for context in bundle.tree.iter() {
                 let node: Node = context.context.lock().unwrap().to_owned();
@@ -273,13 +273,19 @@ impl Environment {
 }
 
 // -------------------- METADATA -------------------- //
+#[derive(PartialEq, Builder, Clone, Serialize, Deserialize)]
+pub struct Version {
+    pub version: String,
+    pub env: Environment,
+}
+
 #[derive(Builder, Serialize, Deserialize)]
 pub struct Metadata {
     pub name: String,
     pub description: String,
     pub author: String,
     pub date: Date,
-    pub impls: Vec<(Environment, String)>,
+    pub versions: Vec<Version>,
 }
 
 impl From<Node> for Metadata {
@@ -289,10 +295,10 @@ impl From<Node> for Metadata {
             .description(node.description.clone())
             .author(node.author.clone())
             .date(node.date)
-            .impls(vec![(
-                node.clone().get_full_env().clone(),
-                node.clone().get_full_env().hash(),
-            )])
+            .versions(vec![Version {
+                version: node.version.version.clone(),
+                env: node.get_full_env(),
+            }])
             .build()
             .expect("Internal error")
     }
@@ -333,7 +339,7 @@ pub struct SaveNode {
     pub description: String,
     pub author: String,
     pub compiled: Option<String>,
-    pub environment: Environment,
+    pub version: Version,
     pub date: Date,
 }
 
@@ -419,7 +425,10 @@ impl From<Node> for SaveNode {
             .description(node.description.clone())
             .author(node.author.clone())
             .compiled(node.compiled.clone())
-            .environment(node.clone().get_full_env())
+            .version(Version {
+                version: node.version.version.clone(),
+                env: node.clone().get_full_env(),
+            })
             .date(node.date);
 
         if let NodeKind::Code { code } = node.kind {
@@ -481,7 +490,10 @@ impl From<SaveNode> for Node {
             .description(node.description)
             .author(node.author)
             .compiled(node.compiled)
-            .environment(node.environment)
+            .version(Version {
+                version: node.version.version,
+                env: node.version.env,
+            })
             .date(node.date)
             .params(params);
 

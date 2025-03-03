@@ -1,0 +1,10 @@
+name = "test_code_node"
+description = "A simple code node"
+author = "Author"
+date = "2025-03-03T06:50:31.493616704Z"
+
+[[versions]]
+version = "0.0.1"
+
+[versions.env]
+deps = []

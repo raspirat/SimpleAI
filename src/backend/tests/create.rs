@@ -8,13 +8,16 @@ fn test_create_code_node() {
     let node = Node {
         name: "test_code_node".to_string(),
         params: vec![],
+        version: Version {
+            version: String::from("0.0.1"),
+            env: Environment { deps: vec![] },
+        },
         kind: NodeKind::Code {
             code: "fn main() { println!(\"Hello, world!\"); }".to_string(),
         },
         description: "A simple code node".to_string(),
         author: "Author".to_string(),
         compiled: None,
-        environment: Environment { deps: vec![] },
         date: Utc::now(),
     };
 
@@ -29,26 +32,32 @@ fn test_create_bundled_node() {
     let code_node1 = Node {
         name: "code_node1".to_string(),
         params: vec![],
+        version: Version {
+            version: String::from("0.0.1"),
+            env: Environment { deps: vec![] },
+        },
         kind: NodeKind::Code {
             code: "fn main() { println!(\"Node 1\"); }".to_string(),
         },
         description: "First code node".to_string(),
         author: "Author".to_string(),
         compiled: None,
-        environment: Environment { deps: vec![] },
         date: Utc::now(),
     };
 
     let code_node2 = Node {
         name: "code_node2".to_string(),
         params: vec![],
+        version: Version {
+            version: String::from("0.0.1"),
+            env: Environment { deps: vec![] },
+        },
         kind: NodeKind::Code {
             code: "fn main() { println!(\"Node 2\"); }".to_string(),
         },
         description: "Second code node".to_string(),
         author: "Author".to_string(),
         compiled: None,
-        environment: Environment { deps: vec![] },
         date: Utc::now(),
     };
 
@@ -59,11 +68,14 @@ fn test_create_bundled_node() {
     let bundled_node = Node {
         name: "bundled_node".to_string(),
         params: vec![],
+        version: Version {
+            version: String::from("0.0.1"),
+            env: Environment { deps: vec![] },
+        },
         kind: NodeKind::Bundled { bundle: nc },
         description: "A bundled node".to_string(),
         author: "Author".to_string(),
         compiled: None,
-        environment: Environment { deps: vec![] },
         date: Utc::now(),
     };
 
@@ -110,19 +122,22 @@ fn test_create_complex_bundled_node() {
     let code_node = Node {
         name: "complex_code_node".to_string(),
         params: vec![runtime_param1.clone(), runtime_param2.clone()],
+        version: Version {
+            version: String::from("0.0.1"),
+            env: Environment {
+                deps: vec![Dependency {
+                    name: "serde".to_string(),
+                    versions: vec!["1.0".to_string()],
+                    lib: true,
+                }],
+            },
+        },
         kind: NodeKind::Code {
             code: "fn main() { println!(\"Complex Node\"); }".to_string(),
         },
         description: "A complex code node".to_string(),
         author: "Author".to_string(),
         compiled: None,
-        environment: Environment {
-            deps: vec![Dependency {
-                name: "serde".to_string(),
-                versions: vec!["1.0".to_string()],
-                lib: true,
-            }],
-        },
         date: Utc::now(),
     };
 
@@ -132,11 +147,14 @@ fn test_create_complex_bundled_node() {
     let bundled_node = Node {
         name: "complex_bundled_node".to_string(),
         params: vec![static_param.clone()],
+        version: Version {
+            version: String::from("0.0.1"),
+            env: Environment { deps: vec![] },
+        },
         kind: NodeKind::Bundled { bundle: nc },
         description: "A complex bundled node".to_string(),
         author: "Author".to_string(),
         compiled: None,
-        environment: Environment { deps: vec![] },
         date: Utc::now(),
     };
 

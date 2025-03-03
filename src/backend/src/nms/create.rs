@@ -31,7 +31,7 @@ pub fn create_node(node: Node) -> Result<(), String> {
         .write_all(meta_toml.as_bytes())
         .map_err(|e| e.to_string())?;
 
-    let env_hash = meta.impls[0].clone().1;
+    let env_hash = meta.versions[0].clone().env.hash();
     create_dir(
         Path::new("nodes/")
             .join(name.clone())
@@ -43,7 +43,7 @@ pub fn create_node(node: Node) -> Result<(), String> {
         Path::new("nodes/")
             .join(name)
             .join(env_hash)
-            .join("node.bin"),
+            .join(format!("{}.bin", meta.versions[0].clone().version)),
     )
     .map_err(|e| e.to_string())?;
     node_file.write_all(&node_bin).map_err(|e| e.to_string())?;
