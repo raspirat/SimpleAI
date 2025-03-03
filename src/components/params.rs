@@ -9,10 +9,10 @@ pub struct InternRuntimeParam {
 impl From<utils::StrongParam> for InternRuntimeParam {
     fn from(param: utils::StrongParam) -> Self {
         let b = Self::builder().param(param.clone());
-        if let Ok(data) = param.context.lock() {
-            if let utils::ParamKind::Runtime { runtime } = &data.kind {
+        if let Ok(data) = param.context.try_lock() {
+            if let utils::ParamKind::Runtime { kind, .. } = &data.kind {
                 return b
-                    .connection(Signal::new(InternConnection::from(runtime.kind.clone())))
+                    .connection(Signal::new(InternConnection::from(kind.clone())))
                     .build();
             }
         }

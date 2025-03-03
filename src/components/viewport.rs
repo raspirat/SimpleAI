@@ -29,14 +29,18 @@ pub fn Viewport() -> Element {
 
     let mut node_context = utils::StrongContext::from(ViewportNodeContainer::new());
 
-    let drop = move |e: Event<DragData>| {
+    let nc_drop = node_context.clone();
+    let drop = move |e: DragEvent| {
         e.prevent_default();
 
         let mut node = crate::global::context::DRAG_NODE.unwrap();
         // node.position.set(e.page_coordinates().to_vector());
-        if let Ok(nodes) = node_context.clone().context.lock() {
+        let nci = nc_drop.clone();
+        spawn(async move {
+            let ncii = nci.clone();
+            let mut nodes = ncii.context.lock().await;
             nodes.deref_mut().push(node.clone());
-        }
+        });
     };
 
     let dragover = move |e: DragEvent| {
@@ -68,8 +72,11 @@ pub fn Viewport() -> Element {
         }
     };
 
+    let nc_mousedown = node_context.clone();
     let mousedown = move |e: MouseEvent| {
-        if let Ok(nodes) = node_context.context.lock() {
+        let nci = nc_mousedown.clone();
+        spawn(async move {
+            let mut nodes = nci.context.lock().await;
             for mut node in nodes.frontend_node_container.iter_mut() {
                 for mut param in node.runtime_params.iter_mut() {
                     // if let Some(connection) = (param.connection)() {
@@ -95,7 +102,7 @@ pub fn Viewport() -> Element {
                     pressed.set(true);
                 }
             }
-        }
+        });
     };
 
     let mousemove = move |e: MouseEvent| {
@@ -147,14 +154,14 @@ pub fn Viewport() -> Element {
         dioxus::logger::tracing::debug!("sub: {sub}, scale: {scale}");
     };
 
-    let node_context_c1 = node_context.clone();
     let rendered_nodes = {
-        if let Ok(nodes) = node_context_c1.context.lock() {
+        spawn(async move {
+            let nodes = node_context.context.lock().await;
             nodes
                 .frontend_node_container
                 .iter()
                 .map(|intern| rsx! { Node { intern: intern.clone() } });
-        }
+        });
     };
 
     rsx! {
