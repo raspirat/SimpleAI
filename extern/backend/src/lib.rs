@@ -1,3 +1,2 @@
-pub mod compiler;
-pub mod nms;
-pub mod utils;
+pub mod modules;
+pub use modules::*;
