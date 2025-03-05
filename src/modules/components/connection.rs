@@ -1,10 +1,10 @@
 use dioxus::html::geometry::{euclid::*, *};
 use dioxus::prelude::*;
-use sai_backend::utils;
+use sai_backend::utils::prelude::*;
 
 #[derive(PartialEq, Props, Clone)]
 pub struct InternConnection {
-    pub kind: utils::RuntimeParamKind,
+    pub kind: RuntimeParamKind,
     #[props(default = Signal::default())]
     pub dimensions: Signal<Vector2D<f64, PageSpace>>,
     #[props(default = Signal::default())]
@@ -12,8 +12,8 @@ pub struct InternConnection {
     #[props(default = Signal::default())]
     pub pressed: Signal<bool>,
 }
-impl From<utils::RuntimeParamKind> for InternConnection {
-    fn from(kind: utils::RuntimeParamKind) -> Self {
+impl From<RuntimeParamKind> for InternConnection {
+    fn from(kind: RuntimeParamKind) -> Self {
         Self::builder().kind(kind).build()
     }
 }
@@ -67,11 +67,11 @@ pub fn Connection(style: String, intern: InternConnection) -> Element {
 
     let kind = intern.kind.clone();
     use_effect(move || match kind {
-        utils::RuntimeParamKind::Input => {
+        RuntimeParamKind::Input => {
             class.set("Input");
             left.set(offset);
         }
-        utils::RuntimeParamKind::Output => {
+        RuntimeParamKind::Output => {
             class.set("Output");
             right.set(offset);
         }

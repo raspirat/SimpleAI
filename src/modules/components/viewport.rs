@@ -1,50 +1,41 @@
 use std::ops::DerefMut;
 
-use super::*;
-use sai_backend::utils;
+use dioxus::html::geometry::{euclid::*, *};
+use sai_backend::utils::prelude::*;
 
 #[derive(Clone)]
 pub struct ViewportNodeContainer {
-    pub backend_node_container: utils::NodeContainer,
-    pub frontend_node_container: Signal<Vec<InternNode>>,
+    pub backend_node_container: NodeContainer,
+    pub frontend_node_container: Signal<Vec<super::InternNode>>,
 }
 impl ViewportNodeContainer {
     pub fn new() -> Self {
         Self {
-            backend_node_container: utils::NodeContainer::new(),
-            frontend_node_container: use_signal(Vec::<InternNode>::new),
+            backend_node_container: NodeContainer::new(),
+            frontend_node_container: use_signal(Vec::<super::InternNode>::new),
         }
     }
-    pub fn push(&mut self, node: utils::Node) {
-        let node_ctx = utils::StrongContext::from(node);
+    pub fn push_context(&mut self, node_ctx: StrongNode) {
         self.backend_node_container.push_context(node_ctx.clone());
         self.frontend_node_container
-            .push(InternNode::from(node_ctx));
+            .push(super::InternNode::from(node_ctx));
     }
 }
 
 #[sai_macros::element("component")]
 pub fn Viewport() -> Element {
-    use dioxus::html::geometry::{euclid::*, *};
+    // ------------------------------ VARIABLES ------------------------------ //
+    let node_context = StrongContext::from(ViewportNodeContainer::new());
 
-    let mut node_context = utils::StrongContext::from(ViewportNodeContainer::new());
-
-    let nc_drop = node_context.clone();
-    let drop = move |e: DragEvent| {
-        e.prevent_default();
-
-        let mut node = crate::global::context::DRAG_NODE.unwrap();
-        // node.position.set(e.page_coordinates().to_vector());
-        let nci = nc_drop.clone();
+    let nc_rendered_nodes = node_context.clone();
+    let rendered_nodes = {
         spawn(async move {
-            let ncii = nci.clone();
-            let mut nodes = ncii.context.lock().await;
-            nodes.deref_mut().push(node.clone());
+            let nodes = nc_rendered_nodes.context.lock().await;
+            nodes
+                .frontend_node_container
+                .iter()
+                .map(|intern| rsx! { super::Node { intern: intern.clone() } });
         });
-    };
-
-    let dragover = move |e: DragEvent| {
-        e.prevent_default();
     };
 
     let mut cursor_start_coords = use_signal(Vector2D::<f64, _>::zero);
@@ -54,8 +45,8 @@ pub fn Viewport() -> Element {
     let mut scale = use_signal(|| 1f64);
 
     let mut pressed = use_signal(|| false);
-    let mut pressed_node = use_signal(|| Option::<InternNode>::None);
-    let mut pressed_connection = use_signal(|| Option::<InternConnection>::None);
+    let mut pressed_node = use_signal(|| Option::<super::InternNode>::None);
+    let mut pressed_connection = use_signal(|| Option::<super::InternConnection>::None);
 
     let mut cursor = use_signal(String::new);
 
@@ -72,20 +63,38 @@ pub fn Viewport() -> Element {
         }
     };
 
+    // ------------------------------ EVENTS ------------------------------ //
+    let nc_drop = node_context.clone();
+    let drop = move |e: DragEvent| {
+        e.prevent_default();
+
+        let node = crate::global::context::DRAG_NODE.unwrap();
+        // node.position.set(e.page_coordinates().to_vector());
+        let nci = nc_drop.clone();
+        spawn(async move {
+            let ncii = nci.clone();
+            let mut nodes = ncii.context.lock().await;
+            nodes.deref_mut().push_context(node.clone());
+        });
+    };
+
+    let dragover = move |e: DragEvent| {
+        e.prevent_default();
+    };
+
     let nc_mousedown = node_context.clone();
     let mousedown = move |e: MouseEvent| {
         let nci = nc_mousedown.clone();
         spawn(async move {
             let mut nodes = nci.context.lock().await;
             for mut node in nodes.frontend_node_container.iter_mut() {
-                for mut param in node.runtime_params.iter_mut() {
-                    // if let Some(connection) = (param.connection)() {
-                    //     if (connection.pressed)() {
-                    //         cursor_start_coords.set(e.page_coordinates().to_vector());
-                    //         pressed_connection.set(Some(connection.clone()));
-                    //         return;
-                    //     }
-                    // }
+                for param in node.runtime_params.iter_mut() {
+                    if ((param.connection)().pressed)() {
+                        // let mut param_context = param.param.context.lock().await;
+                        cursor_start_coords.set(e.page_coordinates().to_vector());
+                        pressed_connection.set(Some((param.connection)().clone()));
+                        return;
+                    }
                 }
                 if (node.pressed)() {
                     node.cursor.set("grabbing".into());
@@ -152,16 +161,6 @@ pub fn Viewport() -> Element {
         scale.set({ scale - sub }.max(0.0).min(1.0));
 
         dioxus::logger::tracing::debug!("sub: {sub}, scale: {scale}");
-    };
-
-    let rendered_nodes = {
-        spawn(async move {
-            let nodes = node_context.context.lock().await;
-            nodes
-                .frontend_node_container
-                .iter()
-                .map(|intern| rsx! { Node { intern: intern.clone() } });
-        });
     };
 
     rsx! {
