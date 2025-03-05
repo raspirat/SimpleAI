@@ -1,13 +1,13 @@
-use sai_backend::utils::Node;
+use sai_backend::utils::prelude::*;
 
 #[derive(PartialEq, Props, Clone)]
 pub struct InternSearchResult {
-    node: Node,
+    node: StrongNode,
 }
 
-impl From<Node> for InternSearchResult {
-    fn from(node: Node) -> Self {
-        Self::builder().node(node).build()
+impl From<StrongNode> for InternSearchResult {
+    fn from(node_context: StrongNode) -> Self {
+        Self::builder().node(node_context).build()
     }
 }
 

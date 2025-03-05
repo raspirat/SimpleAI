@@ -1,11 +1,11 @@
 use super::*;
 use dioxus::html::geometry::{euclid::Vector2D, *};
 use dioxus::prelude::*;
-use sai_backend::utils;
+use sai_backend::utils::prelude::*;
 
 #[derive(PartialEq, Props, Clone)]
 pub struct InternNode {
-    pub node: utils::StrongNode,
+    pub node: StrongNode,
     #[props(default = Signal::default())]
     pub runtime_params: Signal<Vec<InternRuntimeParam>>,
     #[props(default = Signal::default())]
@@ -18,8 +18,8 @@ pub struct InternNode {
     pub cursor: Signal<String>,
 }
 
-impl From<utils::StrongNode> for InternNode {
-    fn from(node: utils::StrongNode) -> Self {
+impl From<StrongNode> for InternNode {
+    fn from(node: StrongNode) -> Self {
         let b = Self::builder().node(node.clone());
         // if let Ok(data) = node.context.lock() {
         //     return b

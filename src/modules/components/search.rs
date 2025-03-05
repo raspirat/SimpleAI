@@ -1,13 +1,18 @@
 #[sai_macros::element("component")]
 pub fn Search(style: String, icons: Icons) -> Element {
     use crate::components::{InternSearchResult, SearchResult};
-    use sai_backend::utils::*;
+    use sai_backend::utils::search::*;
 
     let mut search_results = use_signal(Vec::<InternSearchResult>::new);
 
     let onchange = move |e: FormEvent| {
-        dioxus::logger::tracing::debug!("submit");
-        // search_results.push();
+        let mut results = search(e.value()).tree;
+        search_results.extend(
+            results
+                .iter_mut()
+                .map(|result| InternSearchResult::from(result.clone()))
+                .collect::<Vec<InternSearchResult>>(),
+        );
     };
 
     let rendered_search_results = search_results
