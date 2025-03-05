@@ -1,6 +1,6 @@
 use chrono::Utc;
 use sai_backend::nms::create::create_node;
-use sai_backend::utils::*;
+use sai_backend::utils::prelude::*;
 use uuid::Uuid;
 
 #[test]
