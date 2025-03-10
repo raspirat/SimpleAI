@@ -16,6 +16,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build
-      run: build --release --features "desktop"
+      run: cargo build --release --features "desktop"
     - name: Run tests
       run: cargo test --verbose
