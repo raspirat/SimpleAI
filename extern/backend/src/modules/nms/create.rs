@@ -6,7 +6,7 @@ use std::io::Write;
 use std::path::Path;
 
 // #[cfg(feature = "desktop")]
-pub fn create_node(node: Node) -> Result<(), String> {
+pub fn save_node(node: Node) -> Result<(), String> {
     let name = node.name.clone();
 
     if !check_name(name.clone()) {
@@ -18,11 +18,10 @@ pub fn create_node(node: Node) -> Result<(), String> {
     if !Path::new("nodes/").exists() {
         create_dir(Path::new("nodes/")).map_err(|e| e.to_string())?;
     }
-    if Path::new("nodes/").join(name.clone()).exists() {
-        return Err(format!("A node named {} does already exist!", name));
+    if !Path::new("nodes/").join(name.clone()).exists() {
+        create_dir(Path::new("nodes/").join(name.clone())).map_err(|e| e.to_string())?;
     }
 
-    create_dir(Path::new("nodes/").join(name.clone())).map_err(|e| e.to_string())?;
     let meta: Metadata = node.clone().into();
     let meta_toml = toml::to_string(&meta).unwrap();
     let mut meta_file = File::create(Path::new("nodes/").join(name.clone()).join("meta.toml"))
@@ -31,7 +30,7 @@ pub fn create_node(node: Node) -> Result<(), String> {
         .write_all(meta_toml.as_bytes())
         .map_err(|e| e.to_string())?;
 
-    let env_hash = meta.impls[0].clone().1;
+    let env_hash = meta.versions[0].clone().env.hash();
     create_dir(
         Path::new("nodes/")
             .join(name.clone())
@@ -43,7 +42,7 @@ pub fn create_node(node: Node) -> Result<(), String> {
         Path::new("nodes/")
             .join(name)
             .join(env_hash)
-            .join("node.bin"),
+            .join(format!("{}.bin", meta.versions[0].clone().version)),
     )
     .map_err(|e| e.to_string())?;
     node_file.write_all(&node_bin).map_err(|e| e.to_string())?;

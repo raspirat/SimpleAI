@@ -1,5 +1,5 @@
 use chrono::Utc;
-use sai_backend::nms::create::create_node;
+use sai_backend::nms::create::save_node;
 use sai_backend::utils::prelude::*;
 use uuid::Uuid;
 
@@ -14,11 +14,14 @@ fn test_create_code_node() {
         description: "A simple code node".to_string(),
         author: "Author".to_string(),
         compiled: None,
-        environment: Environment { deps: vec![] },
+        version: Version {
+            version: String::from("0.0.1"),
+            env: Environment { deps: vec![] },
+        },
         date: Utc::now(),
     };
 
-    let res = create_node(node);
+    let res = save_node(node);
     println!("{:?}", res);
 
     assert!(res.is_ok());
@@ -35,7 +38,10 @@ fn test_create_bundled_node() {
         description: "First code node".to_string(),
         author: "Author".to_string(),
         compiled: None,
-        environment: Environment { deps: vec![] },
+        version: Version {
+            version: String::from("0.0.1"),
+            env: Environment { deps: vec![] },
+        },
         date: Utc::now(),
     };
 
@@ -48,7 +54,10 @@ fn test_create_bundled_node() {
         description: "Second code node".to_string(),
         author: "Author".to_string(),
         compiled: None,
-        environment: Environment { deps: vec![] },
+        version: Version {
+            version: String::from("0.0.1"),
+            env: Environment { deps: vec![] },
+        },
         date: Utc::now(),
     };
 
@@ -63,11 +72,14 @@ fn test_create_bundled_node() {
         description: "A bundled node".to_string(),
         author: "Author".to_string(),
         compiled: None,
-        environment: Environment { deps: vec![] },
+        version: Version {
+            version: String::from("0.0.1"),
+            env: Environment { deps: vec![] },
+        },
         date: Utc::now(),
     };
 
-    let res = create_node(bundled_node);
+    let res = save_node(bundled_node);
 
     println!("{:?}", res);
 
@@ -116,12 +128,15 @@ fn test_create_complex_bundled_node() {
         description: "A complex code node".to_string(),
         author: "Author".to_string(),
         compiled: None,
-        environment: Environment {
-            deps: vec![Dependency {
-                name: "serde".to_string(),
-                versions: vec!["1.0".to_string()],
-                lib: true,
-            }],
+        version: Version {
+            version: String::from("0.0.1"),
+            env: Environment {
+                deps: vec![Dependency {
+                    name: "serde".to_string(),
+                    versions: vec!["1.0".to_string()],
+                    lib: true,
+                }],
+            },
         },
         date: Utc::now(),
     };
@@ -136,11 +151,14 @@ fn test_create_complex_bundled_node() {
         description: "A complex bundled node".to_string(),
         author: "Author".to_string(),
         compiled: None,
-        environment: Environment { deps: vec![] },
+        version: Version {
+            version: String::from("0.0.1"),
+            env: Environment { deps: vec![] },
+        },
         date: Utc::now(),
     };
 
-    let res = create_node(bundled_node);
+    let res = save_node(bundled_node);
     println!("{:?}", res);
 
     assert!(res.is_ok());
