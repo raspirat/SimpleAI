@@ -2,9 +2,9 @@ name: Rust
 
 on:
   push:
-    branches: [ "main", "dev" ]
+    branches: [ "main", "dev", "backend-lib" ]
   pull_request:
-    branches: [ "main", "dev" ]
+    branches: [ "main", "dev", "backend-lib" ]
 
 env:
   CARGO_TERM_COLOR: always
@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Install system packages
-      run: sudo apt-get install libglib2.0-dev libgtk-3-dev libsoup-3.0 gir1.2-javascriptcoregtk-4.1
+      run: sudo apt-get install libglib2.0-dev libgtk-3-dev libsoup-3.0 libwebkit2gtk-4.1-dev
     - name: Build
       run: cargo build --release --features "desktop"
     - name: Run tests
