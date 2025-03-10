@@ -1,12 +1,14 @@
+use sai_backend::utils::prelude::QueryFilter;
+
 #[sai_macros::element("component")]
 pub fn Search(style: String, icons: Icons) -> Element {
     use crate::components::{InternSearchResult, SearchResult};
-    use sai_backend::utils::search::*;
+    use sai_backend::nms::query::*;
 
     let mut search_results = use_signal(Vec::<InternSearchResult>::new);
 
     let onchange = move |e: FormEvent| {
-        let mut results = search(e.value()).tree;
+        let mut results = query(vec![QueryFilter::Name { name: e.value() }]).tree;
         search_results.extend(
             results
                 .iter_mut()
